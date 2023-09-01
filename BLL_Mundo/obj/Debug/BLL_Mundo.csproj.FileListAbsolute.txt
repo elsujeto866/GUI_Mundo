@@ -1,0 +1,10 @@
+C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\BLL_Mundo\bin\Debug\BLL_Mundo.dll
+C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\BLL_Mundo\bin\Debug\BLL_Mundo.pdb
+C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\BLL_Mundo\bin\Debug\DAL_Mundo.dll
+C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\BLL_Mundo\bin\Debug\DAL_Mundo.pdb
+C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\BLL_Mundo\bin\Debug\DAL_Mundo.dll.config
+C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\BLL_Mundo\obj\Debug\BLL_Mundo.csproj.AssemblyReference.cache
+C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\BLL_Mundo\obj\Debug\BLL_Mundo.csproj.CoreCompileInputs.cache
+C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\BLL_Mundo\obj\Debug\BLL_Mundo.csproj.CopyComplete
+C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\BLL_Mundo\obj\Debug\BLL_Mundo.dll
+C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\BLL_Mundo\obj\Debug\BLL_Mundo.pdb

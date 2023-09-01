@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="DBMundo">
+  <DataContextMoniker Name="/DBMundoDataContext" />
+  <nestedChildShapes>
+    <classShape Id="f188e74a-882d-4b52-869e-f16123965b8d" absoluteBounds="0.5, 3.625, 2, 1.193992513020834">
+      <DataClassMoniker Name="/DBMundoDataContext/Continentes" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f5fa11e8-7319-4402-833a-2871f5eb6173" absoluteBounds="0.515, 4.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5e044781-8ba5-4860-b211-5b219f9b021e" absoluteBounds="3, 1.375, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/DBMundoDataContext/Gobiernos" />
+      <nestedChildShapes>
+        <elementListCompartment Id="560be947-8c99-4ff2-acc4-7a1567f93552" absoluteBounds="3.015, 1.835, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a2bc4231-c8c3-4ba4-a2a3-e60b709c651c" absoluteBounds="6.25, 6.75, 2, 1.1939925130208353">
+      <DataClassMoniker Name="/DBMundoDataContext/idiomas" />
+      <nestedChildShapes>
+        <elementListCompartment Id="46166e22-d7e4-440d-8abc-464f9d7f36a1" absoluteBounds="6.2650000000000006, 7.2100000000000009, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9e8bb93d-6bb0-4344-aa96-ea128a8bcb57" absoluteBounds="3.25, 3.375, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/DBMundoDataContext/paises" />
+      <nestedChildShapes>
+        <elementListCompartment Id="22dffadc-f3c8-43fa-bc83-35a44f36339d" absoluteBounds="3.265, 3.835, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e39f866b-2d67-45fa-8894-605a8e3e30d7" absoluteBounds="6.25, 4.375, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/DBMundoDataContext/paises_idiomas" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1b9c2f67-400f-45d5-80e1-404714d7020a" absoluteBounds="6.265, 4.835, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="279d295f-2468-4e48-9fdc-6f40a608614f" absoluteBounds="5.875, 1.625, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/DBMundoDataContext/paises_vecinos" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c1c68edb-9001-448f-bf4c-ae5a938bd0be" absoluteBounds="5.89, 2.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.5 : 4.22199625651042); (3.25 : 4.22199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DBMundoDataContext/Continentes/Continentes_paises" />
+      <nodes>
+        <classShapeMoniker Id="f188e74a-882d-4b52-869e-f16123965b8d" />
+        <classShapeMoniker Id="9e8bb93d-6bb0-4344-aa96-ea128a8bcb57" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.125 : 2.56899251302083); (4.125 : 3.375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DBMundoDataContext/Gobiernos/Gobiernos_paises" />
+      <nodes>
+        <classShapeMoniker Id="5e044781-8ba5-4860-b211-5b219f9b021e" />
+        <classShapeMoniker Id="9e8bb93d-6bb0-4344-aa96-ea128a8bcb57" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(7.25 : 6.75); (7.25 : 5.95359537760417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DBMundoDataContext/idiomas/idiomas_paises_idiomas" />
+      <nodes>
+        <classShapeMoniker Id="a2bc4231-c8c3-4ba4-a2a3-e60b709c651c" />
+        <classShapeMoniker Id="e39f866b-2d67-45fa-8894-605a8e3e30d7" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.25 : 5.16429768880208); (6.25 : 5.16429768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DBMundoDataContext/paises/paises_paises_idiomas" />
+      <nodes>
+        <classShapeMoniker Id="9e8bb93d-6bb0-4344-aa96-ea128a8bcb57" />
+        <classShapeMoniker Id="e39f866b-2d67-45fa-8894-605a8e3e30d7" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.25 : 3.375); (5.875 : 3.0112939453125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DBMundoDataContext/paises/paises_paises_vecinos" />
+      <nodes>
+        <classShapeMoniker Id="9e8bb93d-6bb0-4344-aa96-ea128a8bcb57" />
+        <classShapeMoniker Id="279d295f-2468-4e48-9fdc-6f40a608614f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.25 : 3.375); (5.875 : 3.0112939453125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DBMundoDataContext/paises/paises_paises_vecinos1" />
+      <nodes>
+        <classShapeMoniker Id="9e8bb93d-6bb0-4344-aa96-ea128a8bcb57" />
+        <classShapeMoniker Id="279d295f-2468-4e48-9fdc-6f40a608614f" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

@@ -1,0 +1,43 @@
+﻿<Window x:Class="GUI_Mundo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Icon ="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        Height="720" Width="1080" WindowStartupLocation="CenterScreen" WindowStyle="None"
+        AllowsTransparency="True" Background="Transparent">
+    <Border x:Name="FmrPrincipal" Background="#eff2f7" CornerRadius="30" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <!--Menu Izquierdo-->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!--Menu Icono-->
+                <Button HorizontalAlignment="Left" Margin="20 28 0 35">
+                    <Icon:PackIconMaterial Kind="Menu" Width="15" Height="15"/>
+                </Button>
+                <Border Grid.Row="1" Background="#623ED0" CornerRadius="0 50 0 30">
+                    <DockPanel>
+                        <!--Menu Logo-->
+                        <Border Width="80" Height="80" Padding="3" Background="White" CornerRadius="100"
+                                DockPanel.Dock="Top" HorizontalAlignment="Left" Margin=" 20 -30 0 0">
+                            <Ellipse>
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="/Imagenes/BUHO_EPN_big.png" />
+                                </Ellipse.Fill>
+                            </Ellipse>
+
+                        </Border>
+                    </DockPanel>
+                </Border>
+            </Grid>    
+            
+        </Grid>
+    </Border>
+</Window>

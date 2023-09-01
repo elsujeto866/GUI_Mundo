@@ -225,15 +225,17 @@ FROM paises p
   INNER JOIN continentes c ON p.continente_id = c.id
 ORDER BY p.pais;
 END
-
+GO
 --Países en cada continente
-
-SELECT c.continente, STRING_AGG(p.pais ,', ') as países
+CREATE PROCEDURE PaisesXContinente
+AS
+Begin
+SELECT c.continente, STRING_AGG(p.pais ,', ') as paises
 FROM continentes c 
   INNER JOIN paises p ON p.continente_id = c.id 
-GROUP BY c.id
+GROUP BY c.continente
 ORDER BY 1;
-
+END 
 
 
 --aíses fronterizos a España

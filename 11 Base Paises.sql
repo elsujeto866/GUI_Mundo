@@ -240,132 +240,202 @@ END
 
 --aíses fronterizos a España
 
-SELECT p.pais, v.pais, pv.kms_frontera
-FROM paises p 
-  INNER JOIN paises_vecinos pv ON p.id = pv.pais_id 
-  INNER JOIN paises v ON pv.vecino_id = v.id
-WHERE p.pais = 'España';
+CREATE PROCEDURE FronterasXPais
+@nombrePais VARCHAR(35) -- Parámetro para el nombre del país
+AS
+BEGIN
+  SELECT p.pais AS pais_principal, v.pais AS pais_vecino, pv.kms_frontera
+  FROM paises p 
+    INNER JOIN paises_vecinos pv ON p.id = pv.pais_id 
+    INNER JOIN paises v ON pv.vecino_id = v.id
+  WHERE p.pais = @nombrePais;
+END;
+
+-- Prueba de FronterasPais
+--EXEC FronterasPais @nombrePais = 'Brasil'; -- Busco Alemania
+
 
 
 --Países fronterizos a cada país
-
-SELECT p.pais, STRING_AGG (v.pais  , ', ')  as vecinos
+CREATE PROCEDURE FronterasTodosPaises
+AS
+SELECT p.Pais, STRING_AGG (v.pais  , ', ')  as Vecinos
 FROM paises p 
   INNER JOIN paises_vecinos pv ON p.id = pv.pais_id 
   INNER JOIN paises v ON pv.vecino_id = v.id
-GROUP BY p.id
+GROUP BY p.pais
 ORDER BY 1;
 
---Idiomas que se habla en cada país
 
-SELECT p.pais, STRING_AGG(i.idioma ,', ') as idiomas
+--Idiomas que se habla en cada país
+CREATE PROCEDURE IdiomasPaises
+AS
+SELECT p.Pais, STRING_AGG(i.idioma ,', ') as Idiomas
 FROM paises p 
   INNER JOIN paises_idiomas pi ON p.id = pi.pais_id 
   INNER JOIN idiomas i ON pi.idioma_id = i.id
-GROUP BY p.id
+GROUP BY p.Pais	
 ORDER BY 1;
 
+
 --Comprobar que las fronteras a ambos lados mida lo mismo
---En la tabla paises_vecinos para cada registro de (país, vecino) hay otro registro igual que es (vecino, país). En ambos casos los kilómetros de frontera deberían coincidir. Se trata de averiguar cuando no se cumple.
+
+--En la tabla paises_vecinos para cada registro de (país, vecino) hay otro registro igual que es (vecino, país). En ambos casos los kilómetros de frontera deberían coincidir.
+-- Se trata de averiguar cuando no se cumple.
 
 
-SELECT * FROM (
-  SELECT pais_id, vecino_id, COALESCE(kms_frontera,0) frontera1,
-    ( SELECT COALESCE(kms_frontera,0)
-      FROM paises_vecinos 
-      WHERE vecino_id = a.pais_id AND pais_id = a.vecino_id 
-    ) frontera2
+CREATE PROCEDURE NoCoincidenFronteras
+AS
+SELECT *
+FROM (
+  SELECT a.pais_id, a.vecino_id, COALESCE(a.kms_frontera, 0) AS frontera1,
+         COALESCE(b.kms_frontera, 0) AS frontera2
   FROM paises_vecinos a
-  ORDER BY 1, 2
-) aa
-WHERE frontera1 <> frontera2 OR frontera2 IS NULL
+  LEFT JOIN paises_vecinos b
+  ON a.pais_id = b.vecino_id AND a.vecino_id = b.pais_id
+  WHERE a.pais_id < a.vecino_id
+) AS aa
+WHERE frontera1 <> frontera2 OR frontera2 IS NULL;
+GO
+
+
 
 --Mostrar el país más poblado y el más grande
 
-SELECT pais, FORMAT(poblacion, 0) poblacion, FORMAT(extension, 0) extension
+-- Este es para mostrar ambos al mismo tiempo
+SELECT 
+  Pais, 
+  Poblacion,
+  Extension
 FROM paises 
 WHERE poblacion >= ALL (SELECT poblacion FROM paises)
   OR extension >= ALL (SELECT extension FROM paises);
 
+  -- pais mas extenso
+CREATE PROCEDURE PaisMasGrande
+AS
+SELECT TOP 1 Pais, Extension
+FROM paises
+ORDER BY extension DESC;
+GO
+
+--Pais mas poblado
+CREATE PROCEDURE PaisMasPoblado
+AS
+SELECT TOP 1 Pais, Poblacion
+FROM paises
+ORDER BY poblacion DESC;
+GO
 
   --Países ordenados por densidad de población
 
-SELECT pais, FORMAT(poblacion / extension, 2) densidad
+CREATE PROCEDURE OrdenarXDensidad
+AS
+SELECT Pais, poblacion / extension AS Densidad
 FROM paises
 WHERE extension IS NOT NULL 
 ORDER BY poblacion / extension;
+GO
 
 
 --Idiomas y países de Europa donde se habla
 
-SELECT idioma, STRING_AGG(pais , ', ') paises
-FROM paises p
-  INNER JOIN paises_idiomas pi ON pi.pais_id = p.id 
-  INNER JOIN idiomas i ON pi.idioma_id = i.id
-WHERE continente_id = (
-  SELECT id FROM continentes WHERE continente = 'Europa')
-GROUP BY idioma
-ORDER BY idioma
+CREATE PROCEDURE PaisesPorIdiomaYContinente
+@continente VARCHAR(20) -- Parámetro para el continente
+AS
+BEGIN
+  SELECT i.Idioma, STRING_AGG(p.pais , ', ') AS Paises
+  FROM paises p
+    INNER JOIN paises_idiomas pi ON pi.pais_id = p.id 
+    INNER JOIN idiomas i ON pi.idioma_id = i.id
+  WHERE p.continente_id = (SELECT id FROM continentes WHERE continente = @continente)
+  GROUP BY i.idioma
+  ORDER BY i.idioma;
+END;
+
 
 --Kilómetros de frontera y de costa de cada país
 
-SELECT pais, costa, frontera, 
+CREATE PROCEDURE CostayFronteraPaises
+AS
+SELECT 
+  Pais,
+  Costa,
+  Frontera,
   CASE 
     WHEN costa IS NULL AND frontera IS NULL THEN NULL
     WHEN costa IS NULL THEN frontera
     WHEN frontera IS NULL THEN costa
     ELSE frontera + costa
-  END total
+  END AS Total
 FROM (
-  SELECT pais, costa, SUM(kms_frontera) frontera
+  SELECT 
+    pais, 
+    SUM(CAST(costa AS DECIMAL(15,5))) AS costa, 
+    SUM(CAST(kms_frontera AS DECIMAL(15,5))) AS frontera
   FROM paises p 
     LEFT JOIN paises_vecinos pv ON pv.pais_id = p.id
   GROUP BY pais
-) a
+) a;
+GO
+
 
 
 --Clasificar los países por ser islas, por tener costa, por ser interior o por falta de datos
 
-SELECT pais, 
+CREATE PROCEDURE TipoPaisGeografia
+AS
+SELECT 
+  Pais, 
   CASE 
-    WHEN costa IS NULL AND frontera IS NULL THEN 'Faltan datos'    
+    WHEN costa IS NULL AND frontera IS NULL THEN 'Faltan datos'
     WHEN frontera IS NULL THEN 'Isla'
-    WHEN COALESCE(costa, 0) = 0 THEN 'Interior'    
+    WHEN COALESCE(costa, 0) = 0 THEN 'Interior'
     ELSE 'Costero'
-  END tipo
+  END AS Tipo
 FROM (
-  SELECT pais, costa, SUM(kms_frontera) frontera
+  SELECT 
+    pais, 
+    costa, 
+    SUM(kms_frontera) AS frontera
   FROM paises p 
     LEFT JOIN paises_vecinos pv ON pv.pais_id = p.id
-  GROUP BY pais
+  GROUP BY pais, costa
 ) a
-ORDER BY pais
+ORDER BY pais;
+GO
 
 
 --Números de países que empieza por cada letra encolumnado por continente
-
-SELECT inicial, 
-  SUM(CASE WHEN continente = 'Africa' THEN 1 ELSE 0 END) africanos,
-  SUM(CASE WHEN continente = 'América' THEN 1 ELSE 0 END) americanos,
-  SUM(CASE WHEN continente = 'Asia' THEN 1 ELSE 0 END) asiaticos,
-  SUM(CASE WHEN continente = 'Europa' THEN 1 ELSE 0 END) europeos,
-  SUM(CASE WHEN continente = 'Oceanía' THEN 1 ELSE 0 END) oceanicos
+CREATE PROCEDURE AlfabetoPaisesXContinente
+AS
+SELECT Inicial, 
+  SUM(CASE WHEN continente = 'Africa' THEN 1 ELSE 0 END) Africanos,
+  SUM(CASE WHEN continente = 'América' THEN 1 ELSE 0 END) Americanos,
+  SUM(CASE WHEN continente = 'Asia' THEN 1 ELSE 0 END) Asiaticos,
+  SUM(CASE WHEN continente = 'Europa' THEN 1 ELSE 0 END) Europeos,
+  SUM(CASE WHEN continente = 'Oceanía' THEN 1 ELSE 0 END) Oceanicos
 FROM ( 
   SELECT LEFT(pais,1) inicial, continente
   FROM paises p INNER JOIN continentes c ON p.continente_id = c.id
 ) a
 GROUP BY inicial
+GO
+
 
 --Países con más o igual población que alguno de los países con más de cincuenta millones de km2 de extensión
 
-SELECT pais, FORMAT(poblacion,0) habitantes
+CREATE PROCEDURE PaisesSuperioresA50M
+AS
+SELECT Pais, poblacion AS Habitantes
 FROM paises
 WHERE poblacion >= ANY (
   SELECT poblacion 
   FROM paises 
   WHERE extension >= 5000000
 )
-ORDER BY pais
+ORDER BY pais;
+GO
 
 
 SELECT pais, FORMAT(poblacion,0) habitantes

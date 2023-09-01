@@ -26,7 +26,6 @@ namespace DAL_Mundo
                 {
                     tablaPaises.Rows.Add(p.pais,p.continente);
                 }
-                
             }
             return tablaPaises;
         }

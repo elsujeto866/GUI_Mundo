@@ -4,9 +4,11 @@ Si bien es cierto que se pueden hacer Foreign Keys referenciando a cualquier atr
 usada para impedir el duplicado de valores para un atributo.*/
 
 USE master
-go
-if object_id('BD_Mundo') is not null
+GO
+IF EXISTS (SELECT * FROM sys.databases WHERE name = 'BD_Mundo') 
+BEGIN
   DROP DATABASE BD_Mundo;
+END
 GO
 
 CREATE DATABASE BD_Mundo;
@@ -16,34 +18,26 @@ USE BD_Mundo;
 GO
 
 CREATE TABLE Continentes (
-  id INT NOT NULL,
-  continente VARCHAR(20) NOT NULL,
-  --
-  PRIMARY KEY (continente),
-  UNIQUE (id)
+  id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+  continente VARCHAR(20) NOT NULL
 ) ;
 GO
+--SELECT * FROM Continentes
 
 CREATE TABLE Gobiernos (
-  id INT NOT NULL,
-  gobierno VARCHAR(40) NOT NULL,
-  --
-  PRIMARY KEY (gobierno),
-  UNIQUE  (id)
+  id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+  gobierno VARCHAR(40) NOT NULL
 );
 GO
 
-CREATE TABLE idiomas (
-  id INT NOT NULL,
+CREATE TABLE Idiomas (
+  id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
   idioma VARCHAR(20) NOT NULL,
-  --
-  PRIMARY KEY (idioma),
-  UNIQUE  (id)
 );
 GO
 
-CREATE TABLE paises (
-  id INT NOT NULL,
+CREATE TABLE Paises (
+  id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
   pais VARCHAR(35) NOT NULL,
   capital VARCHAR(20),
   moneda VARCHAR(30),
@@ -51,31 +45,31 @@ CREATE TABLE paises (
   gobierno_id INT,
   poblacion INT,
   extension DECIMAL(15,5),
-  posicion VARCHAR(20),
+  posicion VARCHAR(50),
   existe bit NOT NULL DEFAULT 1,
   costa INT DEFAULT 0,
   country VARCHAR(35),
   code VARCHAR(2),
-  PRIMARY KEY (pais),
-  UNIQUE  (id),
-  FOREIGN KEY (continente_id) REFERENCES continentes(id),
-  FOREIGN KEY (gobierno_id) REFERENCES gobiernos(id)
+  FOREIGN KEY (continente_id) REFERENCES Continentes(id),
+  FOREIGN KEY (gobierno_id) REFERENCES Gobiernos(id)
 ) ;
 GO
+--SELECT * FROM Continentes
 
-CREATE TABLE paises_idiomas (
+CREATE TABLE Paises_Idiomas (
   pais_id INT NOT NULL,
   idioma_id INT NOT NULL,
   hablantes INT,
   porcentaje DECIMAL(15,5),
   --
   PRIMARY KEY (pais_id, idioma_id),
-  FOREIGN KEY (pais_id) REFERENCES paises(id),
-  FOREIGN KEY (idioma_id) REFERENCES idiomas(id)
+  FOREIGN KEY (pais_id) REFERENCES Paises(id),
+  FOREIGN KEY (idioma_id) REFERENCES Idiomas(id)
 ) ;
 GO
-
-CREATE TABLE paises_vecinos (
+--SELECT * FROM Paises
+SELECT * FROM Idiomas
+CREATE TABLE Paises_Vecinos (
   pais_id INT NOT NULL,
   vecino_id INT NOT NULL,
   kms_frontera INT DEFAULT 0,
@@ -86,135 +80,200 @@ CREATE TABLE paises_vecinos (
 ) ;
 GO
 --Insercion de datos
-INSERT INTO Continentes (id, continente)
+INSERT INTO Continentes (continente)
 VALUES
-  (1, 'América'),
-  (2, 'Europa'),
-  (3, 'Asia'),
-  (4, 'África'),
-  (5, 'Oceanía');
+    ('Asia'),
+    ('África'),
+    ('América'),
+    ('Europa'),
+    ('Oceanía');
+GO
+--SELECT * FROM Continentes
+INSERT INTO Gobiernos (gobierno)
+VALUES
+	('Democracia'),
+	('Comunismo'),
+    ('Dictadura'),
+    ('Oligarquía'),
+    ('Teocracia'),
+    ('Anarquía'),
+	('Autocracia'),
+    ('Federalismo'),
+    ('Confederación'),
+    ('Socialdemocracia'),
+    ('Parlamentarismo');
 GO
 
-INSERT INTO Gobiernos (id, gobierno)
+INSERT INTO Idiomas (idioma)
 VALUES
-  (1, 'Democracia'),
-  (2, 'Monarquía'),
-  (3, 'República'),
-  (4, 'Dictadura'),
-  (5, 'Teocracia'),
-  (6, 'Monarquía Constitucional'),
-  (7, 'Democracia Directa'),
-  (8, 'República Parlamentaria'),
-  (9, 'Dictadura Militar'),
-  (10, 'Oligarquía');
+    ('Español'),
+    ('Inglés'),
+    ('Francés'),
+    ('Alemán'),
+    ('Italiano'),
+    ('Portugués'),
+    ('Chino (Mandarín)'),
+    ('Japonés'),
+    ('Ruso'),
+    ('Árabe'),
+	('Coreano'),
+    ('Holandés'),
+    ('Sueco'),
+    ('Danés'),
+    ('Noruego'),
+    ('Finlandés'),
+    ('Polaco'),
+    ('Húngaro'),
+    ('Turco'),
+    ('Griego');
 GO
 
-INSERT INTO idiomas (id, idioma)
+INSERT INTO paises (pais, capital, moneda, continente_id, gobierno_id, poblacion, extension, posicion, costa, country, code)
 VALUES
-  (1, 'Español'),
-  (2, 'Inglés'),
-  (3, 'Francés'),
-  (4, 'Alemán'),
-  (5, 'Chino Mandarín'),
-  (6, 'Italiano'),
-  (7, 'Portugués'),
-  (8, 'Ruso'),
-  (9, 'Japonés'),
-  (10, 'Árabe');
+	('Ecuador', 'Quito', 'Dólar estadounidense', 3, 1, 17643054, 2.850000, 'América del Sur', 2, 'Ecuador', 'EC'),
+    ('China', 'Pekín', 'Renminbi', 1, 2, 1444216107, 9.596961, 'Este de Asia', 1, 'China', 'CN'),
+    ('Estados Unidos', 'Washington D.C.', 'Dólar estadounidense', 3, 1, 331002651, 9.525067, 'América del Norte', 1, 'Estados Unidos', 'US'),
+    ('Rusia', 'Moscú', 'Rublo ruso', 1, 3, 145912025, 17.125191, 'Europa del Este y Asia del Norte', 1, 'Rusia', 'RU'),
+    ('Brasil', 'Brasilia', 'Real brasileño', 3, 1, 212559417, 8.515767, 'América del Sur', 1, 'Brasil', 'BR'),
+    ('India', 'Nueva Delhi', 'Rupia india', 1, 2, 1380004385, 3.287263, 'Asia del Sur', 1, 'India', 'IN'),
+	('México', 'Ciudad de México', 'Peso mexicano', 3, 1, 126190788, 1.964375, 'América del Norte', 1, 'México', 'MX'),
+    ('Francia', 'París', 'Euro', 4, 1, 65273511, 551.695, 'Europa Occidental', 1, 'Francia', 'FR'),
+    ('Egipto', 'El Cairo', 'Libra egipcia', 2, 3, 102334404, 1.001450, 'Noreste de África', 1, 'Egipto', 'EG'),
+    ('Australia', 'Canberra', 'Dólar australiano', 5, 1, 25499884, 7.692024, 'Oceanía', 1, 'Australia', 'AU'),
+    ('Japón', 'Tokio', 'Yen japonés', 1, 4, 126476461, 0.377975, 'Asia del Este', 1, 'Japón', 'JP'),
+	('Canadá', 'Ottawa', 'Dólar canadiense', 3, 1, 37742154, 9.984670, 'América del Norte', 3, 'Canada', 'CA'),
+    ('Alemania', 'Berlín', 'Euro', 4, 1, 83783942, 3.573100, 'Europa Central', 1, 'Germany', 'DE'),
+    ('Sudáfrica', 'Pretoria', 'Rand sudafricano', 2, 4, 59308690, 1.221037, 'África del Sur', 1, 'South Africa', 'ZA'),
+    ('Nueva Zelanda', 'Wellington', 'Dólar neozelandés', 5, 1, 4822233, 2.934712, 'Oceanía', 3, 'New Zealand', 'NZ'),
+    ('Italia', 'Roma', 'Euro', 4, 1, 60461826, 3.796742, 'Europa del Sur', 4, 'Italy', 'IT'),
+	('Argentina', 'Buenos Aires', 'Peso argentino', 3, 1, 45195777, 2.780400, 'América del Sur', 3, 'Argentina', 'AR'),
+    ('Reino Unido', 'Londres', 'Libra esterlina', 4, 1, 67886011, 0.242495, 'Europa Occidental', 4, 'United Kingdom', 'GB'),
+    ('Nigeria', 'Abuja', 'Naira nigeriano', 2, 1, 206139587, 0.923768, 'África Occidental', 0, 'Nigeria', 'NG'),
+    ('Indonesia', 'Yakarta', 'Rupia indonesia', 1, 1, 273523615, 1.904569, 'Sureste de Asia', 1, 'Indonesia', 'ID'),
+    ('España', 'Madrid', 'Euro', 4, 1, 46754778, 505992.91, 'Europa del Sur', 1,'Spain', 'ES'),
+	('Suecia', 'Estocolmo', 'Corona sueca', 4, 9, 10379295, 0.450295, 'Europa del Norte', 1, 'Sweden', 'SE'),
+    ('Nueva Guinea', 'Puerto Moresby', 'Kina', 5, 10, 8947024, 0.462840, 'Oceanía', 1, 'Papua New Guinea', 'PG'),
+    ('Argelia', 'Argel', 'Dinar argelino', 2, 3, 43851044, 2.381741, 'África del Norte', 1, 'Algeria', 'DZ'),
+    ('Jamaica', 'Kingston', 'Dólar jamaicano', 3, 1, 2961161, 0.109911, 'Caribe', 1, 'Jamaica', 'JM'),
+	('Colombia', 'Bogotá', 'Peso colombiano', 3, 1, 50882891, 1.141748, 'América del Sur', 2, 'Colombia', 'CO'),
+    ('Perú', 'Lima', 'Nuevo sol', 3, 1, 32971854, 1.285216, 'América del Sur', 3, 'Peru', 'PE'),
+    ('Venezuela', 'Caracas', 'Bolívar soberano', 3, 2, 28435943, 0.916445, 'América del Sur', 3, 'Venezuela', 'VE'),
+    ('Túnez', 'Túnez', 'Dinar tunecino', 2, 1, 11818619, 163610.00, 'África del Norte', 1,  'Tunisia', 'TN'),
+    ('Noruega', 'Oslo', 'Corona noruega', 4, 1, 5367580, 323802.00, 'Europa del Norte', 1,'Norway', 'NO');
 GO
 
-INSERT INTO paises (id, pais, capital, moneda, continente_id, gobierno_id, poblacion, extension, posicion, costa, country, code)
+INSERT INTO Paises_Idiomas (pais_id, idioma_id, hablantes, porcentaje)
 VALUES
-  (1, 'Estados Unidos', 'Washington, D.C.', 'Dólar estadounidense', 1, 1, 331002651, 9.8, 'Norteamérica', 3, 'United States', 'US'),
-  (2, 'Brasil', 'Brasilia', 'Real brasileño', 1, 3, 212559417, 8.5, 'Sudamérica', 4, 'Brazil', 'BR'),
-  (3, 'China', 'Pekín', 'Yuan renminbi', 3, 4, 1439323776, 9.6, 'Asia', 11, 'China', 'CN'),
-  (4, 'Francia', 'París', 'Euro', 2, 3, 65273511, 0.551, 'Europa', 3, 'France', 'FR'),
-  (5, 'Australia', 'Canberra', 'Dólar australiano', 5, 1, 25499884, 7.7, 'Oceanía', 25, 'Australia', 'AU'),
-  (6, 'Alemania', 'Berlín', 'Euro', 2, 3, 83783942, 0.357, 'Europa', 2, 'Germany', 'DE'),
-  (7, 'Japón', 'Tokio', 'Yen japonés', 3, 1, 126476461, 0.377, 'Asia', 6, 'Japan', 'JP'),
-  (8, 'Egipto', 'El Cairo', 'Libra egipcia', 4, 4, 102334404, 1.001, 'África', 2, 'Egypt', 'EG'),
-  (9, 'Canadá', 'Ottawa', 'Dólar canadiense', 1, 1, 37742154, 9.98, 'Norteamérica', 2, 'Canada', 'CA'),
-  (10, 'Nueva Zelanda', 'Wellington', 'Dólar neozelandés', 5, 1, 4822233, 0.270, 'Oceanía', 15, 'New Zealand', 'NZ'),
-  (11, 'México', 'Ciudad de México', 'Peso mexicano', 1, 3, 128932753, 1.964, 'Norteamérica', 3, 'Mexico', 'MX'),
-  (12, 'India', 'Nueva Delhi', 'Rupia india', 3, 1, 1380004385, 3.287, 'Asia', 7, 'India', 'IN'),
-  (13, 'Sudáfrica', 'Pretoria', 'Rand sudafricano', 4, 3, 59308690, 1.221, 'África', 2, 'South Africa', 'ZA'),
-  (14, 'Italia', 'Roma', 'Euro', 2, 3, 60461826, 0.301, 'Europa', 7, 'Italy', 'IT'),
-  (15, 'Argentina', 'Buenos Aires', 'Peso argentino', 1, 3, 45195777, 2.780, 'Sudamérica', 4, 'Argentina', 'AR'),
-  (16, 'Rusia', 'Moscú', 'Rublo ruso', 3, 3, 145934462, 17.1, 'Europa/Asia', 37, 'Russia', 'RU'),
-  (17, 'Kenia', 'Nairobi', 'Chelín keniano', 4, 3, 53771300, 0.580, 'África', 1, 'Kenya', 'KE'),
-  (18, 'Corea del Sur', 'Seúl', 'Won surcoreano', 3, 1, 51269185, 0.100, 'Asia', 2, 'South Korea', 'KR'),
-  (19, 'Colombia', 'Bogotá', 'Peso colombiano', 1, 3, 50882891, 1.141, 'Sudamérica', 3, 'Colombia', 'CO'),
-  (20, 'Suecia', 'Estocolmo', 'Corona sueca', 2, 1, 10099265, 0.450, 'Europa', 3, 'Sweden', 'SE');
+    (1, 1, 14000000, 79.22),
+    (1, 2, 500000, 2.81),
+    (2, 7, 1200000000, 85.17),
+    (2, 9, 200000, 0.01),
+    (3, 1, 230000000, 69.41),
+    (3, 2, 45000000, 13.54),
+    (4, 4, 146000000, 99.88),
+    (4, 8, 250000, 0.17),
+    (5, 1, 210000000, 98.76),
+    (5, 6, 50000000, 23.45),
+    (6, 1, 1200000000, 85.19),
+    (6, 7, 30000000, 2.12),
+    (7, 1, 125000000, 99.24),
+    (7, 6, 2000000, 1.58),
+    (8, 1, 90000000, 89.24),
+    (8, 2, 45000000, 44.62),
+    (9, 1, 97000000, 98.35),
+    (9, 6, 2000000, 2.03),
+    (10, 1, 400000, 1.57),
+    (10, 5, 20000000, 78.43),
+    (11, 1, 1200000000, 98.43),
+    (11, 2, 45000000, 3.72),
+    (12, 1, 33000000, 85.11),
+    (12, 3, 5000000, 12.88),
+    (13, 1, 45000000, 88.23),
+    (13, 2, 8000000, 15.65),
+    (14, 1, 120000000, 99.89),
+    (14, 6, 3000000, 2.48),
+    (15, 1, 5000000, 79.21),
+    (15, 4, 300000, 4.75),
+    (16, 1, 35000000, 89.24),
+    (16, 6, 2000000, 5.12),
+    (17, 1, 45000000, 90.21),
+    (17, 2, 5000000, 9.99),
+    (18, 1, 60000000, 88.23),
+    (18, 6, 3000000, 4.41),
+    (19, 1, 7000000, 99.89),
+    (19, 5, 500000, 7.12),
+    (20, 1, 30000000, 88.76),
+    (20, 3, 1000000, 2.94),
+    (21, 1, 65000000, 90.21),
+    (21, 2, 3000000, 4.12),
+    (22, 1, 20000000, 88.23),
+    (22, 6, 1000000, 5.41),
+    (23, 1, 1000000, 79.21),
+    (23, 4, 200000, 1.35),
+    (24, 1, 5000000, 89.24),
+    (24, 6, 200000, 7.12),
+    (25, 1, 8000000, 90.21),
+    (25, 2, 1000000, 4.11),
+	(26, 1, 2500000, 79.21),
+    (26, 4, 300000, 1.35),
+    (27, 1, 5000000, 89.24),
+    (27, 6, 200000, 7.12),
+    (28, 1, 8000000, 90.21),
+    (28, 2, 1000000, 4.11),
+    (29, 1, 14000000, 79.22),
+    (29, 2, 500000, 2.81),
+    (30, 7, 1200000000, 85.17),
+    (30, 9, 200000, 0.01);
 GO
-
-INSERT INTO paises_idiomas (pais_id, idioma_id, hablantes, porcentaje)
+--SELECT * FROM Paises
+INSERT INTO Paises_Vecinos (pais_id, vecino_id, kms_frontera)
 VALUES
-  (1, 1, 443960000, 13.4),
-  (1, 2, 281200000, 8.5),
-  (2, 1, 201480000, 94.9),
-  (2, 3, 3710000, 1.7),
-  (3, 4, 918000000, 64.0),
-  (3, 5, 198700000, 13.8),
-  (4, 1, 63000000, 97.2),
-  (4, 3, 3940000, 6.1),
-  (5, 1, 25000000, 98.0),
-  (5, 2, 18500000, 72.4),
-  (6, 1, 67250000, 95.7),
-  (6, 3, 930000, 1.3),
-  (7, 4, 125000000, 87.1),
-  (7, 5, 145000000, 100.0),
-  (8, 1, 84600000, 85.0),
-  (8, 3, 1460000, 1.5),
-  (9, 2, 18900000, 44.4),
-  (9, 4, 1800000, 4.2),
-  (10, 1, 4600000, 97.8),
-  (10, 2, 3000000, 63.3),
-  (11, 1, 125000000, 98.3),
-  (11, 2, 2500000, 2.0),
-  (12, 1, 1220000000, 87.7),
-  (12, 3, 13000000, 0.9),
-  (13, 2, 46000000, 43.9),
-  (13, 1, 10000000, 9.5),
-  (14, 1, 59400000, 97.6),
-  (14, 2, 22600000, 37.2),
-  (15, 1, 43000000, 95.0),
-  (15, 3, 2070000, 4.6),
-  (16, 1, 153000000, 85.4),
-  (16, 3, 123000, 0.07),
-  (17, 1, 82300000, 72.0),
-  (17, 4, 4000000, 3.5),
-  (18, 1, 5150000, 94.7),
-  (18, 2, 370000, 6.8),
-  (19, 2, 19000000, 42.0),
-  (19, 4, 2300000, 5.1),
-  (20, 1, 8900000, 88.2),
-  (20, 2, 1500000, 14.9);
-GO
-
-INSERT INTO paises_vecinos (pais_id, vecino_id, kms_frontera)
-VALUES
-  (1, 2, 4047),
-  (1, 3, 12887),
-  (2, 1, 4047),
-  (2, 4, 1566),
-  (3, 1, 12887),
-  (3, 4, 856),
-  (3, 5, 2210),
-  (4, 2, 1566),
-  (4, 3, 856),
-  (4, 5, 1691),
-  (5, 3, 2210),
-  (5, 4, 1691),
-  (6, 7, 2380),
-  (7, 6, 2380),
-  (8, 9, 2258),
-  (9, 8, 2258),
-  (10, 11, 3141),
-  (11, 10, 3141),
-  (12, 13, 1690),
-  (13, 12, 1690),
-  (14, 15, 5130),
-  (15, 14, 5130);
+    (1, 26, 590),   -- Ecuador - Colombia
+	(1, 27, 1420),  -- Ecuador - Perú
+	(1, 28, 1370),   -- Ecuador - Venezuela
+    (2, 4, 4209), -- China - Rusia
+    (2, 6, 4253), -- China - India
+    (3, 12, 8891),  -- Estados Unidos - Canadá
+    (3, 7, 3145),  -- Estados Unidos - México
+    (4, 2, 4209),  -- Rusia - China
+	(5, 17, 1261), -- Brasil - Argentina
+    (5, 26, 1644), -- Brasil - Colombia
+	(5, 27, 2995), -- Brasil - Perú
+	(5, 28, 2200), -- Brasil - Venezuela
+    (6, 3, 3488),  -- India - China
+    (7, 14, 3145),  --México - Estados Unidos
+    (8, 21, 623), -- Francia - España
+    (8, 16, 488),  -- Francia - Italia
+    --(9, -, -), -- Egipto - Sin vecinos
+    --(10, -, -),  -- Australia - No tiene vecinos es continente
+    --(11, -, -), -- Japón - No tiene vecinos es isla
+    (12, 3, 8891), -- Canadá - Estados Unidos
+    (13, 8, 451), -- Alemania - Francia
+    --(14, -, -),  -- Sudáfrica - Sin vecinos
+    --(15, -, -, -- Nueva Zelanda - No tiene vecinos es isla
+    (16, 8, 488), -- Italia - Francia
+    --(16,- , -), -- Italia - Suiza -> No esta Suiza
+    (17, 5, 1261),-- Argentina - Brasil
+    --(18, -, -), -- Reino Unido - Sin vecinos
+    --(19, -, -),-- Nigeria - Sin vecinos
+    --(20, -, -), -- Indonesia -No tiene vecinos es isla
+    (21, 8, 623),  -- España - Francia
+    --(21, -, 325), -- España - Portugal
+    (22, 30, 1619), -- Suecia - Noruega
+    --(23, 26, 235), -- Nueva Guinea - No tiene vecinos es isla
+    (24, 29, 965), -- Argelia - Túnez
+    --(25, -, -), -- Jamaica - Es isla
+	(26, 1, 590),  -- Colombia - Ecuador
+	(26, 5, 1644),  -- Colombia - Brasil
+	(26, 27, 1496),  -- Colombia - Perú
+	(26, 28, 2219),  -- Colombia - Venezuela
+	(27, 1, 1529),  -- Perú - Ecuador
+	(27, 5, 2822),  -- Perú - Brasil
+	(27, 26, 1496),  -- Perú - Colombia
+	(28, 5, 2200),  -- Venezuela - Brasil
+	(28, 26, 2219),  -- Venezuela - Colombia
+	(29, 24, 965),  -- Túnez - Argelia
+	(30, 22, 1619);  -- Noruega - Suecia
 GO
 --Continente de cada país
 CREATE PROC PaisContinente

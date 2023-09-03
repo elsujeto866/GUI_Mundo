@@ -311,7 +311,7 @@ BEGIN
 END;
 
 -- Prueba de FronterasPais
---EXEC FronterasPais @nombrePais = 'Brasil'; -- Busco Alemania
+EXEC FronterasXPais @nombrePais = 'Brasil'; -- Busco Alemania
 
 
 
@@ -496,7 +496,7 @@ WHERE poblacion >= ANY (
 ORDER BY pais;
 GO
 
-
+/* Original
 SELECT pais, FORMAT(poblacion,0) habitantes
 FROM paises
 WHERE poblacion >= (
@@ -505,75 +505,113 @@ WHERE poblacion >= (
   WHERE extension >= 5000000
 )
 ORDER BY pais
-
+*/
 
 --Países con más países limítrofes que sus vecinos
-go
+
 CREATE VIEW paises2 AS
-  SELECT id, pais, COUNT(*) num_vecinos
-  FROM paises p INNER JOIN paises_vecinos pv ON p.id = pv.pais_id
-  GROUP BY pais;
+    SELECT p.id, p.pais, COUNT(*) AS num_vecinos
+FROM paises p
+INNER JOIN paises_vecinos pv ON p.id = pv.pais_id
+GROUP BY p.id, p.pais;
   go
 
-SELECT pais, num_vecinos
+  Select * from  paises2
+
+  CREATE PROCEDURE PaisesConMasLimitrofres 
+  AS
+  SELECT pais, num_vecinos
 FROM paises2 p  
 WHERE num_vecinos > ALL (
   SELECT v.num_vecinos
   FROM paises_vecinos pv INNER JOIN paises2 v ON pv.vecino_id = v.id
   WHERE p.id = pv.pais_id)
 ORDER BY 1
+GO
+
+
+/*
+  CREATE VIEW paises2 AS
+SELECT P1.pais, COUNT(DISTINCT P2.id) AS num_vecinos, COUNT(DISTINCT PV1.vecino_id) AS num_limitrofes
+FROM Paises P1
+JOIN Paises_Vecinos PV1 ON P1.id = PV1.pais_id
+LEFT JOIN Paises_Vecinos PV2 ON P1.id = PV2.pais_id AND PV1.vecino_id = PV2.vecino_id
+JOIN Paises P2 ON PV1.vecino_id = P2.id
+GROUP BY P1.pais
+HAVING COUNT(DISTINCT P2.id) > COUNT(DISTINCT PV1.vecino_id);
+Go
+*/
+
+
 
 SELECT p.pais, p.num_vecinos
 FROM paises2 p 
-  INNER JOIN paises_vecinos pv ON p.id = pv.pais_id
-  INNER JOIN paises2 v ON pv.vecino_id = v.id
+INNER JOIN paises_vecinos pv ON p.id = pv.pais_id
+INNER JOIN paises2 v ON pv.vecino_id = v.id
 WHERE p.num_vecinos > v.num_vecinos
-GROUP BY 1, 2
+GROUP BY p.pais, p.num_vecinos
 HAVING p.num_vecinos = COUNT(*)
-ORDER BY 1
+ORDER BY p.pais;
+
+
 
 --Países con más población que sus países vecinos
-
-SELECT pais, FORMAT(poblacion,0) habitantes
+CREATE PROCEDURE PaisesConMasPoblacionQueVecinos
+AS
+SELECT pais, poblacion AS habitantes
 FROM paises p
 WHERE poblacion > ALL (
   SELECT poblacion
-  FROM paises_vecinos pv INNER JOIN paises v ON pv.vecino_id = v.id
-  WHERE p.id = pv.pais_id)
-AND EXISTS (
-  SELECT 1 
-  FROM paises_vecinos pv2 
-  WHERE p.id = pv2.pais_id)
-ORDER BY 1
+  FROM paises v
+  WHERE EXISTS (
+    SELECT 1
+    FROM paises_vecinos pv
+    WHERE p.id = pv.pais_id
+      AND v.id = pv.vecino_id
+  )
+)
+ORDER BY 1;
+GO
 
 
 --Poner al derecho los nombres de países que estén puestos al revés. 
 --Son los que llevan una coma en medio del nombre.
 
-SELECT pais, 
+
+CREATE PROCEDURE CorregirPaises AS
+SELECT pais,
   TRIM(CONCAT(
-    SUBSTRING(pais FROM LOCATE(',', pais) + 1), 
-    ' ', 
-    SUBSTRING(pais FROM  LOCATE(',', pais) - 1)
-  )) pais2
+    SUBSTRING(pais, CHARINDEX(',', pais) + 1, LEN(pais)),
+    ' ',
+    SUBSTRING(pais, 1, CHARINDEX(',', pais) - 1)
+  )) AS pais2
 FROM paises
 WHERE pais LIKE '%,%'
+GO
+
+
 
 --Extraer los nombres de los países que tengan dos nombres. 
 --Son aquellos que tienen paréntesis en el nombre.
 
+CREATE PROCEDURE PaisesConDosNombres 
+AS
 SELECT pais,
   TRIM(
-    SUBSTRING(pais FROM LOCATE('(', pais) - 1)
-  ) pais2,
+    SUBSTRING(pais, 1, CHARINDEX('(', pais) - 1)
+  ) AS pais2,
   TRIM(REPLACE(
-    SUBSTRING(pais FROM LOCATE('(', pais) + 1),
-  ')', '')) pais3
+    SUBSTRING(pais, CHARINDEX('(', pais) + 1, CHARINDEX(')', pais) - CHARINDEX('(', pais) - 1),
+    ')', ''
+  )) AS pais3
 FROM paises
 WHERE pais LIKE '%(%)%'
+GO
 
 --Número de países de cada gobierno encolumnado por continentes
 
+CREATE PROCEDURE GobiernosPorContinentes 
+AS
 SELECT 
   gobierno,
   SUM(CASE WHEN continente = 'Africa' THEN 1 ELSE 0 END) africa,
@@ -587,9 +625,11 @@ FROM paises p
   INNER JOIN continentes c ON p.continente_id = c.id
 GROUP BY gobierno
 ORDER BY COUNT(*) DESC
+GO
+
 
 --Países limítrofes a Francia y Alemania al mismo tiempo
-
+/*
 SELECT pais 
 FROM paises
 WHERE id IN (
@@ -600,20 +640,52 @@ AND id IN (
   SELECT vecino_id
   FROM paises p INNER JOIN paises_vecinos pv ON p.id = pv.pais_id
   WHERE pais = 'Francia')
+  */
 
-  --Países limítrofes a Francia o Alemania indistintamente
+  -- Para ingresar dos paises 
+  CREATE PROCEDURE PaisesLimitrofesA2AlMismoTiempo
+  AS
+DECLARE @pais1 NVARCHAR(50);
+DECLARE @pais2 NVARCHAR(50);
 
 SELECT pais 
 FROM paises
 WHERE id IN (
   SELECT vecino_id
   FROM paises p INNER JOIN paises_vecinos pv ON p.id = pv.pais_id
-  WHERE pais IN ('Alemania', 'Francia')
+  WHERE pais = @pais1
+)
+AND id IN (
+  SELECT vecino_id
+  FROM paises p INNER JOIN paises_vecinos pv ON p.id = pv.pais_id
+  WHERE pais = @pais2
+);
+GO
+
+  --Países limítrofes a Francia o Alemania indistintamente
+
+
+
+  CREATE PROCEDURE PaisesLimitrofesA2Indistintos
+  AS
+DECLARE @pais1 NVARCHAR(50);
+DECLARE @pais2 NVARCHAR(50);
+
+SELECT pais 
+FROM paises
+WHERE id IN (
+  SELECT vecino_id
+  FROM paises p INNER JOIN paises_vecinos pv ON p.id = pv.pais_id
+  WHERE pais IN (@pais1, @pais2)
 ) 
-AND pais NOT IN ('Alemania', 'Francia')
+AND pais NOT IN (@pais1, @pais2);
+GO
+
+
 
 --Países limítrofes con Asia
-
+CREATE PROCEDURE PaisesFronteraConAsia
+AS
 SELECT pais 
 FROM paises p INNER JOIN continentes c ON p.continente_id = c.id
 WHERE p.id IN (
@@ -625,38 +697,51 @@ WHERE p.id IN (
 ) 
 AND continente <> 'Asia'
 ORDER BY pais
+go
+
 
 --Países con un tamaño parecido al de España. Una diferencia no mayor del 5%.
 
+
+CREATE PROCEDURE PaisesSimilaresASpain
+AS
 SELECT pais, 
-  FORMAT(extension, 0) extension,
-  FORMAT(referencia - extension, 0) diferencia, 
-  FORMAT((referencia - extension) / referencia * 100, 2) porcentaje
+  FORMAT(CONVERT(NUMERIC(15, 5), extension), '0') AS extension,
+  FORMAT(CONVERT(NUMERIC(15, 5), referencia - extension), '0') AS diferencia, 
+  FORMAT(((referencia - extension) / referencia) * 100, '0.00') AS porcentaje
 FROM (  
   SELECT pais, extension,
-    (SELECT extension FROM paises WHERE pais = 'España') referencia
+    (SELECT extension FROM paises WHERE pais = 'España') AS referencia
   FROM paises
   WHERE extension IS NOT NULL
 ) a
 WHERE ABS(referencia - extension) / referencia <= 0.05
-ORDER BY ABS(referencia - extension)
+ORDER BY ABS(referencia - extension);
+GO
+
+
 
 --Comparar el número de veces que cada país es mayor que España en cuanto extensión y población
 
+
+CREATE PROCEDURE VecesMasGrandesQueSpain 
+AS
 SELECT pais,
-  FORMAT(extension / mi_extension, 2) "Veces el tamaño de España",
-  FORMAT(poblacion / mi_poblacion, 2) "Veces la población de España"
+  FORMAT(CONVERT(NUMERIC(38, 15), extension) / CONVERT(NUMERIC(38, 15), mi_extension), '0.00') AS "Veces el tamaño de España",
+  FORMAT(CONVERT(NUMERIC(38, 0), poblacion) / CONVERT(NUMERIC(38, 0), mi_poblacion), '0.00') AS "Veces la población de España"
 FROM (  
   SELECT pais, extension, poblacion,
-    (SELECT extension FROM paises WHERE pais = 'España') mi_extension,
-    (SELECT poblacion FROM paises WHERE pais = 'España') mi_poblacion
+    (SELECT extension FROM paises WHERE pais = 'España') AS mi_extension,
+    (SELECT poblacion FROM paises WHERE pais = 'España') AS mi_poblacion
   FROM paises
   WHERE extension IS NOT NULL 
     AND poblacion IS NOT NULL
 ) a
-WHERE (extension / mi_extension >= 1) 
-  OR (poblacion / mi_poblacion >= 1)
-ORDER BY (extension / mi_extension) + (poblacion / mi_poblacion) DESC
+WHERE (CONVERT(NUMERIC(38, 15), extension) / CONVERT(NUMERIC(38, 15), mi_extension) >= 0) 
+  OR (CONVERT(NUMERIC(38, 0), poblacion) / CONVERT(NUMERIC(38, 0), mi_poblacion) >= 0)
+ORDER BY (CONVERT(NUMERIC(38, 15), extension) / CONVERT(NUMERIC(38, 15), mi_extension)) + 
+         (CONVERT(NUMERIC(38, 0), poblacion) / CONVERT(NUMERIC(38, 0), mi_poblacion)) DESC;
+go
 
 
 --Datos representativos de Italia incluyendo continente, gobierno, idiomas y países vecinos
@@ -669,6 +754,22 @@ FROM paises p
   LEFT JOIN paises_vecinos pv ON pv.pais_id = p.id LEFT JOIN paises v ON pv.vecino_id = v.id
 WHERE p.pais = 'Italia'
 
+CREATE PROCEDURE CaracteristicasPais
+AS
+DECLARE @pais_variable VARCHAR(35) = 'Brasil'; -- Puedes cambiar 'Italia' por el país que desees
+
+SELECT p.pais, p.capital, p.poblacion, p.extension, c.continente, g.gobierno, i.idioma, v.pais vecino
+FROM paises p
+  LEFT JOIN continentes c ON p.continente_id = c.id
+  LEFT JOIN gobiernos g ON p.gobierno_id = g.id
+  LEFT JOIN paises_idiomas pi ON pi.pais_id = p.id 
+  LEFT JOIN idiomas i ON pi.idioma_id = i.id
+  LEFT JOIN paises_vecinos pv ON pv.pais_id = p.id 
+  LEFT JOIN paises v ON pv.vecino_id = v.id
+WHERE p.pais = @pais_variable;
+GO
+
+
 
 SELECT p.id, pais, capital, poblacion, extension, continente, gobierno
 FROM paises p
@@ -678,47 +779,59 @@ WHERE pais = 'Italia';
 SELECT pais vecino
 FROM paises_vecinos pv
   LEFT JOIN paises v ON pv.vecino_id = v.id  
-WHERE pv.pais_id = (SELECT id FROM paises WHERE pais = 'Italia');SELECT idioma
+WHERE pv.pais_id = (SELECT id FROM paises WHERE pais = 'Italia');
+SELECT idioma
 FROM paises_idiomas pi 
   LEFT JOIN idiomas i ON pi.idioma_id = i.id  
 WHERE pi.pais_id = (SELECT id FROM paises WHERE pais = 'Italia');
 
+
 --Países que incluyen el texto "lon" en el nombre, o en la capital o en el gobierno
 
+CREATE PROCEDURE PaisesConLon AS
 SELECT pais, capital, gobierno, poblacion, extension, patron, 
-  LOCATE(REPLACE(patron, '%', ''), CONCAT(pais,capital,gobierno)) posicion
-FROM paises p INNER JOIN gobiernos g ON p.gobierno_id = g.id,
-  (SELECT '%lon%' patron) parametros
+  CHARINDEX(REPLACE(patron, '%', ''), CONCAT(pais, capital, gobierno)) posicion
+FROM paises p 
+INNER JOIN gobiernos g ON p.gobierno_id = g.id
+CROSS JOIN (SELECT '%lon%' patron) parametros
 WHERE pais LIKE patron
   OR capital LIKE patron
   OR gobierno LIKE patron
-ORDER BY 7, 1
+ORDER BY 7, 1;
+GO
 
---Países que incluyen el texto "lon" o "mar" en el nombre o en la capital
 
+
+-- Países que incluyen el texto "lon" o "mar" en el nombre o en la capital
+CREATE PROCEDURE PaisesConLonOMar AS
 SELECT pais, capital, poblacion, extension, patron,
-  LOCATE(REPLACE(patron, '%', '') , CONCAT(pais,capital)) as posicion
-FROM paises, 
-  (SELECT '%lon%' patron UNION SELECT '%mar%') parametros
+  CHARINDEX(REPLACE(patron, '%', ''), CONCAT(pais, capital)) as posicion
+FROM paises
+CROSS JOIN (SELECT '%lon%' patron UNION SELECT '%mar%') parametros
 WHERE pais LIKE patron
   OR capital LIKE patron
-ORDER BY 6, 1
+ORDER BY 6, 1;
+go
 
 
---Países que contengan al mismo tiempo el texto "sa" y "ta" en el nombre del país
+-- Países que contengan al mismo tiempo el texto "sa" y "ta" en el nombre del país
 
+CREATE PROCEDURE PaisesConSAyTAenNombre
+AS
 SELECT pais, capital, patron1, patron2,
-  LOCATE(REPLACE(patron1, '%', ''), pais) +
-  LOCATE(REPLACE(patron2, '%', ''), pais) peso
-FROM paises,
-  (SELECT '%sa%' patron1, '%ta%' patron2) parametros
+  CHARINDEX(REPLACE(patron1, '%', ''), pais) +
+  CHARINDEX(REPLACE(patron2, '%', ''), pais) peso
+FROM paises
+CROSS JOIN (SELECT '%sa%' patron1, '%ta%' patron2) parametros
 WHERE pais LIKE patron1 
   AND pais LIKE patron2
-ORDER BY 5, 1
+ORDER BY 5, 1;
+GO
 
 
 --Países con una población de 5 millones de habitantes con una desviación máxima del 10%
-
+CREATE PROCEDURE PaisesCon5MillYDesviacion10
+AS
 SELECT pais, capital, poblacion, habitantes, desviacion, 
   ABS(poblacion - habitantes) / poblacion * 100 peso
 FROM paises,
@@ -726,9 +839,12 @@ FROM paises,
 WHERE 
   poblacion BETWEEN habitantes * (1 - desviacion / 100) AND habitantes * (1 + desviacion / 100)
 ORDER BY 6, 1
+GO
+
 
 --Comparar la población y la superficie de cada continente con el total del planeta Tierra
 
+/*
 SELECT continente, 
   FORMAT(poblacion, 0) total_poblacion, 
   FORMAT(poblacion / (SELECT SUM(poblacion) FROM paises) * 100, 2) porcentaje_poblacion,
@@ -742,13 +858,16 @@ FROM (
   GROUP BY continente
 ) a
 ORDER BY poblacion DESC
+*/
+
+
+
 
 --Países a los que les falta alguno de estos campos: 
 --capital, población, extensión, costa, gobierno o continente
-
-SELECT * FROM (
+CREATE PROCEDURE PaisesConCamposFaltantes AS
+WITH CamposFaltantes AS (
   SELECT pais, 
-    
     CONCAT_WS(', ',
       CASE WHEN capital IS NULL THEN 'capital' ELSE NULL END,
       CASE WHEN poblacion IS NULL THEN 'población' ELSE NULL END,
@@ -756,16 +875,19 @@ SELECT * FROM (
       CASE WHEN costa IS NULL THEN 'costa' ELSE NULL END,
       CASE WHEN gobierno IS NULL THEN 'gobierno' ELSE NULL END,
       CASE WHEN continente IS NULL THEN 'continente' ELSE NULL END
-	  --campos_faltan
-	  ) numero_campos_faltan
+    ) AS numero_campos_faltan
   FROM paises p
     LEFT JOIN gobiernos g ON p.gobierno_id = g.id
     LEFT JOIN continentes c ON p.continente_id = c.id
-) 
-WHERE numero_campos_faltan <> 0
-ORDER BY numero_campos_faltan DESC, pais
+)
+SELECT *
+FROM CamposFaltantes
+WHERE numero_campos_faltan IS NOT NULL
+ORDER BY numero_campos_faltan DESC, pais;
+GO
 
 
+/*   Este no se pudo hacer 
 --Comparar la población y extensión de cada pais con el total del continente donde se ubica.
 --Ordenar los datos de más a menos significativos.
 
@@ -781,3 +903,8 @@ FROM paises INNER JOIN (
   ) c 
   on paises.continente_id = c.continente_id
 ORDER BY poblacion / poblacion_continente + extension / extension_continente 
+
+*/
+
+
+

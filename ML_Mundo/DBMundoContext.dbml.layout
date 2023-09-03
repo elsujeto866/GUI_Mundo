@@ -38,42 +38,42 @@
         <elementListCompartment Id="e1e723d4-7e2a-4314-b648-1e10fc737b4a" absoluteBounds="7.64, 2.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(3 : 4.34699625651042); (3.75 : 4.34699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(3 : 4.34699625651042); (3.75 : 4.34699625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DBMundoContextDataContext/Continentes/Continentes_Paises" />
       <nodes>
         <classShapeMoniker Id="dadac473-c3fc-4103-b164-edf5c2a14910" />
         <classShapeMoniker Id="4e21c433-eb4d-46bc-a43b-dfafae234e82" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(3 : 2.1874995); (4.75 : 2.1874995); (4.75 : 2.625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(3 : 2.1874995); (4.75 : 2.1874995); (4.75 : 2.625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DBMundoContextDataContext/Gobiernos/Gobiernos_Paises" />
       <nodes>
         <classShapeMoniker Id="ca783fe1-5479-41e9-b0ff-05cafaa6519f" />
         <classShapeMoniker Id="4e21c433-eb4d-46bc-a43b-dfafae234e82" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(7.875 : 6.5); (7.875 : 5.57859537760417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(7.875 : 6.5); (7.875 : 5.57859537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DBMundoContextDataContext/Idiomas/Idiomas_Paises_Idiomas" />
       <nodes>
         <classShapeMoniker Id="1d068e46-0196-431e-a185-3f264ab41b88" />
         <classShapeMoniker Id="cd14867f-27a9-49ce-9353-15d4598ec828" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.75 : 4.78929768880208); (7 : 4.78929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.75 : 4.78929768880208); (7 : 4.78929768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DBMundoContextDataContext/Paises/Paises_Paises_Idiomas" />
       <nodes>
         <classShapeMoniker Id="4e21c433-eb4d-46bc-a43b-dfafae234e82" />
         <classShapeMoniker Id="cd14867f-27a9-49ce-9353-15d4598ec828" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.75 : 3.06814697265625); (7.625 : 3.06814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.75 : 3.06814697265625); (7.625 : 3.06814697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DBMundoContextDataContext/Paises/Paises_Paises_Vecinos" />
       <nodes>
         <classShapeMoniker Id="4e21c433-eb4d-46bc-a43b-dfafae234e82" />
         <classShapeMoniker Id="f73434d8-1bc0-46be-b645-a0c9af8f5693" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.75 : 2.78407348632813); (7.625 : 2.78407348632813)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.75 : 2.78407348632813); (7.625 : 2.78407348632813)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DBMundoContextDataContext/Paises/Paises_Paises_Vecinos1" />
       <nodes>
         <classShapeMoniker Id="4e21c433-eb4d-46bc-a43b-dfafae234e82" />

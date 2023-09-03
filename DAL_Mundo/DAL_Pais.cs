@@ -13,16 +13,16 @@ namespace DAL_Mundo
 {
     public class DAL_Pais
     {
-        public ObservableCollection<MostrarPaisesResult> CargarPaises()
+        public ObservableCollection<CargarPaisesResult> CargarPaises()
         {
             //Creamos la lista donde guardar los paises
-            var paises = new ObservableCollection<MostrarPaisesResult>();
+            var paises = new ObservableCollection<CargarPaisesResult>();
             
             //Generamos en una variable la base de datos
             using(var dbMundo = new DBMundoContextDataContext())
             {
                 //Obtenemos los objetos del procedimiento almacenado y le cargamos a la tabla
-                foreach (MostrarPaisesResult p in dbMundo.MostrarPaises())
+                foreach (CargarPaisesResult p in dbMundo.CargarPaises())
                 {
                     
                     paises.Add(p);

@@ -7,7 +7,7 @@
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis"/>
     </Window.Resources>
-    <Border x:Name="FmrPrincipal" Background="#eff2f7" CornerRadius="30" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+    <Border x:Name="FmrPrincipal" Background="#eff2f7" CornerRadius="30" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown" Loaded="FmrPrincipal_Loaded">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"/>
@@ -155,7 +155,7 @@
                     
                 </Grid>
                 <!--Paises Datagrid-->
-                <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Grid.Row="5" x:Name="membersDataGrid">
+                <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Grid.Row="5" x:Name="dgPaises">
                     <DataGrid.Columns>
                         <DataGridCheckBoxColumn CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}" >
                             <DataGridCheckBoxColumn.HeaderTemplate>
@@ -174,15 +174,15 @@
                                         <Border Width="25" Height="25" CornerRadius="50" Margin="0 0 10 0" Background="Red">
                                             <TextBlock Text="..." VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Margin="0 0 0 1"/>
                                         </Border>
-                                        <TextBlock Text="{Binding Pais}" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding pais}" VerticalAlignment="Center"/>
                                     </StackPanel>
                                 </DataTemplate> 
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                         
-                        <DataGridTextColumn Header="Capital" IsReadOnly="True"  Width="*" Binding="{Binding Capital}"/>
-                        <DataGridTextColumn Header="Moneda" IsReadOnly="True"  Width="*" Binding="{Binding Moneda}"/>
-                        <DataGridTextColumn Header="Continente" IsReadOnly="True"  Width="*" Binding="{Binding Continente}"/>
+                        <DataGridTextColumn Header="Capital" IsReadOnly="True"  Width="*" Binding="{Binding capital}"/>
+                        <DataGridTextColumn Header="Moneda" IsReadOnly="True"  Width="*" Binding="{Binding moneda}"/>
+                        <DataGridTextColumn Header="Continente" IsReadOnly="True"  Width="*" Binding="{Binding continente}"/>
 
                         <DataGridTemplateColumn Header="Acción" IsReadOnly="True" Width="auto">
                             <DataGridTemplateColumn.CellTemplate>

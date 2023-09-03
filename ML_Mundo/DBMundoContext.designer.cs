@@ -128,11 +128,11 @@ namespace ML_Mundo
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.MostrarPaises")]
-		public ISingleResult<MostrarPaisesResult> MostrarPaises()
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.CargarPaises")]
+		public ISingleResult<CargarPaisesResult> CargarPaises()
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<MostrarPaisesResult>)(result.ReturnValue));
+			return ((ISingleResult<CargarPaisesResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -1402,7 +1402,7 @@ namespace ML_Mundo
 		}
 	}
 	
-	public partial class MostrarPaisesResult
+	public partial class CargarPaisesResult
 	{
 		
 		private int _id;
@@ -1415,9 +1415,7 @@ namespace ML_Mundo
 		
 		private string _continente;
 		
-		private string _gobierno;
-		
-		public MostrarPaisesResult()
+		public CargarPaisesResult()
 		{
 		}
 		
@@ -1497,22 +1495,6 @@ namespace ML_Mundo
 				if ((this._continente != value))
 				{
 					this._continente = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gobierno", DbType="VarChar(40) NOT NULL", CanBeNull=false)]
-		public string gobierno
-		{
-			get
-			{
-				return this._gobierno;
-			}
-			set
-			{
-				if ((this._gobierno != value))
-				{
-					this._gobierno = value;
 				}
 			}
 		}

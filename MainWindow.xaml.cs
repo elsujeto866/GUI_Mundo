@@ -27,11 +27,20 @@ namespace GUI_Mundo
         {
             InitializeComponent();
         }
-
-        private void Cargar(object sender, RoutedEventArgs e)
+        private void FmrPrincipal_Loaded(object sender, RoutedEventArgs e)
         {
-            membersDataGrid.ItemsSource = paisNegocio.CargarPaises();
+            CargarDatos();
         }
+
+        private void CargarDatos()
+        {
+            dgPaises.Items.Clear();
+            foreach (var p in paisNegocio.CargarPaises())
+            {
+                dgPaises.Items.Add(p);
+            }
+        }
+
         #region Movimiento
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -61,5 +70,7 @@ namespace GUI_Mundo
             }
         }
         #endregion
+
+        
     }
 }

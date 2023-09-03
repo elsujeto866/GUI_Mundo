@@ -14,7 +14,7 @@ namespace BLL_Mundo
     {
         private DAL_Pais paisDatos = new DAL_Pais();
 
-        public ObservableCollection<MostrarPaisesResult> CargarPaises()
+        public ObservableCollection<CargarPaisesResult> CargarPaises()
         {            
             return paisDatos.CargarPaises();
         }

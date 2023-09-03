@@ -62,14 +62,13 @@
       <Association Name="Paises_Paises_Vecinos1" Member="Paises1" ThisKey="vecino_id" OtherKey="id" Type="Paises" IsForeignKey="true" />
     </Type>
   </Table>
-  <Function Name="dbo.MostrarPaises" Method="MostrarPaises">
-    <ElementType Name="MostrarPaisesResult">
+  <Function Name="dbo.CargarPaises" Method="CargarPaises">
+    <ElementType Name="CargarPaisesResult">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="pais" Type="System.String" DbType="VarChar(35) NOT NULL" CanBeNull="false" />
       <Column Name="capital" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="moneda" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
       <Column Name="continente" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
-      <Column Name="gobierno" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
 </Database>

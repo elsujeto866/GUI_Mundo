@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BD_Mundo" Class="DBMundoContextDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=BD_Mundo;Integrated Security=True" SettingsObjectName="ML_Mundo.Properties.Settings" SettingsPropertyName="BD_MundoConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Continentes" Member="Continentes">
+    <Type Name="Continentes">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="continente" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="Continentes_Paises" Member="Paises" ThisKey="id" OtherKey="continente_id" Type="Paises" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gobiernos" Member="Gobiernos">
+    <Type Name="Gobiernos">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="gobierno" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Association Name="Gobiernos_Paises" Member="Paises" ThisKey="id" OtherKey="gobierno_id" Type="Paises" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Idiomas" Member="Idiomas">
+    <Type Name="Idiomas">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idioma" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="Idiomas_Paises_Idiomas" Member="Paises_Idiomas" ThisKey="id" OtherKey="idioma_id" Type="Paises_Idiomas" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Paises" Member="Paises">
+    <Type Name="Paises">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="pais" Type="System.String" DbType="VarChar(35) NOT NULL" CanBeNull="false" />
+      <Column Name="capital" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="moneda" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="continente_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="gobierno_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="poblacion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="extension" Type="System.Decimal" DbType="Decimal(15,5)" CanBeNull="true" />
+      <Column Name="posicion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="existe" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="costa" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="country" Type="System.String" DbType="VarChar(35)" CanBeNull="true" />
+      <Column Name="code" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Association Name="Paises_Paises_Idiomas" Member="Paises_Idiomas" ThisKey="id" OtherKey="pais_id" Type="Paises_Idiomas" />
+      <Association Name="Paises_Paises_Vecinos" Member="Paises_Vecinos" ThisKey="id" OtherKey="pais_id" Type="Paises_Vecinos" />
+      <Association Name="Paises_Paises_Vecinos1" Member="Paises_Vecinos1" ThisKey="id" OtherKey="vecino_id" Type="Paises_Vecinos" />
+      <Association Name="Continentes_Paises" Member="Continentes" ThisKey="continente_id" OtherKey="id" Type="Continentes" IsForeignKey="true" />
+      <Association Name="Gobiernos_Paises" Member="Gobiernos" ThisKey="gobierno_id" OtherKey="id" Type="Gobiernos" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Paises_Idiomas" Member="Paises_Idiomas">
+    <Type Name="Paises_Idiomas">
+      <Column Name="pais_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idioma_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="hablantes" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="porcentaje" Type="System.Decimal" DbType="Decimal(15,5)" CanBeNull="true" />
+      <Association Name="Idiomas_Paises_Idiomas" Member="Idiomas" ThisKey="idioma_id" OtherKey="id" Type="Idiomas" IsForeignKey="true" />
+      <Association Name="Paises_Paises_Idiomas" Member="Paises" ThisKey="pais_id" OtherKey="id" Type="Paises" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Paises_Vecinos" Member="Paises_Vecinos">
+    <Type Name="Paises_Vecinos">
+      <Column Name="pais_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="vecino_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="kms_frontera" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Paises_Paises_Vecinos" Member="Paises" ThisKey="pais_id" OtherKey="id" Type="Paises" IsForeignKey="true" />
+      <Association Name="Paises_Paises_Vecinos1" Member="Paises1" ThisKey="vecino_id" OtherKey="id" Type="Paises" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.MostrarPaises" Method="MostrarPaises">
+    <ElementType Name="MostrarPaisesResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="pais" Type="System.String" DbType="VarChar(35) NOT NULL" CanBeNull="false" />
+      <Column Name="capital" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="moneda" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="continente" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="gobierno" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+</Database>

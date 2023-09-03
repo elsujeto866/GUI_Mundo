@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ML_Mundo;
 
 namespace GUI_Mundo
 {
@@ -29,9 +30,9 @@ namespace GUI_Mundo
 
         private void Cargar(object sender, RoutedEventArgs e)
         {
-            
+            membersDataGrid.ItemsSource = paisNegocio.CargarPaises();
         }
-
+        #region Movimiento
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
@@ -59,5 +60,6 @@ namespace GUI_Mundo
                 }
             }
         }
+        #endregion
     }
 }

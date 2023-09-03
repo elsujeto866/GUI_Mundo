@@ -1,10 +1,12 @@
 ﻿using DAL_Mundo;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ML_Mundo;
 
 namespace BLL_Mundo
 {
@@ -12,11 +14,9 @@ namespace BLL_Mundo
     {
         private DAL_Pais paisDatos = new DAL_Pais();
 
-        public DataTable CargarPaises()
-        {
-            DataTable dt = new DataTable();
-            dt = paisDatos.CargarPaises();
-            return dt;
+        public ObservableCollection<MostrarPaisesResult> CargarPaises()
+        {            
+            return paisDatos.CargarPaises();
         }
 
     }

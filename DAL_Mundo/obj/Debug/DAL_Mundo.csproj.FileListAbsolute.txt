@@ -5,3 +5,7 @@ C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\
 C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\DAL_Mundo\obj\Debug\DAL_Mundo.csproj.CoreCompileInputs.cache
 C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\DAL_Mundo\obj\Debug\DAL_Mundo.dll
 C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\DAL_Mundo\obj\Debug\DAL_Mundo.pdb
+C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\DAL_Mundo\bin\Debug\ML_Mundo.dll
+C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\DAL_Mundo\bin\Debug\ML_Mundo.pdb
+C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\DAL_Mundo\bin\Debug\ML_Mundo.dll.config
+C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\DAL_Mundo\obj\Debug\DAL_Mundo.csproj.CopyComplete

@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DAL_Mundo
+namespace ML_Mundo
 {
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;
@@ -23,7 +23,7 @@ namespace DAL_Mundo
 	
 	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="BD_Mundo")]
-	public partial class DBMundoDataContext : System.Data.Linq.DataContext
+	public partial class DBMundoContextDataContext : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
@@ -36,45 +36,45 @@ namespace DAL_Mundo
     partial void InsertGobiernos(Gobiernos instance);
     partial void UpdateGobiernos(Gobiernos instance);
     partial void DeleteGobiernos(Gobiernos instance);
-    partial void Insertidiomas(idiomas instance);
-    partial void Updateidiomas(idiomas instance);
-    partial void Deleteidiomas(idiomas instance);
-    partial void Insertpaises(paises instance);
-    partial void Updatepaises(paises instance);
-    partial void Deletepaises(paises instance);
-    partial void Insertpaises_idiomas(paises_idiomas instance);
-    partial void Updatepaises_idiomas(paises_idiomas instance);
-    partial void Deletepaises_idiomas(paises_idiomas instance);
-    partial void Insertpaises_vecinos(paises_vecinos instance);
-    partial void Updatepaises_vecinos(paises_vecinos instance);
-    partial void Deletepaises_vecinos(paises_vecinos instance);
+    partial void InsertIdiomas(Idiomas instance);
+    partial void UpdateIdiomas(Idiomas instance);
+    partial void DeleteIdiomas(Idiomas instance);
+    partial void InsertPaises(Paises instance);
+    partial void UpdatePaises(Paises instance);
+    partial void DeletePaises(Paises instance);
+    partial void InsertPaises_Idiomas(Paises_Idiomas instance);
+    partial void UpdatePaises_Idiomas(Paises_Idiomas instance);
+    partial void DeletePaises_Idiomas(Paises_Idiomas instance);
+    partial void InsertPaises_Vecinos(Paises_Vecinos instance);
+    partial void UpdatePaises_Vecinos(Paises_Vecinos instance);
+    partial void DeletePaises_Vecinos(Paises_Vecinos instance);
     #endregion
 		
-		public DBMundoDataContext() : 
-				base(global::DAL_Mundo.Properties.Settings.Default.BD_MundoConnectionString, mappingSource)
+		public DBMundoContextDataContext() : 
+				base(global::ML_Mundo.Properties.Settings.Default.BD_MundoConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DBMundoDataContext(string connection) : 
+		public DBMundoContextDataContext(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DBMundoDataContext(System.Data.IDbConnection connection) : 
+		public DBMundoContextDataContext(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DBMundoDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public DBMundoContextDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DBMundoDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public DBMundoContextDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
@@ -96,43 +96,43 @@ namespace DAL_Mundo
 			}
 		}
 		
-		public System.Data.Linq.Table<idiomas> idiomas
+		public System.Data.Linq.Table<Idiomas> Idiomas
 		{
 			get
 			{
-				return this.GetTable<idiomas>();
+				return this.GetTable<Idiomas>();
 			}
 		}
 		
-		public System.Data.Linq.Table<paises> paises
+		public System.Data.Linq.Table<Paises> Paises
 		{
 			get
 			{
-				return this.GetTable<paises>();
+				return this.GetTable<Paises>();
 			}
 		}
 		
-		public System.Data.Linq.Table<paises_idiomas> paises_idiomas
+		public System.Data.Linq.Table<Paises_Idiomas> Paises_Idiomas
 		{
 			get
 			{
-				return this.GetTable<paises_idiomas>();
+				return this.GetTable<Paises_Idiomas>();
 			}
 		}
 		
-		public System.Data.Linq.Table<paises_vecinos> paises_vecinos
+		public System.Data.Linq.Table<Paises_Vecinos> Paises_Vecinos
 		{
 			get
 			{
-				return this.GetTable<paises_vecinos>();
+				return this.GetTable<Paises_Vecinos>();
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PaisContinente")]
-		public ISingleResult<PaisContinenteResult> PaisContinente()
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.MostrarPaises")]
+		public ISingleResult<MostrarPaisesResult> MostrarPaises()
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<PaisContinenteResult>)(result.ReturnValue));
+			return ((ISingleResult<MostrarPaisesResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -146,7 +146,7 @@ namespace DAL_Mundo
 		
 		private string _continente;
 		
-		private EntitySet<paises> _paises;
+		private EntitySet<Paises> _Paises;
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
@@ -160,11 +160,11 @@ namespace DAL_Mundo
 		
 		public Continentes()
 		{
-			this._paises = new EntitySet<paises>(new Action<paises>(this.attach_paises), new Action<paises>(this.detach_paises));
+			this._Paises = new EntitySet<Paises>(new Action<Paises>(this.attach_Paises), new Action<Paises>(this.detach_Paises));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int id
 		{
 			get
@@ -184,7 +184,7 @@ namespace DAL_Mundo
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_continente", DbType="VarChar(20) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_continente", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
 		public string continente
 		{
 			get
@@ -204,16 +204,16 @@ namespace DAL_Mundo
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Continentes_paises", Storage="_paises", ThisKey="id", OtherKey="continente_id")]
-		public EntitySet<paises> paises
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Continentes_Paises", Storage="_Paises", ThisKey="id", OtherKey="continente_id")]
+		public EntitySet<Paises> Paises
 		{
 			get
 			{
-				return this._paises;
+				return this._Paises;
 			}
 			set
 			{
-				this._paises.Assign(value);
+				this._Paises.Assign(value);
 			}
 		}
 		
@@ -237,13 +237,13 @@ namespace DAL_Mundo
 			}
 		}
 		
-		private void attach_paises(paises entity)
+		private void attach_Paises(Paises entity)
 		{
 			this.SendPropertyChanging();
 			entity.Continentes = this;
 		}
 		
-		private void detach_paises(paises entity)
+		private void detach_Paises(Paises entity)
 		{
 			this.SendPropertyChanging();
 			entity.Continentes = null;
@@ -260,7 +260,7 @@ namespace DAL_Mundo
 		
 		private string _gobierno;
 		
-		private EntitySet<paises> _paises;
+		private EntitySet<Paises> _Paises;
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
@@ -274,11 +274,11 @@ namespace DAL_Mundo
 		
 		public Gobiernos()
 		{
-			this._paises = new EntitySet<paises>(new Action<paises>(this.attach_paises), new Action<paises>(this.detach_paises));
+			this._Paises = new EntitySet<Paises>(new Action<Paises>(this.attach_Paises), new Action<Paises>(this.detach_Paises));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int id
 		{
 			get
@@ -298,7 +298,7 @@ namespace DAL_Mundo
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gobierno", DbType="VarChar(40) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gobierno", DbType="VarChar(40) NOT NULL", CanBeNull=false)]
 		public string gobierno
 		{
 			get
@@ -318,16 +318,16 @@ namespace DAL_Mundo
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Gobiernos_paises", Storage="_paises", ThisKey="id", OtherKey="gobierno_id")]
-		public EntitySet<paises> paises
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Gobiernos_Paises", Storage="_Paises", ThisKey="id", OtherKey="gobierno_id")]
+		public EntitySet<Paises> Paises
 		{
 			get
 			{
-				return this._paises;
+				return this._Paises;
 			}
 			set
 			{
-				this._paises.Assign(value);
+				this._Paises.Assign(value);
 			}
 		}
 		
@@ -351,21 +351,21 @@ namespace DAL_Mundo
 			}
 		}
 		
-		private void attach_paises(paises entity)
+		private void attach_Paises(Paises entity)
 		{
 			this.SendPropertyChanging();
 			entity.Gobiernos = this;
 		}
 		
-		private void detach_paises(paises entity)
+		private void detach_Paises(Paises entity)
 		{
 			this.SendPropertyChanging();
 			entity.Gobiernos = null;
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.idiomas")]
-	public partial class idiomas : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Idiomas")]
+	public partial class Idiomas : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -374,7 +374,7 @@ namespace DAL_Mundo
 		
 		private string _idioma;
 		
-		private EntitySet<paises_idiomas> _paises_idiomas;
+		private EntitySet<Paises_Idiomas> _Paises_Idiomas;
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
@@ -386,13 +386,13 @@ namespace DAL_Mundo
     partial void OnidiomaChanged();
     #endregion
 		
-		public idiomas()
+		public Idiomas()
 		{
-			this._paises_idiomas = new EntitySet<paises_idiomas>(new Action<paises_idiomas>(this.attach_paises_idiomas), new Action<paises_idiomas>(this.detach_paises_idiomas));
+			this._Paises_Idiomas = new EntitySet<Paises_Idiomas>(new Action<Paises_Idiomas>(this.attach_Paises_Idiomas), new Action<Paises_Idiomas>(this.detach_Paises_Idiomas));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int id
 		{
 			get
@@ -412,7 +412,7 @@ namespace DAL_Mundo
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idioma", DbType="VarChar(20) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idioma", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
 		public string idioma
 		{
 			get
@@ -432,16 +432,16 @@ namespace DAL_Mundo
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="idiomas_paises_idiomas", Storage="_paises_idiomas", ThisKey="id", OtherKey="idioma_id")]
-		public EntitySet<paises_idiomas> paises_idiomas
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Idiomas_Paises_Idiomas", Storage="_Paises_Idiomas", ThisKey="id", OtherKey="idioma_id")]
+		public EntitySet<Paises_Idiomas> Paises_Idiomas
 		{
 			get
 			{
-				return this._paises_idiomas;
+				return this._Paises_Idiomas;
 			}
 			set
 			{
-				this._paises_idiomas.Assign(value);
+				this._Paises_Idiomas.Assign(value);
 			}
 		}
 		
@@ -465,21 +465,21 @@ namespace DAL_Mundo
 			}
 		}
 		
-		private void attach_paises_idiomas(paises_idiomas entity)
+		private void attach_Paises_Idiomas(Paises_Idiomas entity)
 		{
 			this.SendPropertyChanging();
-			entity.idiomas = this;
+			entity.Idiomas = this;
 		}
 		
-		private void detach_paises_idiomas(paises_idiomas entity)
+		private void detach_Paises_Idiomas(Paises_Idiomas entity)
 		{
 			this.SendPropertyChanging();
-			entity.idiomas = null;
+			entity.Idiomas = null;
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.paises")]
-	public partial class paises : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Paises")]
+	public partial class Paises : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -510,11 +510,11 @@ namespace DAL_Mundo
 		
 		private string _code;
 		
-		private EntitySet<paises_idiomas> _paises_idiomas;
+		private EntitySet<Paises_Idiomas> _Paises_Idiomas;
 		
-		private EntitySet<paises_vecinos> _paises_vecinos;
+		private EntitySet<Paises_Vecinos> _Paises_Vecinos;
 		
-		private EntitySet<paises_vecinos> _paises_vecinos1;
+		private EntitySet<Paises_Vecinos> _Paises_Vecinos1;
 		
 		private EntityRef<Continentes> _Continentes;
 		
@@ -552,17 +552,17 @@ namespace DAL_Mundo
     partial void OncodeChanged();
     #endregion
 		
-		public paises()
+		public Paises()
 		{
-			this._paises_idiomas = new EntitySet<paises_idiomas>(new Action<paises_idiomas>(this.attach_paises_idiomas), new Action<paises_idiomas>(this.detach_paises_idiomas));
-			this._paises_vecinos = new EntitySet<paises_vecinos>(new Action<paises_vecinos>(this.attach_paises_vecinos), new Action<paises_vecinos>(this.detach_paises_vecinos));
-			this._paises_vecinos1 = new EntitySet<paises_vecinos>(new Action<paises_vecinos>(this.attach_paises_vecinos1), new Action<paises_vecinos>(this.detach_paises_vecinos1));
+			this._Paises_Idiomas = new EntitySet<Paises_Idiomas>(new Action<Paises_Idiomas>(this.attach_Paises_Idiomas), new Action<Paises_Idiomas>(this.detach_Paises_Idiomas));
+			this._Paises_Vecinos = new EntitySet<Paises_Vecinos>(new Action<Paises_Vecinos>(this.attach_Paises_Vecinos), new Action<Paises_Vecinos>(this.detach_Paises_Vecinos));
+			this._Paises_Vecinos1 = new EntitySet<Paises_Vecinos>(new Action<Paises_Vecinos>(this.attach_Paises_Vecinos1), new Action<Paises_Vecinos>(this.detach_Paises_Vecinos1));
 			this._Continentes = default(EntityRef<Continentes>);
 			this._Gobiernos = default(EntityRef<Gobiernos>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int id
 		{
 			get
@@ -582,7 +582,7 @@ namespace DAL_Mundo
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pais", DbType="VarChar(35) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pais", DbType="VarChar(35) NOT NULL", CanBeNull=false)]
 		public string pais
 		{
 			get
@@ -730,7 +730,7 @@ namespace DAL_Mundo
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_posicion", DbType="VarChar(20)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_posicion", DbType="VarChar(50)")]
 		public string posicion
 		{
 			get
@@ -830,46 +830,46 @@ namespace DAL_Mundo
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="paises_paises_idiomas", Storage="_paises_idiomas", ThisKey="id", OtherKey="pais_id")]
-		public EntitySet<paises_idiomas> paises_idiomas
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Paises_Paises_Idiomas", Storage="_Paises_Idiomas", ThisKey="id", OtherKey="pais_id")]
+		public EntitySet<Paises_Idiomas> Paises_Idiomas
 		{
 			get
 			{
-				return this._paises_idiomas;
+				return this._Paises_Idiomas;
 			}
 			set
 			{
-				this._paises_idiomas.Assign(value);
+				this._Paises_Idiomas.Assign(value);
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="paises_paises_vecinos", Storage="_paises_vecinos", ThisKey="id", OtherKey="pais_id")]
-		public EntitySet<paises_vecinos> paises_vecinos
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Paises_Paises_Vecinos", Storage="_Paises_Vecinos", ThisKey="id", OtherKey="pais_id")]
+		public EntitySet<Paises_Vecinos> Paises_Vecinos
 		{
 			get
 			{
-				return this._paises_vecinos;
+				return this._Paises_Vecinos;
 			}
 			set
 			{
-				this._paises_vecinos.Assign(value);
+				this._Paises_Vecinos.Assign(value);
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="paises_paises_vecinos1", Storage="_paises_vecinos1", ThisKey="id", OtherKey="vecino_id")]
-		public EntitySet<paises_vecinos> paises_vecinos1
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Paises_Paises_Vecinos1", Storage="_Paises_Vecinos1", ThisKey="id", OtherKey="vecino_id")]
+		public EntitySet<Paises_Vecinos> Paises_Vecinos1
 		{
 			get
 			{
-				return this._paises_vecinos1;
+				return this._Paises_Vecinos1;
 			}
 			set
 			{
-				this._paises_vecinos1.Assign(value);
+				this._Paises_Vecinos1.Assign(value);
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Continentes_paises", Storage="_Continentes", ThisKey="continente_id", OtherKey="id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Continentes_Paises", Storage="_Continentes", ThisKey="continente_id", OtherKey="id", IsForeignKey=true)]
 		public Continentes Continentes
 		{
 			get
@@ -886,12 +886,12 @@ namespace DAL_Mundo
 					if ((previousValue != null))
 					{
 						this._Continentes.Entity = null;
-						previousValue.paises.Remove(this);
+						previousValue.Paises.Remove(this);
 					}
 					this._Continentes.Entity = value;
 					if ((value != null))
 					{
-						value.paises.Add(this);
+						value.Paises.Add(this);
 						this._continente_id = value.id;
 					}
 					else
@@ -903,7 +903,7 @@ namespace DAL_Mundo
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Gobiernos_paises", Storage="_Gobiernos", ThisKey="gobierno_id", OtherKey="id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Gobiernos_Paises", Storage="_Gobiernos", ThisKey="gobierno_id", OtherKey="id", IsForeignKey=true)]
 		public Gobiernos Gobiernos
 		{
 			get
@@ -920,12 +920,12 @@ namespace DAL_Mundo
 					if ((previousValue != null))
 					{
 						this._Gobiernos.Entity = null;
-						previousValue.paises.Remove(this);
+						previousValue.Paises.Remove(this);
 					}
 					this._Gobiernos.Entity = value;
 					if ((value != null))
 					{
-						value.paises.Add(this);
+						value.Paises.Add(this);
 						this._gobierno_id = value.id;
 					}
 					else
@@ -957,45 +957,45 @@ namespace DAL_Mundo
 			}
 		}
 		
-		private void attach_paises_idiomas(paises_idiomas entity)
+		private void attach_Paises_Idiomas(Paises_Idiomas entity)
 		{
 			this.SendPropertyChanging();
-			entity.paises = this;
+			entity.Paises = this;
 		}
 		
-		private void detach_paises_idiomas(paises_idiomas entity)
+		private void detach_Paises_Idiomas(Paises_Idiomas entity)
 		{
 			this.SendPropertyChanging();
-			entity.paises = null;
+			entity.Paises = null;
 		}
 		
-		private void attach_paises_vecinos(paises_vecinos entity)
+		private void attach_Paises_Vecinos(Paises_Vecinos entity)
 		{
 			this.SendPropertyChanging();
-			entity.paises = this;
+			entity.Paises = this;
 		}
 		
-		private void detach_paises_vecinos(paises_vecinos entity)
+		private void detach_Paises_Vecinos(Paises_Vecinos entity)
 		{
 			this.SendPropertyChanging();
-			entity.paises = null;
+			entity.Paises = null;
 		}
 		
-		private void attach_paises_vecinos1(paises_vecinos entity)
+		private void attach_Paises_Vecinos1(Paises_Vecinos entity)
 		{
 			this.SendPropertyChanging();
-			entity.paises1 = this;
+			entity.Paises1 = this;
 		}
 		
-		private void detach_paises_vecinos1(paises_vecinos entity)
+		private void detach_Paises_Vecinos1(Paises_Vecinos entity)
 		{
 			this.SendPropertyChanging();
-			entity.paises1 = null;
+			entity.Paises1 = null;
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.paises_idiomas")]
-	public partial class paises_idiomas : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Paises_Idiomas")]
+	public partial class Paises_Idiomas : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -1008,9 +1008,9 @@ namespace DAL_Mundo
 		
 		private System.Nullable<decimal> _porcentaje;
 		
-		private EntityRef<idiomas> _idiomas;
+		private EntityRef<Idiomas> _Idiomas;
 		
-		private EntityRef<paises> _paises;
+		private EntityRef<Paises> _Paises;
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
@@ -1026,10 +1026,10 @@ namespace DAL_Mundo
     partial void OnporcentajeChanged();
     #endregion
 		
-		public paises_idiomas()
+		public Paises_Idiomas()
 		{
-			this._idiomas = default(EntityRef<idiomas>);
-			this._paises = default(EntityRef<paises>);
+			this._Idiomas = default(EntityRef<Idiomas>);
+			this._Paises = default(EntityRef<Paises>);
 			OnCreated();
 		}
 		
@@ -1044,7 +1044,7 @@ namespace DAL_Mundo
 			{
 				if ((this._pais_id != value))
 				{
-					if (this._paises.HasLoadedOrAssignedValue)
+					if (this._Paises.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1068,7 +1068,7 @@ namespace DAL_Mundo
 			{
 				if ((this._idioma_id != value))
 				{
-					if (this._idiomas.HasLoadedOrAssignedValue)
+					if (this._Idiomas.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1121,70 +1121,70 @@ namespace DAL_Mundo
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="idiomas_paises_idiomas", Storage="_idiomas", ThisKey="idioma_id", OtherKey="id", IsForeignKey=true)]
-		public idiomas idiomas
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Idiomas_Paises_Idiomas", Storage="_Idiomas", ThisKey="idioma_id", OtherKey="id", IsForeignKey=true)]
+		public Idiomas Idiomas
 		{
 			get
 			{
-				return this._idiomas.Entity;
+				return this._Idiomas.Entity;
 			}
 			set
 			{
-				idiomas previousValue = this._idiomas.Entity;
+				Idiomas previousValue = this._Idiomas.Entity;
 				if (((previousValue != value) 
-							|| (this._idiomas.HasLoadedOrAssignedValue == false)))
+							|| (this._Idiomas.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._idiomas.Entity = null;
-						previousValue.paises_idiomas.Remove(this);
+						this._Idiomas.Entity = null;
+						previousValue.Paises_Idiomas.Remove(this);
 					}
-					this._idiomas.Entity = value;
+					this._Idiomas.Entity = value;
 					if ((value != null))
 					{
-						value.paises_idiomas.Add(this);
+						value.Paises_Idiomas.Add(this);
 						this._idioma_id = value.id;
 					}
 					else
 					{
 						this._idioma_id = default(int);
 					}
-					this.SendPropertyChanged("idiomas");
+					this.SendPropertyChanged("Idiomas");
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="paises_paises_idiomas", Storage="_paises", ThisKey="pais_id", OtherKey="id", IsForeignKey=true)]
-		public paises paises
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Paises_Paises_Idiomas", Storage="_Paises", ThisKey="pais_id", OtherKey="id", IsForeignKey=true)]
+		public Paises Paises
 		{
 			get
 			{
-				return this._paises.Entity;
+				return this._Paises.Entity;
 			}
 			set
 			{
-				paises previousValue = this._paises.Entity;
+				Paises previousValue = this._Paises.Entity;
 				if (((previousValue != value) 
-							|| (this._paises.HasLoadedOrAssignedValue == false)))
+							|| (this._Paises.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._paises.Entity = null;
-						previousValue.paises_idiomas.Remove(this);
+						this._Paises.Entity = null;
+						previousValue.Paises_Idiomas.Remove(this);
 					}
-					this._paises.Entity = value;
+					this._Paises.Entity = value;
 					if ((value != null))
 					{
-						value.paises_idiomas.Add(this);
+						value.Paises_Idiomas.Add(this);
 						this._pais_id = value.id;
 					}
 					else
 					{
 						this._pais_id = default(int);
 					}
-					this.SendPropertyChanged("paises");
+					this.SendPropertyChanged("Paises");
 				}
 			}
 		}
@@ -1210,8 +1210,8 @@ namespace DAL_Mundo
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.paises_vecinos")]
-	public partial class paises_vecinos : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Paises_Vecinos")]
+	public partial class Paises_Vecinos : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -1222,9 +1222,9 @@ namespace DAL_Mundo
 		
 		private System.Nullable<int> _kms_frontera;
 		
-		private EntityRef<paises> _paises;
+		private EntityRef<Paises> _Paises;
 		
-		private EntityRef<paises> _paises1;
+		private EntityRef<Paises> _Paises1;
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
@@ -1238,10 +1238,10 @@ namespace DAL_Mundo
     partial void Onkms_fronteraChanged();
     #endregion
 		
-		public paises_vecinos()
+		public Paises_Vecinos()
 		{
-			this._paises = default(EntityRef<paises>);
-			this._paises1 = default(EntityRef<paises>);
+			this._Paises = default(EntityRef<Paises>);
+			this._Paises1 = default(EntityRef<Paises>);
 			OnCreated();
 		}
 		
@@ -1256,7 +1256,7 @@ namespace DAL_Mundo
 			{
 				if ((this._pais_id != value))
 				{
-					if (this._paises.HasLoadedOrAssignedValue)
+					if (this._Paises.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1280,7 +1280,7 @@ namespace DAL_Mundo
 			{
 				if ((this._vecino_id != value))
 				{
-					if (this._paises1.HasLoadedOrAssignedValue)
+					if (this._Paises1.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1313,70 +1313,70 @@ namespace DAL_Mundo
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="paises_paises_vecinos", Storage="_paises", ThisKey="pais_id", OtherKey="id", IsForeignKey=true)]
-		public paises paises
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Paises_Paises_Vecinos", Storage="_Paises", ThisKey="pais_id", OtherKey="id", IsForeignKey=true)]
+		public Paises Paises
 		{
 			get
 			{
-				return this._paises.Entity;
+				return this._Paises.Entity;
 			}
 			set
 			{
-				paises previousValue = this._paises.Entity;
+				Paises previousValue = this._Paises.Entity;
 				if (((previousValue != value) 
-							|| (this._paises.HasLoadedOrAssignedValue == false)))
+							|| (this._Paises.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._paises.Entity = null;
-						previousValue.paises_vecinos.Remove(this);
+						this._Paises.Entity = null;
+						previousValue.Paises_Vecinos.Remove(this);
 					}
-					this._paises.Entity = value;
+					this._Paises.Entity = value;
 					if ((value != null))
 					{
-						value.paises_vecinos.Add(this);
+						value.Paises_Vecinos.Add(this);
 						this._pais_id = value.id;
 					}
 					else
 					{
 						this._pais_id = default(int);
 					}
-					this.SendPropertyChanged("paises");
+					this.SendPropertyChanged("Paises");
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="paises_paises_vecinos1", Storage="_paises1", ThisKey="vecino_id", OtherKey="id", IsForeignKey=true)]
-		public paises paises1
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Paises_Paises_Vecinos1", Storage="_Paises1", ThisKey="vecino_id", OtherKey="id", IsForeignKey=true)]
+		public Paises Paises1
 		{
 			get
 			{
-				return this._paises1.Entity;
+				return this._Paises1.Entity;
 			}
 			set
 			{
-				paises previousValue = this._paises1.Entity;
+				Paises previousValue = this._Paises1.Entity;
 				if (((previousValue != value) 
-							|| (this._paises1.HasLoadedOrAssignedValue == false)))
+							|| (this._Paises1.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._paises1.Entity = null;
-						previousValue.paises_vecinos1.Remove(this);
+						this._Paises1.Entity = null;
+						previousValue.Paises_Vecinos1.Remove(this);
 					}
-					this._paises1.Entity = value;
+					this._Paises1.Entity = value;
 					if ((value != null))
 					{
-						value.paises_vecinos1.Add(this);
+						value.Paises_Vecinos1.Add(this);
 						this._vecino_id = value.id;
 					}
 					else
 					{
 						this._vecino_id = default(int);
 					}
-					this.SendPropertyChanged("paises1");
+					this.SendPropertyChanged("Paises1");
 				}
 			}
 		}
@@ -1402,15 +1402,39 @@ namespace DAL_Mundo
 		}
 	}
 	
-	public partial class PaisContinenteResult
+	public partial class MostrarPaisesResult
 	{
+		
+		private int _id;
 		
 		private string _pais;
 		
+		private string _capital;
+		
+		private string _moneda;
+		
 		private string _continente;
 		
-		public PaisContinenteResult()
+		private string _gobierno;
+		
+		public MostrarPaisesResult()
 		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pais", DbType="VarChar(35) NOT NULL", CanBeNull=false)]
@@ -1429,6 +1453,38 @@ namespace DAL_Mundo
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_capital", DbType="VarChar(20)")]
+		public string capital
+		{
+			get
+			{
+				return this._capital;
+			}
+			set
+			{
+				if ((this._capital != value))
+				{
+					this._capital = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_moneda", DbType="VarChar(30)")]
+		public string moneda
+		{
+			get
+			{
+				return this._moneda;
+			}
+			set
+			{
+				if ((this._moneda != value))
+				{
+					this._moneda = value;
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_continente", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
 		public string continente
 		{
@@ -1441,6 +1497,22 @@ namespace DAL_Mundo
 				if ((this._continente != value))
 				{
 					this._continente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gobierno", DbType="VarChar(40) NOT NULL", CanBeNull=false)]
+		public string gobierno
+		{
+			get
+			{
+				return this._gobierno;
+			}
+			set
+			{
+				if ((this._gobierno != value))
+				{
+					this._gobierno = value;
 				}
 			}
 		}

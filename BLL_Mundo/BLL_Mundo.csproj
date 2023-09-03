@@ -49,6 +49,10 @@
       <Project>{5615b709-4f00-49d9-96a3-7648c800f370}</Project>
       <Name>DAL_Mundo</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ML_Mundo\ML_Mundo.csproj">
+      <Project>{add4bef9-e339-4f55-b224-a2790b1e2d8d}</Project>
+      <Name>ML_Mundo</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

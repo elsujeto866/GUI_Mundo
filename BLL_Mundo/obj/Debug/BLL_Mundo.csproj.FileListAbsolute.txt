@@ -8,3 +8,6 @@ C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\
 C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\BLL_Mundo\obj\Debug\BLL_Mundo.csproj.CopyComplete
 C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\BLL_Mundo\obj\Debug\BLL_Mundo.dll
 C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\BLL_Mundo\obj\Debug\BLL_Mundo.pdb
+C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\BLL_Mundo\bin\Debug\ML_Mundo.dll
+C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\BLL_Mundo\bin\Debug\ML_Mundo.pdb
+C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\BLL_Mundo\bin\Debug\ML_Mundo.dll.config

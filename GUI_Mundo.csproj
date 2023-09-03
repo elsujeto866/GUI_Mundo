@@ -41,6 +41,7 @@
     <Reference Include="MahApps.Metro.IconPacks.Material, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0c0d510f9915137a, processorArchitecture=MSIL">
       <HintPath>packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\net47\MahApps.Metro.IconPacks.Material.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -105,6 +106,10 @@
     <ProjectReference Include="BLL_Mundo\BLL_Mundo.csproj">
       <Project>{5a9e56d7-3220-4817-a8fa-aafe5f96cb1b}</Project>
       <Name>BLL_Mundo</Name>
+    </ProjectReference>
+    <ProjectReference Include="ML_Mundo\ML_Mundo.csproj">
+      <Project>{add4bef9-e339-4f55-b224-a2790b1e2d8d}</Project>
+      <Name>ML_Mundo</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

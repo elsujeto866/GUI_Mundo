@@ -25,3 +25,7 @@ C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\
 C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\bin\Debug\MahApps.Metro.IconPacks.Core.xml
 C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\bin\Debug\MahApps.Metro.IconPacks.Material.pdb
 C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\bin\Debug\MahApps.Metro.IconPacks.Material.xml
+C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\obj\Debug\App.baml
+C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\bin\Debug\ML_Mundo.dll
+C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\bin\Debug\ML_Mundo.pdb
+C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\bin\Debug\ML_Mundo.dll.config

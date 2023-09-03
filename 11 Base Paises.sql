@@ -275,6 +275,15 @@ VALUES
 	(29, 24, 965),  -- Túnez - Argelia
 	(30, 22, 1619);  -- Noruega - Suecia
 GO
+--Cargar Paises
+CREATE PROC CargarPaises
+AS
+BEGIN
+SELECT p.pais, p.capital, p.moneda, c.continente
+FROM Paises p 
+  INNER JOIN Continentes c ON p.continente_id = c.id
+END
+GO
 --Continente de cada país
 CREATE PROC PaisContinente
 AS
@@ -295,7 +304,7 @@ FROM continentes c
 GROUP BY c.continente
 ORDER BY 1;
 END 
-
+GO
 
 --aíses fronterizos a España
 
@@ -309,10 +318,10 @@ BEGIN
     INNER JOIN paises v ON pv.vecino_id = v.id
   WHERE p.pais = @nombrePais;
 END;
-
+GO
 -- Prueba de FronterasPais
 EXEC FronterasXPais @nombrePais = 'Brasil'; -- Busco Alemania
-
+GO
 
 
 --Países fronterizos a cada país
@@ -324,7 +333,7 @@ FROM paises p
   INNER JOIN paises v ON pv.vecino_id = v.id
 GROUP BY p.pais
 ORDER BY 1;
-
+GO
 
 --Idiomas que se habla en cada país
 CREATE PROCEDURE IdiomasPaises
@@ -335,7 +344,7 @@ FROM paises p
   INNER JOIN idiomas i ON pi.idioma_id = i.id
 GROUP BY p.Pais	
 ORDER BY 1;
-
+GO
 
 --Comprobar que las fronteras a ambos lados mida lo mismo
 
@@ -369,7 +378,7 @@ SELECT
 FROM paises 
 WHERE poblacion >= ALL (SELECT poblacion FROM paises)
   OR extension >= ALL (SELECT extension FROM paises);
-
+GO
   -- pais mas extenso
 CREATE PROCEDURE PaisMasGrande
 AS
@@ -411,7 +420,7 @@ BEGIN
   GROUP BY i.idioma
   ORDER BY i.idioma;
 END;
-
+GO
 
 --Kilómetros de frontera y de costa de cada país
 
@@ -516,7 +525,7 @@ INNER JOIN paises_vecinos pv ON p.id = pv.pais_id
 GROUP BY p.id, p.pais;
   go
 
-  Select * from  paises2
+ --Select * from  paises2
 
   CREATE PROCEDURE PaisesConMasLimitrofres 
   AS
@@ -552,7 +561,7 @@ WHERE p.num_vecinos > v.num_vecinos
 GROUP BY p.pais, p.num_vecinos
 HAVING p.num_vecinos = COUNT(*)
 ORDER BY p.pais;
-
+GO
 
 
 --Países con más población que sus países vecinos
@@ -697,7 +706,7 @@ WHERE p.id IN (
 ) 
 AND continente <> 'Asia'
 ORDER BY pais
-go
+GO
 
 
 --Países con un tamaño parecido al de España. Una diferencia no mayor del 5%.
@@ -741,7 +750,7 @@ WHERE (CONVERT(NUMERIC(38, 15), extension) / CONVERT(NUMERIC(38, 15), mi_extensi
   OR (CONVERT(NUMERIC(38, 0), poblacion) / CONVERT(NUMERIC(38, 0), mi_poblacion) >= 0)
 ORDER BY (CONVERT(NUMERIC(38, 15), extension) / CONVERT(NUMERIC(38, 15), mi_extension)) + 
          (CONVERT(NUMERIC(38, 0), poblacion) / CONVERT(NUMERIC(38, 0), mi_poblacion)) DESC;
-go
+GO
 
 
 --Datos representativos de Italia incluyendo continente, gobierno, idiomas y países vecinos
@@ -753,6 +762,7 @@ FROM paises p
   LEFT JOIN paises_idiomas pi ON pi.pais_id = p.id LEFT JOIN idiomas i ON pi.idioma_id = i.id
   LEFT JOIN paises_vecinos pv ON pv.pais_id = p.id LEFT JOIN paises v ON pv.vecino_id = v.id
 WHERE p.pais = 'Italia'
+GO
 
 CREATE PROCEDURE CaracteristicasPais
 AS
@@ -784,7 +794,7 @@ SELECT idioma
 FROM paises_idiomas pi 
   LEFT JOIN idiomas i ON pi.idioma_id = i.id  
 WHERE pi.pais_id = (SELECT id FROM paises WHERE pais = 'Italia');
-
+GO
 
 --Países que incluyen el texto "lon" en el nombre, o en la capital o en el gobierno
 
@@ -811,7 +821,7 @@ CROSS JOIN (SELECT '%lon%' patron UNION SELECT '%mar%') parametros
 WHERE pais LIKE patron
   OR capital LIKE patron
 ORDER BY 6, 1;
-go
+GO
 
 
 -- Países que contengan al mismo tiempo el texto "sa" y "ta" en el nombre del país

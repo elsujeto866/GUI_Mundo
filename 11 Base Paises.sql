@@ -279,9 +279,10 @@ GO
 CREATE PROC CargarPaises
 AS
 BEGIN
-SELECT p.pais, p.capital, p.moneda, c.continente
+SELECT p.pais, p.capital, p.moneda, c.continente,g.gobierno,p.posicion,p.code
 FROM Paises p 
   INNER JOIN Continentes c ON p.continente_id = c.id
+  INNER JOIN Gobiernos g ON p.gobierno_id = g.id
 END
 GO
 --Continente de cada país

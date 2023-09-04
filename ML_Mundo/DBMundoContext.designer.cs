@@ -1405,8 +1405,6 @@ namespace ML_Mundo
 	public partial class CargarPaisesResult
 	{
 		
-		private int _id;
-		
 		private string _pais;
 		
 		private string _capital;
@@ -1417,32 +1415,12 @@ namespace ML_Mundo
 		
 		private string _gobierno;
 		
-		private System.Nullable<int> _poblacion;
-		
-		private System.Nullable<decimal> _extension;
-		
 		private string _posicion;
 		
 		private string _code;
 		
 		public CargarPaisesResult()
 		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this._id = value;
-				}
-			}
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pais", DbType="VarChar(35) NOT NULL", CanBeNull=false)]
@@ -1521,38 +1499,6 @@ namespace ML_Mundo
 				if ((this._gobierno != value))
 				{
 					this._gobierno = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_poblacion", DbType="Int")]
-		public System.Nullable<int> poblacion
-		{
-			get
-			{
-				return this._poblacion;
-			}
-			set
-			{
-				if ((this._poblacion != value))
-				{
-					this._poblacion = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_extension", DbType="Decimal(15,5)")]
-		public System.Nullable<decimal> extension
-		{
-			get
-			{
-				return this._extension;
-			}
-			set
-			{
-				if ((this._extension != value))
-				{
-					this._extension = value;
 				}
 			}
 		}

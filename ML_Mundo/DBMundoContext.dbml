@@ -64,14 +64,11 @@
   </Table>
   <Function Name="dbo.CargarPaises" Method="CargarPaises">
     <ElementType Name="CargarPaisesResult">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="pais" Type="System.String" DbType="VarChar(35) NOT NULL" CanBeNull="false" />
       <Column Name="capital" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="moneda" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
       <Column Name="continente" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
       <Column Name="gobierno" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
-      <Column Name="poblacion" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="extension" Type="System.Decimal" DbType="Decimal(15,5)" CanBeNull="true" />
       <Column Name="posicion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="code" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
     </ElementType>

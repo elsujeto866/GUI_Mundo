@@ -64,6 +64,7 @@
   </Table>
   <Function Name="dbo.CargarPaises" Method="CargarPaises">
     <ElementType Name="CargarPaisesResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="pais" Type="System.String" DbType="VarChar(35) NOT NULL" CanBeNull="false" />
       <Column Name="capital" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="moneda" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />

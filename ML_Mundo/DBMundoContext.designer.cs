@@ -1405,6 +1405,8 @@ namespace ML_Mundo
 	public partial class CargarPaisesResult
 	{
 		
+		private int _id;
+		
 		private string _pais;
 		
 		private string _capital;
@@ -1421,6 +1423,22 @@ namespace ML_Mundo
 		
 		public CargarPaisesResult()
 		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pais", DbType="VarChar(35) NOT NULL", CanBeNull=false)]

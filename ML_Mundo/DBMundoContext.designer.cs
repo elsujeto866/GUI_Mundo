@@ -1415,6 +1415,16 @@ namespace ML_Mundo
 		
 		private string _continente;
 		
+		private string _gobierno;
+		
+		private System.Nullable<int> _poblacion;
+		
+		private System.Nullable<decimal> _extension;
+		
+		private string _posicion;
+		
+		private string _code;
+		
 		public CargarPaisesResult()
 		{
 		}
@@ -1495,6 +1505,86 @@ namespace ML_Mundo
 				if ((this._continente != value))
 				{
 					this._continente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gobierno", DbType="VarChar(40) NOT NULL", CanBeNull=false)]
+		public string gobierno
+		{
+			get
+			{
+				return this._gobierno;
+			}
+			set
+			{
+				if ((this._gobierno != value))
+				{
+					this._gobierno = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_poblacion", DbType="Int")]
+		public System.Nullable<int> poblacion
+		{
+			get
+			{
+				return this._poblacion;
+			}
+			set
+			{
+				if ((this._poblacion != value))
+				{
+					this._poblacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_extension", DbType="Decimal(15,5)")]
+		public System.Nullable<decimal> extension
+		{
+			get
+			{
+				return this._extension;
+			}
+			set
+			{
+				if ((this._extension != value))
+				{
+					this._extension = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_posicion", DbType="VarChar(50)")]
+		public string posicion
+		{
+			get
+			{
+				return this._posicion;
+			}
+			set
+			{
+				if ((this._posicion != value))
+				{
+					this._posicion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_code", DbType="VarChar(2)")]
+		public string code
+		{
+			get
+			{
+				return this._code;
+			}
+			set
+			{
+				if ((this._code != value))
+				{
+					this._code = value;
 				}
 			}
 		}

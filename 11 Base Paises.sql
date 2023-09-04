@@ -917,4 +917,571 @@ ORDER BY poblacion / poblacion_continente + extension / extension_continente
 */
 
 
+----CREACION DE TRIGGERS PARA LA TABLA AuditoriaTablas
+-- Crear tabla AuditoriaTablas
+CREATE TABLE dbo.AuditoriaTablas (
+    idAuditoria INT IDENTITY(1,1) PRIMARY KEY,
+	Tipo VARCHAR(10),
+    Tabla VARCHAR(20),
+	Registro INT,
+    Campo VARCHAR(50),
+    ValorAntes VARCHAR(50),
+    ValorDespues VARCHAR(50),
+    Fecha DATETIME
+);
+GO
 
+-- Crear un trigger para la inserción de registros en la tabla Continentes
+CREATE TRIGGER trContinentesInsert
+ON dbo.Continentes
+AFTER INSERT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Continentes', 'id', NULL, inserted.id, GETDATE(), 'Insert', inserted.id
+    FROM inserted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Continentes', 'continente', NULL, inserted.continente, GETDATE(), 'Insert', inserted.id
+    FROM inserted;
+END;
+GO
+-- Crear un trigger para la eliminación de registros en la tabla Continentes
+CREATE TRIGGER trContinentesDelete
+ON dbo.Continentes
+AFTER DELETE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Continentes', 'id', deleted.id, NULL, GETDATE(), 'D', deleted.id
+    FROM deleted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Continentes', 'continente', deleted.continente, NULL, GETDATE(), 'D', deleted.id
+    FROM deleted;
+END;
+GO
+-- Crear un trigger para la actualización de registros en la tabla Continentes
+CREATE TRIGGER trContinentesUpdate
+ON dbo.Continentes
+AFTER UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Insertar información de la actualización en la tabla de auditoría solo para campos que han cambiado
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Continentes', 'id', deleted.id, inserted.id, GETDATE(), 'U', inserted.id
+    FROM deleted
+    INNER JOIN inserted ON deleted.id = inserted.id
+    WHERE deleted.id <> inserted.id;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Continentes', 'continente', deleted.continente, inserted.continente, GETDATE(), 'U', inserted.id
+    FROM deleted
+    INNER JOIN inserted ON deleted.id = inserted.id
+    WHERE deleted.continente <> inserted.continente;
+END;
+GO
+-- Crear un trigger para la inserción de registros en la tabla Gobiernos
+CREATE TRIGGER trGobiernosInsert
+ON dbo.Gobiernos
+AFTER INSERT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Gobiernos', 'id', NULL, inserted.id, GETDATE(), 'I', inserted.id
+    FROM inserted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Gobiernos', 'gobierno', NULL, inserted.gobierno, GETDATE(), 'I', inserted.id
+    FROM inserted;
+END;
+GO
+-- Crear un trigger para la eliminación de registros en la tabla Gobiernos
+CREATE TRIGGER trGobiernosDelete
+ON dbo.Gobiernos
+AFTER DELETE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Gobiernos', 'id', deleted.id, NULL, GETDATE(), 'D', deleted.id
+    FROM deleted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Gobiernos', 'gobierno', deleted.gobierno, NULL, GETDATE(), 'D', deleted.id
+    FROM deleted;
+END;
+GO
+-- Crear un trigger para la actualización de registros en la tabla Gobiernos
+CREATE TRIGGER trGobiernosUpdate
+ON dbo.Gobiernos
+AFTER UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Insertar información de la actualización en la tabla de auditoría solo para campos que han cambiado
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Gobiernos', 'id', deleted.id, inserted.id, GETDATE(), 'U', inserted.id
+    FROM deleted
+    INNER JOIN inserted ON deleted.id = inserted.id
+    WHERE deleted.id <> inserted.id;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Gobiernos', 'gobierno', deleted.gobierno, inserted.gobierno, GETDATE(), 'U', inserted.id
+    FROM deleted
+    INNER JOIN inserted ON deleted.id = inserted.id
+    WHERE deleted.gobierno <> inserted.gobierno;
+END;
+GO
+-- Crear un trigger para la inserción de registros en la tabla Idiomas
+CREATE TRIGGER trIdiomasInsert
+ON dbo.Idiomas
+AFTER INSERT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Idiomas', 'id', NULL, inserted.id, GETDATE(), 'I', inserted.id
+    FROM inserted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Idiomas', 'idioma', NULL, inserted.idioma, GETDATE(), 'I', inserted.id
+    FROM inserted;
+END;
+GO
+-- Crear un trigger para la eliminación de registros en la tabla Idiomas
+CREATE TRIGGER trIdiomasDelete
+ON dbo.Idiomas
+AFTER DELETE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Idiomas', 'id', deleted.id, NULL, GETDATE(), 'D', deleted.id
+    FROM deleted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Idiomas', 'idioma', deleted.idioma, NULL, GETDATE(), 'D', deleted.id
+    FROM deleted;
+END;
+GO
+-- Crear un trigger para la actualización de registros en la tabla Idiomas
+CREATE TRIGGER trIdiomasUpdate
+ON dbo.Idiomas
+AFTER UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Insertar información de la actualización en la tabla de auditoría solo para campos que han cambiado
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Idiomas', 'id', deleted.id, inserted.id, GETDATE(), 'U', inserted.id
+    FROM deleted
+    INNER JOIN inserted ON deleted.id = inserted.id
+    WHERE deleted.id <> inserted.id;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Idiomas', 'idioma', deleted.idioma, inserted.idioma, GETDATE(), 'U', inserted.id
+    FROM deleted
+    INNER JOIN inserted ON deleted.id = inserted.id
+    WHERE deleted.idioma <> inserted.idioma;
+END;
+GO
+-- Crear un trigger para la inserción de registros en la tabla Paises
+CREATE TRIGGER trPaisesInsert
+ON dbo.Paises
+AFTER INSERT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises', 'id', NULL, inserted.id, GETDATE(), 'I', inserted.id
+    FROM inserted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises', 'pais', NULL, inserted.pais, GETDATE(), 'I', inserted.id
+    FROM inserted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises', 'capital', NULL, inserted.capital, GETDATE(), 'I', inserted.id
+    FROM inserted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises', 'moneda', NULL, inserted.moneda, GETDATE(), 'I', inserted.id
+    FROM inserted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises', 'continente_id', NULL, inserted.continente_id, GETDATE(), 'I', inserted.id
+    FROM inserted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises', 'gobierno_id', NULL, inserted.gobierno_id, GETDATE(), 'I', inserted.id
+    FROM inserted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises', 'poblacion', NULL, inserted.poblacion, GETDATE(), 'I', inserted.id
+    FROM inserted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises', 'extension', NULL, inserted.extension, GETDATE(), 'I', inserted.id
+    FROM inserted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises', 'posicion', NULL, inserted.posicion, GETDATE(), 'I', inserted.id
+    FROM inserted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises', 'existe', NULL, inserted.existe, GETDATE(), 'I', inserted.id
+    FROM inserted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises', 'costa', NULL, inserted.costa, GETDATE(), 'I', inserted.id
+    FROM inserted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises', 'country', NULL, inserted.country, GETDATE(), 'I', inserted.id
+    FROM inserted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises', 'code', NULL, inserted.code, GETDATE(), 'I', inserted.id
+    FROM inserted;
+END;
+GO
+-- Crear un trigger para la eliminación de registros en la tabla Paises
+CREATE TRIGGER trPaisesDelete
+ON dbo.Paises
+AFTER DELETE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises', 'id', deleted.id, NULL, GETDATE(), 'D', deleted.id
+    FROM deleted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises', 'pais', deleted.pais, NULL, GETDATE(), 'D', deleted.id
+    FROM deleted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises', 'capital', deleted.capital, NULL, GETDATE(), 'D', deleted.id
+    FROM deleted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises', 'moneda', deleted.moneda, NULL, GETDATE(), 'D', deleted.id
+    FROM deleted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises', 'continente_id', CAST(deleted.continente_id AS VARCHAR), NULL, GETDATE(), 'D', deleted.id
+    FROM deleted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises', 'gobierno_id', CAST(deleted.gobierno_id AS VARCHAR), NULL, GETDATE(), 'D', deleted.id
+    FROM deleted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises', 'poblacion', CAST(deleted.poblacion AS VARCHAR), NULL, GETDATE(), 'D', deleted.id
+    FROM deleted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises', 'extension', CAST(deleted.extension AS VARCHAR), NULL, GETDATE(), 'D', deleted.id
+    FROM deleted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises', 'posicion', deleted.posicion, NULL, GETDATE(), 'D', deleted.id
+    FROM deleted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises', 'existe', CAST(deleted.existe AS VARCHAR), NULL, GETDATE(), 'D', deleted.id
+    FROM deleted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises', 'costa', CAST(deleted.costa AS VARCHAR), NULL, GETDATE(), 'D', deleted.id
+    FROM deleted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises', 'country', deleted.country, NULL, GETDATE(), 'D', deleted.id
+    FROM deleted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises', 'code', deleted.code, NULL, GETDATE(), 'D', deleted.id
+    FROM deleted;
+END;
+GO
+-- Crear un trigger para la actualización de registros en la tabla Paises
+CREATE TRIGGER trPaisesUpdate
+ON dbo.Paises
+AFTER UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Insertar información de la actualización en la tabla de auditoría solo para campos que han cambiado
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises', 'id', deleted.id, inserted.id, GETDATE(), 'U', inserted.id
+    FROM deleted
+    INNER JOIN inserted ON deleted.id = inserted.id
+    WHERE deleted.id <> inserted.id;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises', 'pais', deleted.pais, inserted.pais, GETDATE(), 'U', inserted.id
+    FROM deleted
+    INNER JOIN inserted ON deleted.id = inserted.id
+    WHERE deleted.pais <> inserted.pais;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises', 'capital', deleted.capital, inserted.capital, GETDATE(), 'U', inserted.id
+    FROM deleted
+    INNER JOIN inserted ON deleted.id = inserted.id
+    WHERE deleted.capital <> inserted.capital;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises', 'moneda', deleted.moneda, inserted.moneda, GETDATE(), 'U', inserted.id
+    FROM deleted
+    INNER JOIN inserted ON deleted.id = inserted.id
+    WHERE deleted.moneda <> inserted.moneda;
+
+	-- Agregar el bloque para el campo 'continente_id'
+	INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+	SELECT 'dbo.Paises', 'continente_id', CAST(deleted.continente_id AS VARCHAR), CAST(inserted.continente_id AS VARCHAR), GETDATE(), 'U', inserted.id
+	FROM deleted
+	INNER JOIN inserted ON deleted.id = inserted.id
+	WHERE deleted.continente_id <> inserted.continente_id;
+
+	-- Agregar el bloque para el campo 'gobierno_id'
+	INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+	SELECT 'dbo.Paises', 'gobierno_id', CAST(deleted.gobierno_id AS VARCHAR), CAST(inserted.gobierno_id AS VARCHAR), GETDATE(), 'U', inserted.id
+	FROM deleted
+	INNER JOIN inserted ON deleted.id = inserted.id
+	WHERE deleted.gobierno_id <> inserted.gobierno_id;
+
+	-- Agregar el bloque para el campo 'poblacion'
+	INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+	SELECT 'dbo.Paises', 'poblacion', CAST(deleted.poblacion AS VARCHAR), CAST(inserted.poblacion AS VARCHAR), GETDATE(), 'U', inserted.id
+	FROM deleted
+	INNER JOIN inserted ON deleted.id = inserted.id
+	WHERE deleted.poblacion <> inserted.poblacion;
+
+	-- Agregar el bloque para el campo 'extension'
+	INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+	SELECT 'dbo.Paises', 'extension', CAST(deleted.extension AS VARCHAR), CAST(inserted.extension AS VARCHAR), GETDATE(), 'U', inserted.id
+	FROM deleted
+	INNER JOIN inserted ON deleted.id = inserted.id
+	WHERE deleted.extension <> inserted.extension;
+
+	-- Agregar el bloque para el campo 'posicion'
+	INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+	SELECT 'dbo.Paises', 'posicion', deleted.posicion, inserted.posicion, GETDATE(), 'U', inserted.id
+	FROM deleted
+	INNER JOIN inserted ON deleted.id = inserted.id
+	WHERE deleted.posicion <> inserted.posicion;
+
+	-- Agregar el bloque para el campo 'existe'
+	INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+	SELECT 'dbo.Paises', 'existe', CAST(deleted.existe AS VARCHAR), CAST(inserted.existe AS VARCHAR), GETDATE(), 'U', inserted.id
+	FROM deleted
+	INNER JOIN inserted ON deleted.id = inserted.id
+	WHERE deleted.existe <> inserted.existe;
+
+	-- Agregar el bloque para el campo 'costa'
+	INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+	SELECT 'dbo.Paises', 'costa', CAST(deleted.costa AS VARCHAR), CAST(inserted.costa AS VARCHAR), GETDATE(), 'U', inserted.id
+	FROM deleted
+	INNER JOIN inserted ON deleted.id = inserted.id
+	WHERE deleted.costa <> inserted.costa;
+
+	-- Agregar el bloque para el campo 'country'
+	INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+	SELECT 'dbo.Paises', 'country', deleted.country, inserted.country, GETDATE(), 'U', inserted.id
+	FROM deleted
+	INNER JOIN inserted ON deleted.id = inserted.id
+	WHERE deleted.country <> inserted.country;
+
+	-- Agregar el bloque para el campo 'code'
+	INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+	SELECT 'dbo.Paises', 'code', deleted.code, inserted.code, GETDATE(), 'U', inserted.id
+	FROM deleted
+	INNER JOIN inserted ON deleted.id = inserted.id
+	WHERE deleted.code <> inserted.code;
+END;
+GO
+-- Crear un trigger para la inserción de registros en la tabla Paises_Idiomas
+CREATE TRIGGER trPaisesIdiomasInsert
+ON dbo.Paises_Idiomas
+AFTER INSERT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises_Idiomas', 'pais_id', NULL, inserted.pais_id, GETDATE(), 'I', CONCAT(inserted.pais_id, '-', inserted.idioma_id)
+    FROM inserted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises_Idiomas', 'idioma_id', NULL, inserted.idioma_id, GETDATE(), 'I', CONCAT(inserted.pais_id, '-', inserted.idioma_id)
+    FROM inserted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises_Idiomas', 'hablantes', NULL, inserted.hablantes, GETDATE(), 'I', CONCAT(inserted.pais_id, '-', inserted.idioma_id)
+    FROM inserted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises_Idiomas', 'porcentaje', NULL, inserted.porcentaje, GETDATE(), 'I', CONCAT(inserted.pais_id, '-', inserted.idioma_id)
+    FROM inserted;
+END;
+GO
+-- Trigger de eliminación para la tabla Paises_Idiomas
+CREATE TRIGGER trPaisesIdiomasDelete
+ON dbo.Paises_Idiomas
+AFTER DELETE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Insertar información de la eliminación en la tabla de auditoría y eliminar registros correspondientes
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises_Idiomas', 'pais_id', deleted.pais_id, NULL, GETDATE(), 'D', CONCAT(deleted.pais_id, '-', deleted.idioma_id)
+    FROM deleted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises_Idiomas', 'idioma_id', deleted.idioma_id, NULL, GETDATE(), 'D', CONCAT(deleted.pais_id, '-', deleted.idioma_id)
+    FROM deleted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises_Idiomas', 'hablantes', deleted.hablantes, NULL, GETDATE(), 'D', CONCAT(deleted.pais_id, '-', deleted.idioma_id)
+    FROM deleted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises_Idiomas', 'porcentaje', deleted.porcentaje, NULL, GETDATE(), 'D', CONCAT(deleted.pais_id, '-', deleted.idioma_id)
+    FROM deleted;
+
+    -- Eliminar los registros correspondientes en la tabla Paises_Idiomas
+    DELETE pi
+    FROM dbo.Paises_Idiomas pi
+    INNER JOIN deleted ON pi.pais_id = deleted.pais_id AND pi.idioma_id = deleted.idioma_id;
+END;
+GO
+-- Crear un trigger para la actualización de registros en la tabla Paises_Idiomas
+CREATE TRIGGER trPaisesIdiomasUpdate
+ON dbo.Paises_Idiomas
+AFTER UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Insertar información de la actualización en la tabla de auditoría
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises_Idiomas', 'pais_id', deleted.pais_id, inserted.pais_id, GETDATE(), 'U', CONCAT(inserted.pais_id, '-', inserted.idioma_id)
+    FROM deleted
+    INNER JOIN inserted ON deleted.pais_id = inserted.pais_id AND deleted.idioma_id = inserted.idioma_id
+    WHERE deleted.pais_id <> inserted.pais_id;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises_Idiomas', 'idioma_id', deleted.idioma_id, inserted.idioma_id, GETDATE(), 'U', CONCAT(inserted.pais_id, '-', inserted.idioma_id)
+    FROM deleted
+    INNER JOIN inserted ON deleted.pais_id = inserted.pais_id AND deleted.idioma_id = inserted.idioma_id
+    WHERE deleted.idioma_id <> inserted.idioma_id;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises_Idiomas', 'hablantes', deleted.hablantes, inserted.hablantes, GETDATE(), 'U', CONCAT(inserted.pais_id, '-', inserted.idioma_id)
+    FROM deleted
+    INNER JOIN inserted ON deleted.pais_id = inserted.pais_id AND deleted.idioma_id = inserted.idioma_id
+    WHERE deleted.hablantes <> inserted.hablantes;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises_Idiomas', 'porcentaje', deleted.porcentaje, inserted.porcentaje, GETDATE(), 'U', CONCAT(inserted.pais_id, '-', inserted.idioma_id)
+    FROM deleted
+    INNER JOIN inserted ON deleted.pais_id = inserted.pais_id AND deleted.idioma_id = inserted.idioma_id
+    WHERE deleted.porcentaje <> inserted.porcentaje;
+END;
+GO
+-- Crear un trigger para la inserción de registros en la tabla Paises_Vecinos
+CREATE TRIGGER trPaisesVecinosInsert
+ON dbo.Paises_Vecinos
+AFTER INSERT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Insertar información de la inserción en la tabla de auditoría
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises_Vecinos', 'pais_id', NULL, inserted.pais_id, GETDATE(), 'I', CONCAT(inserted.pais_id, '-', inserted.vecino_id)
+    FROM inserted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises_Vecinos', 'vecino_id', NULL, inserted.vecino_id, GETDATE(), 'I', CONCAT(inserted.pais_id, '-', inserted.vecino_id)
+    FROM inserted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises_Vecinos', 'kms_frontera', NULL, inserted.kms_frontera, GETDATE(), 'I', CONCAT(inserted.pais_id, '-', inserted.vecino_id)
+    FROM inserted;
+END;
+GO
+-- Crear un trigger para la eliminación de registros en la tabla Paises_Vecinos
+CREATE TRIGGER trPaisesVecinosDelete
+ON dbo.Paises_Vecinos
+AFTER DELETE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Insertar información de la eliminación en la tabla de auditoría y eliminar registros correspondientes
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises_Vecinos', 'pais_id', deleted.pais_id, NULL, GETDATE(), 'D', CONCAT(deleted.pais_id, '-', deleted.vecino_id)
+    FROM deleted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises_Vecinos', 'vecino_id', deleted.vecino_id, NULL, GETDATE(), 'D', CONCAT(deleted.pais_id, '-', deleted.vecino_id)
+    FROM deleted;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises_Vecinos', 'kms_frontera', deleted.kms_frontera, NULL, GETDATE(), 'D', CONCAT(deleted.pais_id, '-', deleted.vecino_id)
+    FROM deleted;
+
+    -- Eliminar los registros correspondientes en la tabla Paises_Vecinos
+    DELETE pv
+    FROM dbo.Paises_Vecinos pv
+    INNER JOIN deleted ON pv.pais_id = deleted.pais_id AND pv.vecino_id = deleted.vecino_id;
+END;
+GO
+-- Crear un trigger para la actualización de registros en la tabla Paises_Vecinos
+CREATE TRIGGER trPaisesVecinosUpdate
+ON dbo.Paises_Vecinos
+AFTER UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Insertar información de la actualización en la tabla de auditoría
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises_Vecinos', 'pais_id', deleted.pais_id, inserted.pais_id, GETDATE(), 'U', CONCAT(inserted.pais_id, '-', inserted.vecino_id)
+    FROM deleted
+    INNER JOIN inserted ON deleted.pais_id = inserted.pais_id AND deleted.vecino_id = inserted.vecino_id
+    WHERE deleted.pais_id <> inserted.pais_id;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises_Vecinos', 'vecino_id', deleted.vecino_id, inserted.vecino_id, GETDATE(), 'U', CONCAT(inserted.pais_id, '-', inserted.vecino_id)
+    FROM deleted
+    INNER JOIN inserted ON deleted.pais_id = inserted.pais_id AND deleted.vecino_id = inserted.vecino_id
+    WHERE deleted.vecino_id <> inserted.vecino_id;
+
+    INSERT INTO dbo.AuditoriaTablas (Tabla, Campo, ValorAntes, ValorDespues, Fecha, Tipo, Registro)
+    SELECT 'dbo.Paises_Vecinos', 'kms_frontera', deleted.kms_frontera, inserted.kms_frontera, GETDATE(), 'U', CONCAT(inserted.pais_id, '-', inserted.vecino_id)
+    FROM deleted
+    INNER JOIN inserted ON deleted.pais_id = inserted.pais_id AND deleted.vecino_id = inserted.vecino_id
+    WHERE deleted.kms_frontera <> inserted.kms_frontera;
+END;
+GO

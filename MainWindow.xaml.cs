@@ -69,8 +69,12 @@ namespace GUI_Mundo
                 }
             }
         }
+
         #endregion
 
-        
+        private void dgPaises_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

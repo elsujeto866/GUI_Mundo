@@ -5,3 +5,10 @@ C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\
 C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\ML_Mundo\obj\Debug\ML_Mundo.csproj.CoreCompileInputs.cache
 C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\ML_Mundo\obj\Debug\ML_Mundo.dll
 C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\ML_Mundo\obj\Debug\ML_Mundo.pdb
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\ML_Mundo\bin\Debug\ML_Mundo.dll.config
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\ML_Mundo\bin\Debug\ML_Mundo.dll
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\ML_Mundo\bin\Debug\ML_Mundo.pdb
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\ML_Mundo\obj\Debug\ML_Mundo.csproj.AssemblyReference.cache
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\ML_Mundo\obj\Debug\ML_Mundo.csproj.CoreCompileInputs.cache
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\ML_Mundo\obj\Debug\ML_Mundo.dll
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\ML_Mundo\obj\Debug\ML_Mundo.pdb

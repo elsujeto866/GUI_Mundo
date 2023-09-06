@@ -29,3 +29,33 @@ C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\
 C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\bin\Debug\ML_Mundo.dll
 C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\bin\Debug\ML_Mundo.pdb
 C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\bin\Debug\ML_Mundo.dll.config
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\bin\Debug\GUI_Mundo.exe.config
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\bin\Debug\GUI_Mundo.exe
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\bin\Debug\GUI_Mundo.pdb
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\bin\Debug\BLL_Mundo.dll
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\bin\Debug\MahApps.Metro.IconPacks.Core.dll
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\bin\Debug\MahApps.Metro.IconPacks.Material.dll
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\bin\Debug\ML_Mundo.dll
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\bin\Debug\DAL_Mundo.dll
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\bin\Debug\BLL_Mundo.pdb
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\bin\Debug\ML_Mundo.pdb
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\bin\Debug\ML_Mundo.dll.config
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\bin\Debug\MahApps.Metro.IconPacks.Core.pdb
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\bin\Debug\MahApps.Metro.IconPacks.Core.xml
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\bin\Debug\MahApps.Metro.IconPacks.Material.pdb
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\bin\Debug\MahApps.Metro.IconPacks.Material.xml
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\bin\Debug\DAL_Mundo.pdb
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\bin\Debug\DAL_Mundo.dll.config
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\obj\Debug\GUI_Mundo.csproj.AssemblyReference.cache
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\obj\Debug\MainWindow.baml
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\obj\Debug\App.baml
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\obj\Debug\MainWindow.g.cs
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\obj\Debug\App.g.cs
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\obj\Debug\GUI_Mundo_MarkupCompile.cache
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\obj\Debug\GUI_Mundo.g.resources
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\obj\Debug\GUI_Mundo.Properties.Resources.resources
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\obj\Debug\GUI_Mundo.csproj.GenerateResource.cache
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\obj\Debug\GUI_Mundo.csproj.CoreCompileInputs.cache
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\obj\Debug\GUI_Mundo.csproj.CopyComplete
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\obj\Debug\GUI_Mundo.exe
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\obj\Debug\GUI_Mundo.pdb

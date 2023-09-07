@@ -74,4 +74,27 @@
       <Column Name="code" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.PaisesPorIdiomaYContinente" Method="PaisesPorIdiomaYContinente">
+    <Parameter Name="continente" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="PaisesPorIdiomaYContinenteResult">
+      <Column Name="Idioma" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Paises" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.AlfabetoPaisesXContinente" Method="AlfabetoPaisesXContinente">
+    <ElementType Name="AlfabetoPaisesXContinenteResult">
+      <Column Name="Inicial" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="Africanos" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Americanos" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Asiaticos" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Europeos" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Oceanicos" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.IdiomasPaises" Method="IdiomasPaises">
+    <ElementType Name="IdiomasPaisesResult">
+      <Column Name="Pais" Type="System.String" DbType="VarChar(35) NOT NULL" CanBeNull="false" />
+      <Column Name="Idiomas" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

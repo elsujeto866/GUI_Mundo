@@ -19,5 +19,26 @@ namespace BLL_Mundo
             return paisDatos.CargarPaises();
         }
 
+        public void eliminarPaises(Paises objPais)
+        {
+            paisDatos.eliminarPais(objPais);
+        }
+
+        public void eliminarContinente(Continentes objcont)
+        {
+            paisDatos.eliminaContinente(objcont);
+        }
+
+        public void eliminaGobiernos(Gobiernos objgob)
+        {
+            paisDatos.eliminaGobiernos(objgob);
+        }
+
+        public void eliminaIdiomas( Idiomas objdiomas )
+        {
+            paisDatos.eliminaIdioma(objdiomas);
+        }
+
+
     }
 }

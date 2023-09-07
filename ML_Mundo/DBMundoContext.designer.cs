@@ -134,6 +134,27 @@ namespace ML_Mundo
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<CargarPaisesResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PaisesPorIdiomaYContinente")]
+		public ISingleResult<PaisesPorIdiomaYContinenteResult> PaisesPorIdiomaYContinente([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(20)")] string continente)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), continente);
+			return ((ISingleResult<PaisesPorIdiomaYContinenteResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.AlfabetoPaisesXContinente")]
+		public ISingleResult<AlfabetoPaisesXContinenteResult> AlfabetoPaisesXContinente()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<AlfabetoPaisesXContinenteResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.IdiomasPaises")]
+		public ISingleResult<IdiomasPaisesResult> IdiomasPaises()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<IdiomasPaisesResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Continentes")]
@@ -1549,6 +1570,210 @@ namespace ML_Mundo
 				if ((this._code != value))
 				{
 					this._code = value;
+				}
+			}
+		}
+	}
+	
+	public partial class PaisesPorIdiomaYContinenteResult
+	{
+		
+		private string _Idioma;
+		
+		private string _Paises;
+		
+		public PaisesPorIdiomaYContinenteResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Idioma", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string Idioma
+		{
+			get
+			{
+				return this._Idioma;
+			}
+			set
+			{
+				if ((this._Idioma != value))
+				{
+					this._Idioma = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Paises", DbType="VarChar(8000)")]
+		public string Paises
+		{
+			get
+			{
+				return this._Paises;
+			}
+			set
+			{
+				if ((this._Paises != value))
+				{
+					this._Paises = value;
+				}
+			}
+		}
+	}
+	
+	public partial class AlfabetoPaisesXContinenteResult
+	{
+		
+		private string _Inicial;
+		
+		private System.Nullable<int> _Africanos;
+		
+		private System.Nullable<int> _Americanos;
+		
+		private System.Nullable<int> _Asiaticos;
+		
+		private System.Nullable<int> _Europeos;
+		
+		private System.Nullable<int> _Oceanicos;
+		
+		public AlfabetoPaisesXContinenteResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Inicial", DbType="VarChar(1)")]
+		public string Inicial
+		{
+			get
+			{
+				return this._Inicial;
+			}
+			set
+			{
+				if ((this._Inicial != value))
+				{
+					this._Inicial = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Africanos", DbType="Int")]
+		public System.Nullable<int> Africanos
+		{
+			get
+			{
+				return this._Africanos;
+			}
+			set
+			{
+				if ((this._Africanos != value))
+				{
+					this._Africanos = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Americanos", DbType="Int")]
+		public System.Nullable<int> Americanos
+		{
+			get
+			{
+				return this._Americanos;
+			}
+			set
+			{
+				if ((this._Americanos != value))
+				{
+					this._Americanos = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Asiaticos", DbType="Int")]
+		public System.Nullable<int> Asiaticos
+		{
+			get
+			{
+				return this._Asiaticos;
+			}
+			set
+			{
+				if ((this._Asiaticos != value))
+				{
+					this._Asiaticos = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Europeos", DbType="Int")]
+		public System.Nullable<int> Europeos
+		{
+			get
+			{
+				return this._Europeos;
+			}
+			set
+			{
+				if ((this._Europeos != value))
+				{
+					this._Europeos = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Oceanicos", DbType="Int")]
+		public System.Nullable<int> Oceanicos
+		{
+			get
+			{
+				return this._Oceanicos;
+			}
+			set
+			{
+				if ((this._Oceanicos != value))
+				{
+					this._Oceanicos = value;
+				}
+			}
+		}
+	}
+	
+	public partial class IdiomasPaisesResult
+	{
+		
+		private string _Pais;
+		
+		private string _Idiomas;
+		
+		public IdiomasPaisesResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pais", DbType="VarChar(35) NOT NULL", CanBeNull=false)]
+		public string Pais
+		{
+			get
+			{
+				return this._Pais;
+			}
+			set
+			{
+				if ((this._Pais != value))
+				{
+					this._Pais = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Idiomas", DbType="VarChar(8000)")]
+		public string Idiomas
+		{
+			get
+			{
+				return this._Idiomas;
+			}
+			set
+			{
+				if ((this._Idiomas != value))
+				{
+					this._Idiomas = value;
 				}
 			}
 		}

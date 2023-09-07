@@ -74,7 +74,7 @@ namespace GUI_Mundo
 
         private void dgPaises_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            dgPaises.SelectedItem = null;
         }
     }
 }

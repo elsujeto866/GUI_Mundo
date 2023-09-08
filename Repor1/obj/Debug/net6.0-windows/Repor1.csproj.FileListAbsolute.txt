@@ -1,6 +1,0 @@
-C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\Repor1\obj\Debug\net6.0-windows\Repor1.Form1.resources
-C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\Repor1\obj\Debug\net6.0-windows\Repor1.csproj.GenerateResource.cache
-C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\Repor1\obj\Debug\net6.0-windows\Repor1.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\Repor1\obj\Debug\net6.0-windows\Repor1.AssemblyInfoInputs.cache
-C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\Repor1\obj\Debug\net6.0-windows\Repor1.AssemblyInfo.cs
-C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\Repor1\obj\Debug\net6.0-windows\Repor1.csproj.CoreCompileInputs.cache

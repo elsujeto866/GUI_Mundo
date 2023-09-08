@@ -14,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ML_Mundo;
+using ReporteForms;
+
 
 namespace GUI_Mundo
 {
@@ -74,7 +76,17 @@ namespace GUI_Mundo
 
         private void dgPaises_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            dgPaises.SelectedItem = null;
+            
+        }
+
+        // Intento por instanciar el repote desde otra capa pero me sale un error
+        // Dice que el form esta en un ensamblado al que no se hace referencia 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            FormReporte1 reporte1 = new FormReporte1();
+            //reporte1.ShowDialog();
+            
+            
         }
     }
 }

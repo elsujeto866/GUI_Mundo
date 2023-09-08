@@ -23,22 +23,54 @@ namespace BLL_Mundo
         {
             paisDatos.eliminarPais(objPais);
         }
+        public void editaPaises(Paises objPais) {
+            paisDatos.modificarPais(objPais);
+        }
+
+        public void agregaPais(Paises objPais)
+        {
+            paisDatos.creaPais(objPais);
+        }
 
         public void eliminarContinente(Continentes objcont)
         {
             paisDatos.eliminaContinente(objcont);
         }
 
+        public void editaContinente(Continentes objcont)
+        {
+            paisDatos.editaContinente(objcont);
+        }
+        public void agregaContinente(Continentes objcont)
+        {
+            paisDatos.creaContinente(objcont);
+        }
+
         public void eliminaGobiernos(Gobiernos objgob)
         {
             paisDatos.eliminaGobiernos(objgob);
+        }
+        public void modificaGobiernos(Gobiernos objGobiernos)
+        {
+            paisDatos.editaGobiernos(objGobiernos);
+        }
+        public void agregaGobiernos(Gobiernos objgob)
+        {
+            paisDatos.creaGobiernos(objgob);
         }
 
         public void eliminaIdiomas( Idiomas objdiomas )
         {
             paisDatos.eliminaIdioma(objdiomas);
         }
-
+        public void modificaIdiomas(Idiomas objdiomas)
+        {
+            paisDatos.editaIdioma(objdiomas);
+        }
+        public void agregaIdioma(Idiomas objdiomas)
+        {
+            paisDatos.crearIdioma(objdiomas);
+        }
 
     }
 }

@@ -62,6 +62,9 @@ namespace GUI_Mundo
                     dgPaises.Items.Add(p);
                 }
                 clmPrimera.Binding = new Binding("id");
+                clmPrimera.Width = DataGridLength.SizeToCells;
+                clmPrimera.Visibility = Visibility.Visible;
+                clmPrimera.Header = "#";
                 clmSegunda.Visibility = Visibility.Visible;
                 clmTercera.Binding = new Binding("capital");
                 clmTercera.Width = DataGridLength.SizeToCells;
@@ -72,7 +75,7 @@ namespace GUI_Mundo
                 clmCuarta.Visibility = Visibility.Visible;
                 clmCuarta.Header = "Moneda";
                 clmQuinta.Binding = new Binding("continente");
-                clmQuinta.Width = DataGridLength.SizeToCells;
+                clmQuinta.Width = 100;
                 clmQuinta.Visibility = Visibility.Visible;
                 clmQuinta.Header = "Continente";
                 clmSexta.Binding = new Binding("gobierno");
@@ -101,6 +104,9 @@ namespace GUI_Mundo
                     dgPaises.Items.Add(c);
                 }
                 clmPrimera.Binding = new Binding("id");
+                clmPrimera.Width = DataGridLength.SizeToCells;
+                clmPrimera.Visibility = Visibility.Visible;
+                clmPrimera.Header = "#";
                 clmSegunda.Visibility = Visibility.Collapsed;
                 clmTercera.Binding = new Binding("continente");
                 clmTercera.Width = 100;
@@ -120,6 +126,9 @@ namespace GUI_Mundo
                     dgPaises.Items.Add(i);
                 }
                 clmPrimera.Binding = new Binding("id");
+                clmPrimera.Width = DataGridLength.SizeToCells;
+                clmPrimera.Visibility = Visibility.Visible;
+                clmPrimera.Header = "#";
                 clmSegunda.Visibility = Visibility.Collapsed;
                 clmTercera.Binding = new Binding("idioma");
                 clmTercera.Width = DataGridLength.SizeToCells;
@@ -139,6 +148,9 @@ namespace GUI_Mundo
                     dgPaises.Items.Add(i);
                 }
                 clmPrimera.Binding = new Binding("id");
+                clmPrimera.Width = DataGridLength.SizeToCells;
+                clmPrimera.Visibility = Visibility.Visible;
+                clmPrimera.Header = "#";
                 clmSegunda.Visibility = Visibility.Collapsed;
                 clmTercera.Binding = new Binding("gobierno");
                 clmTercera.Width = DataGridLength.SizeToCells;
@@ -156,14 +168,23 @@ namespace GUI_Mundo
                 {
                     dgPaises.Items.Add(ip);
                 }
-                clmPrimera.Binding = new Binding("id");
-                clmSegunda.Visibility = Visibility.Visible;
-                clmTercera.Binding = new Binding("idiomas");
+                clmPrimera.Binding = new Binding("pais");
+                clmPrimera.Width = DataGridLength.SizeToCells;
+                clmPrimera.Visibility = Visibility.Visible;
+                clmPrimera.Header = "País";
+                clmSegunda.Visibility = Visibility.Collapsed;
+                clmTercera.Binding = new Binding("idioma");
                 clmTercera.Width = DataGridLength.SizeToCells;
                 clmTercera.Visibility = Visibility.Visible;
-                clmTercera.Header = "Idiomas";
-                clmCuarta.Visibility = Visibility.Collapsed;
-                clmQuinta.Visibility = Visibility.Collapsed;
+                clmTercera.Header = "Idioma";
+                clmCuarta.Binding = new Binding("hablantes");
+                clmCuarta.Width = DataGridLength.SizeToCells;
+                clmCuarta.Visibility = Visibility.Visible;
+                clmCuarta.Header = "Hablantes";
+                clmQuinta.Binding = new Binding("porcentaje");
+                clmQuinta.Width =100;
+                clmQuinta.Visibility = Visibility.Visible;
+                clmQuinta.Header = "Porcentaje";
                 clmSexta.Visibility = Visibility.Collapsed;
                 clmSeptima.Visibility = Visibility.Collapsed;
                 clmOctava.Visibility = Visibility.Collapsed;
@@ -176,13 +197,19 @@ namespace GUI_Mundo
                 {
                     dgPaises.Items.Add(pv);
                 }
-                clmPrimera.Binding = new Binding("id");
-                clmSegunda.Visibility = Visibility.Visible;
-                clmTercera.Binding = new Binding("Vecinos");
+                clmPrimera.Binding = new Binding("pais");
+                clmPrimera.Width = DataGridLength.SizeToCells;
+                clmPrimera.Visibility = Visibility.Visible;
+                clmPrimera.Header = "País";
+                clmSegunda.Visibility = Visibility.Collapsed;
+                clmTercera.Binding = new Binding("vecino");
                 clmTercera.Width = DataGridLength.SizeToCells;
                 clmTercera.Visibility = Visibility.Visible;
-                clmTercera.Header = "Vecinos";
-                clmCuarta.Visibility = Visibility.Collapsed;
+                clmTercera.Header = "Vecino";
+                clmCuarta.Binding = new Binding("kms_frontera");
+                clmCuarta.Width = 100;
+                clmCuarta.Visibility = Visibility.Visible;
+                clmCuarta.Header = "Frontera Km";
                 clmQuinta.Visibility = Visibility.Collapsed;
                 clmSexta.Visibility = Visibility.Collapsed;
                 clmSeptima.Visibility = Visibility.Collapsed;
@@ -240,13 +267,16 @@ namespace GUI_Mundo
 
         #region Botones Panel Central
         private void btnPais_Click(object sender, RoutedEventArgs e)
-        {           
+        {
+            currentButtonIndex = 1;
             CambioVisualBotones(1);
             CargarDatos(1);
         }
 
         private void btnContinente_Click(object sender, RoutedEventArgs e)
         {
+
+            currentButtonIndex = 2;
             CambioVisualBotones(2);
             CargarDatos(2);
 
@@ -256,12 +286,14 @@ namespace GUI_Mundo
 
         private void btnIdioma_Click(object sender, RoutedEventArgs e)
         {
+            currentButtonIndex = 3;
             CambioVisualBotones(3);
             CargarDatos(3);
         }
 
         private void btnGobierno_Click(object sender, RoutedEventArgs e)
         {
+            currentButtonIndex = 4;
             CambioVisualBotones(4);
             CargarDatos(4);
 
@@ -269,6 +301,7 @@ namespace GUI_Mundo
 
         private void btnIdiomasPais_Click(object sender, RoutedEventArgs e)
         {
+            currentButtonIndex = 5;
             CambioVisualBotones(5);
             CargarDatos(5);
 
@@ -276,6 +309,7 @@ namespace GUI_Mundo
 
         private void btnVecinosPais_Click(object sender, RoutedEventArgs e)
         {
+            currentButtonIndex = 6;
             CambioVisualBotones(6);
             CargarDatos(6);
         }
@@ -345,7 +379,7 @@ namespace GUI_Mundo
                 botones[currentButtonIndex].RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
 
                 // Incrementa el índice para pasar al siguiente botón
-                currentButtonIndex++;
+                //currentButtonIndex++;
 
                 // Si llegamos al último botón, volvemos al primero
                 if (currentButtonIndex >= botones.Length)
@@ -373,6 +407,121 @@ namespace GUI_Mundo
 
         }
 
-        
+        #region Botones del CRUD
+        private void btnEliminar_Click(object sender, RoutedEventArgs e)
+        {
+            //Seleciono la casilla
+            var filaSelecionada = dgPaises.SelectedItem;
+            var casillaVerificacion = dgPaises.Columns[0].GetCellContent(filaSelecionada) as CheckBox;
+            casillaVerificacion.IsChecked = true;
+
+            //Muestro el mensaje
+            dialogHostEliminar.IsOpen = true;
+
+            //Obtengo el id
+            //int idVerificacion = Convert.ToInt32(dgPaises.Columns[1].GetCellContent(filaSelecionada));
+        }
+        private void btnAceptarEliminar_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentButtonIndex == 1)
+            {
+                try
+                {
+                    var filaSelecionada = (CargarPaisesResult)dgPaises.SelectedItem;
+                    int idSelecionado = Convert.ToInt32(filaSelecionada.id);
+
+                    paisNegocio.eliminarPais(idSelecionado);
+                    CargarDatos(1);
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }else if (currentButtonIndex == 2)
+            {
+                try
+                {
+                    var filaSelecionada = (CargarContinentesResult)dgPaises.SelectedItem;
+                    int idSelecionado = Convert.ToInt32(filaSelecionada.id);
+                    continenteNegocio.eliminarContinente(idSelecionado);
+                    CargarDatos(2);
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+            else if (currentButtonIndex == 3)
+            {
+                try
+                {
+                    var filaSelecionada = (CargarIdiomasResult)dgPaises.SelectedItem;
+                    int idSelecionado = Convert.ToInt32(filaSelecionada.id);
+                    idiomaNegocio.eliminarIdioma(idSelecionado);
+                    CargarDatos(3);
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+
+            else if (currentButtonIndex == 4)
+            {
+                try
+                {
+                    var filaSelecionada = (CargarGobiernosResult)dgPaises.SelectedItem;
+                    int idSelecionado = Convert.ToInt32(filaSelecionada.id);
+                    gobiernoNegocio.eliminarGobierno(idSelecionado);
+                    CargarDatos(4);
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+            else if (currentButtonIndex == 5)
+            {
+                try
+                {
+                    var filaSelecionada = (CargarPaisesIdiomasResult)dgPaises.SelectedItem;
+                    string pais = filaSelecionada.pais;
+                    string idioma = filaSelecionada.idioma;
+                    int idPais = paisNegocio.ObtenerIdPais(pais).FirstOrDefault().id;
+                    int idIdioma = idiomaNegocio.ObtenerIdIdioma(idioma).FirstOrDefault().id;
+
+                    paisNegocio.eliminarPaisIdioma(idPais,idIdioma);
+                    CargarDatos(5);
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+            else if (currentButtonIndex == 6)
+            {
+                try
+                {
+                    var filaSelecionada = (CargarPaisesVecinosResult)dgPaises.SelectedItem;
+                    string pais = filaSelecionada.pais;
+                    string vecino = filaSelecionada.vecino;
+                    int idPais = paisNegocio.ObtenerIdPais(pais).FirstOrDefault().id;
+                    int idVecino = paisNegocio.ObtenerIdPais(vecino).FirstOrDefault().id;
+
+                    paisNegocio.eliminarPaisVecino(idPais, idVecino);
+                    CargarDatos(6);
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+
+
+        }
+
+        #endregion
+
+
     }
 }

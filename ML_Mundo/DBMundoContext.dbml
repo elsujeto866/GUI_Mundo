@@ -52,6 +52,7 @@
       <Column Name="idioma_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="hablantes" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="porcentaje" Type="System.Decimal" DbType="Decimal(15,5)" CanBeNull="true" />
+      <Column Name="existe" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="Idiomas_Paises_Idiomas" Member="Idiomas" ThisKey="idioma_id" OtherKey="id" Type="Idiomas" IsForeignKey="true" />
       <Association Name="Paises_Paises_Idiomas" Member="Paises" ThisKey="pais_id" OtherKey="id" Type="Paises" IsForeignKey="true" />
     </Type>
@@ -61,6 +62,7 @@
       <Column Name="pais_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="vecino_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="kms_frontera" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="existe" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="Paises_Paises_Vecinos" Member="Paises" ThisKey="pais_id" OtherKey="id" Type="Paises" IsForeignKey="true" />
       <Association Name="Paises_Paises_Vecinos1" Member="Paises1" ThisKey="vecino_id" OtherKey="id" Type="Paises" IsForeignKey="true" />
     </Type>
@@ -114,6 +116,59 @@
       <Column Name="pais" Type="System.String" DbType="VarChar(35) NOT NULL" CanBeNull="false" />
       <Column Name="Vecinos" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
       <Column Name="code" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.EliminarPais" Method="EliminarPais">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.EliminarContinente" Method="EliminarContinente">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.EliminarIdioma" Method="EliminarIdioma">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.EliminarGobierno" Method="EliminarGobierno">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.CargarPaisesIdiomas" Method="CargarPaisesIdiomas">
+    <ElementType Name="CargarPaisesIdiomasResult">
+      <Column Name="pais" Type="System.String" DbType="VarChar(35) NOT NULL" CanBeNull="false" />
+      <Column Name="idioma" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="hablantes" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="porcentaje" Type="System.Decimal" DbType="Decimal(15,5)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.CargarPaisesVecinos" Method="CargarPaisesVecinos">
+    <ElementType Name="CargarPaisesVecinosResult">
+      <Column Name="pais" Type="System.String" DbType="VarChar(35) NOT NULL" CanBeNull="false" />
+      <Column Name="vecino" Type="System.String" DbType="VarChar(35) NOT NULL" CanBeNull="false" />
+      <Column Name="kms_frontera" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.EliminarPaisesIdiomas" Method="EliminarPaisesIdiomas">
+    <Parameter Name="idPais" Type="System.Int32" DbType="Int" />
+    <Parameter Name="idIdioma" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.EliminarPaisesVecinos" Method="EliminarPaisesVecinos">
+    <Parameter Name="idPais" Type="System.Int32" DbType="Int" />
+    <Parameter Name="idVecino" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ObtenerIdIdioma" Method="ObtenerIdIdioma">
+    <Parameter Name="Idioma" Parameter="idioma" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="ObtenerIdIdiomaResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ObtenerIdPais" Method="ObtenerIdPais">
+    <Parameter Name="Pais" Parameter="pais" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="ObtenerIdPaisResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
 </Database>

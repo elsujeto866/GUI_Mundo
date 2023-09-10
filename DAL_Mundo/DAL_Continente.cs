@@ -10,6 +10,7 @@ namespace DAL_Mundo
 {
     public class DAL_Continente
     {
+        DBMundoContextDataContext db = new DBMundoContextDataContext();
         public ObservableCollection<CargarContinentesResult> CargarContinentes()
         {    
             var continentes = new ObservableCollection<CargarContinentesResult>();
@@ -21,6 +22,12 @@ namespace DAL_Mundo
                 }
             }
             return continentes;
+        }
+
+        public void eliminarPais(int vId)
+        {
+            db.EliminarContinente(vId); 
+            
         }
     }
 }

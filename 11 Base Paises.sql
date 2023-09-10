@@ -64,6 +64,7 @@ CREATE TABLE Paises_Idiomas (
   idioma_id INT NOT NULL,
   hablantes INT,
   porcentaje DECIMAL(15,5),
+   existe bit NOT NULL DEFAULT 1,
   --
   PRIMARY KEY (pais_id, idioma_id),
   FOREIGN KEY (pais_id) REFERENCES Paises(id),
@@ -76,6 +77,7 @@ CREATE TABLE Paises_Vecinos (
   pais_id INT NOT NULL,
   vecino_id INT NOT NULL,
   kms_frontera INT DEFAULT 0,
+   existe bit NOT NULL DEFAULT 1,
   --
   PRIMARY KEY (pais_id, vecino_id),
   FOREIGN KEY (pais_id) REFERENCES paises(id),
@@ -290,6 +292,16 @@ FROM Paises p
 END
 GO
 
+CREATE PROC EliminarPais
+@id int
+AS
+BEGIN
+	UPDATE Paises
+	SET existe = 0
+  WHERE id = @id
+END
+GO
+
 --Cargar Continentes
 CREATE PROC CargarContinentes
 AS
@@ -299,7 +311,16 @@ FROM Continentes c
 WHERE c.existe = 1
 END
 GO
-
+--SELECT * FROM Continentes
+CREATE PROC EliminarContinente
+@id int
+AS
+BEGIN
+	UPDATE Continentes
+	SET existe = 0
+  WHERE id = @id
+END
+GO
 --Cargar Idiomas
 CREATE PROC CargarIdiomas
 AS
@@ -310,6 +331,19 @@ WHERE i.existe = 1
 END
 GO
 
+--SELECT * FROM Idiomas
+
+CREATE PROC EliminarIdioma
+@id int
+AS
+BEGIN
+	UPDATE Idiomas
+	SET existe = 0
+  WHERE id = @id
+END
+GO
+
+--SELECT * FROM AuditoriaTablas
 --Cargar Gobiernos
 CREATE PROC CargarGobiernos
 AS
@@ -319,7 +353,82 @@ FROM Gobiernos g
 WHERE g.existe = 1
 END
 GO
+--SELECT * FROM Gobiernos
+CREATE PROC EliminarGobierno
+@id int
+AS
+BEGIN
+	UPDATE Gobiernos
+	SET existe = 0
+  WHERE id = @id
+END
+GO
 
+--Cargar Paises Idiomas
+CREATE PROC CargarPaisesIdiomas
+AS
+BEGIN
+SELECT p.pais, i.idioma, pai.hablantes, pai.porcentaje
+FROM Paises_Idiomas pai
+INNER JOIN Paises p on pai.pais_id = p.id
+INNER JOIN Idiomas i on pai.idioma_id = i.id
+WHERE pai.existe = 1
+END
+GO
+--SELECT * FROM Paises_Idiomas
+CREATE PROC EliminarPaisesIdiomas
+@idPais int,
+@idIdioma int
+AS
+BEGIN
+	UPDATE Paises_Idiomas
+	SET existe = 0
+  WHERE pais_id = @idPais AND idioma_id =  @idIdioma
+END
+GO
+
+CREATE PROC ObtenerIdPais
+@Pais varchar(100)
+AS
+BEGIN
+	SELECT id
+	FROM Paises
+  WHERE pais = @Pais
+END
+GO
+
+CREATE PROC ObtenerIdIdioma
+@Idioma varchar(100)
+AS
+BEGIN
+	SELECT id
+	FROM Idiomas
+  WHERE idioma = @Idioma
+END
+GO
+
+--Cargar Paises Vecinos
+CREATE PROC CargarPaisesVecinos
+AS
+BEGIN
+SELECT p1.pais,p2.pais as vecino,pv.kms_frontera
+FROM Paises_Vecinos pv
+INNER JOIN Paises p1 on pv.pais_id = p1.id
+INNER JOIN Paises p2 on pv.vecino_id = p2.id
+WHERE pv.existe = 1
+END
+GO
+--SELECT * FROM Paises_Vecinos
+CREATE PROC EliminarPaisesVecinos
+@idPais int,
+@idVecino int
+AS
+BEGIN
+	UPDATE Paises_Vecinos
+	SET existe = 0
+  WHERE pais_id = @idPais AND vecino_id = @idVecino
+END
+GO
 
 --SELECT * FROM Paises
 --Continente de cada país

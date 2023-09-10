@@ -17,5 +17,10 @@ namespace BLL_Mundo
         {
             return gobiernoDatos.CargarGobiernos();
         }
+
+        public void eliminarGobierno(int vId)
+        {
+            gobiernoDatos.eliminarGobierno(vId);
+        }
     }
 }

@@ -14,6 +14,11 @@ namespace DAL_Mundo
     public class DAL_Pais
     {
         DBMundoContextDataContext db = new DBMundoContextDataContext();
+
+        public List<ObtenerIdPaisResult> ObtenerIdPais(string vPais)
+        {
+            return db.ObtenerIdPais(vPais).ToList(); 
+        }
         // Metodo para agregar los paises al datagrid view
         public ObservableCollection<CargarPaisesResult> CargarPaises()
         {
@@ -33,12 +38,12 @@ namespace DAL_Mundo
             return paises;
         }
 
-        public ObservableCollection<IdiomasPaisesResult> CargarIdiomasPais()
+        public ObservableCollection<CargarPaisesIdiomasResult> CargarIdiomasPais()
         {
-            var idiomasPaises = new ObservableCollection<IdiomasPaisesResult>();
+            var idiomasPaises = new ObservableCollection<CargarPaisesIdiomasResult>();
             using (var dbMundo = new DBMundoContextDataContext())
             {
-                foreach (IdiomasPaisesResult ip in dbMundo.IdiomasPaises())
+                foreach (CargarPaisesIdiomasResult ip in dbMundo.CargarPaisesIdiomas())
                 {
                     idiomasPaises.Add(ip);
                 }
@@ -46,12 +51,12 @@ namespace DAL_Mundo
             return idiomasPaises;
         }
 
-        public ObservableCollection<FronterasTodosPaisesResult> CargarPaisesVecinos()
+        public ObservableCollection<CargarPaisesVecinosResult> CargarPaisesVecinos()
         {
-            var paisesVecinos = new ObservableCollection<FronterasTodosPaisesResult>();
+            var paisesVecinos = new ObservableCollection<CargarPaisesVecinosResult>();
             using (var dbMundo = new DBMundoContextDataContext())
             {
-                foreach (FronterasTodosPaisesResult pv in dbMundo.FronterasTodosPaises())
+                foreach (CargarPaisesVecinosResult pv in dbMundo.CargarPaisesVecinos())
                 {
                     paisesVecinos.Add(pv);
                 }
@@ -60,11 +65,23 @@ namespace DAL_Mundo
         }
 
 
-        public void eliminarPais(Paises paisObjeto)
+        public void eliminarPais(int vId)
         {
-            Paises eliminaPais = db.Paises.Single(p => p.id == paisObjeto.id); //Se obtiene el ID del pais
-            db.Paises.DeleteOnSubmit(eliminaPais); //Se elimina el pais seleccionado
-            db.SubmitChanges(); //Se guarda las modificaciones
+            //Paises eliminaPais = db.Paises.Single(p => p.id == vId); //Se obtiene el ID del pais
+            db.EliminarPais(vId); //Se elimina el pais seleccionado
+            //db.SubmitChanges(); //Se guarda las modificaciones
+        }
+
+        public void eliminarPaisIdioma(int vIdPais, int vIdVecino)
+        {
+            db.EliminarPaisesIdiomas(vIdPais,vIdVecino); 
+            
+        }
+
+        public void eliminarPaisVecino(int vIdPais, int vIdVecino)
+        {
+            db.EliminarPaisesVecinos(vIdPais, vIdVecino);
+
         }
 
         public void modificarPais(Paises paisObjeto)
@@ -93,12 +110,7 @@ namespace DAL_Mundo
         }
 
 
-        public void eliminaContinente(Continentes objcontinente)
-        {
-            Continentes continentedeleted = db.Continentes.Single(c => c.id == objcontinente.id);
-            db.Continentes.DeleteOnSubmit(continentedeleted);
-            db.SubmitChanges();    
-        }
+        
 
         public void editaContinente(Continentes objContinente)
         {
@@ -115,12 +127,7 @@ namespace DAL_Mundo
 
 
 
-        public void eliminaIdioma(Idiomas idiomaobject)
-        {
-            Idiomas idiomadeleted = db.Idiomas.Single(i => i.id == idiomaobject.id);
-            db.Idiomas.DeleteOnSubmit(idiomadeleted);
-            db.SubmitChanges();
-        }
+       
         public void editaIdioma(Idiomas objIdioma)
         {
             Idiomas idiomamodif = db.Idiomas.Single(i => i.id == objIdioma.id);
@@ -135,12 +142,7 @@ namespace DAL_Mundo
         }
 
 
-        public void eliminaGobiernos(Gobiernos objgobiernos)
-        {
-            Gobiernos gobiernodeleted = db.Gobiernos.Single(g => g.id == objgobiernos.id);
-            db.Gobiernos.DeleteOnSubmit(gobiernodeleted); 
-            db.SubmitChanges();
-        }
+      
 
         public void editaGobiernos(Gobiernos gobiernosobj)
         {

@@ -171,7 +171,7 @@
                 <!--Paises Datagrid-->
                 <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Grid.Row="5" x:Name="dgPaises" SelectionChanged="dgPaises_SelectionChanged">
                     <DataGrid.Columns>
-                        <DataGridCheckBoxColumn CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}" >
+                        <DataGridCheckBoxColumn CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}" x:Name="chbFila">
                             <DataGridCheckBoxColumn.HeaderTemplate>
                                 <DataTemplate>
                                     <CheckBox Style="{StaticResource CheckBoxStyle1}"/>
@@ -209,7 +209,7 @@
                                         <Button Style="{StaticResource gridEditButton}">
                                             <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
                                         </Button>
-                                        <Button Style="{StaticResource gridRemoveButton}" Margin="5 0 0 0">
+                                        <Button Style="{StaticResource gridRemoveButton}" Margin="5 0 0 0" x:Name="btnEliminar" Click="btnEliminar_Click">
                                             <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
                                         </Button>
                                     </StackPanel>
@@ -257,7 +257,7 @@
                         <StackPanel Orientation="Horizontal" Margin="15">
                             <materialDesing:PackIcon Kind="CloseOctagonOutline"  Foreground="{StaticResource PrimaryHueMidBrush}" Width="50" Height="50"/>
                             <TextBlock Foreground="Gray" Width="200" Margin="15 5" TextWrapping="Wrap">
-                                ¿Estás seguro que desea salir?
+                                ¿Estás seguro que deseas salir?
                             </TextBlock>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="15">
@@ -272,20 +272,20 @@
                 </materialDesing:DialogHost.DialogContent>
             </materialDesing:DialogHost>
 
-            <materialDesing:DialogHost x:Name="dialogHostOtro" BorderBrush="{DynamicResource MaterialDesignDivider}">
+            <materialDesing:DialogHost x:Name="dialogHostEliminar" BorderBrush="{DynamicResource MaterialDesignDivider}">
                 <materialDesing:DialogHost.DialogContent>
                     <Grid Width="300" Height="150" HorizontalAlignment="Center">
                         <StackPanel Orientation="Horizontal" Margin="15">
-                            <materialDesing:PackIcon Kind="Folder" Foreground="{StaticResource PrimaryHueMidBrush}" Width="50" Height="50"/>
+                            <materialDesing:PackIcon Kind="DeleteAlertOutline" Foreground="#d32f2f" Width="50" Height="50"/>
                             <TextBlock Foreground="Gray" Width="200" Margin="15 5" TextWrapping="Wrap">
-                                ¿Está seguro que desea salir?
+                                ¿Está seguro que desea eliminar la información?
                             </TextBlock>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="15">
-                            <Button Command="{x:Static materialDesing:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Margin="4" VerticalAlignment="Center">
+                            <Button Command="{x:Static materialDesing:DialogHost.CloseDialogCommand}" x:Name="btnAceptarEliminar" Click="btnAceptarEliminar_Click" Style="{DynamicResource MaterialDesignFlatButton}" Foreground="#d32f2f"  Margin="4" VerticalAlignment="Center">
                                 Aceptar
                             </Button>
-                            <Button Command="{x:Static materialDesing:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Margin="4" VerticalAlignment="Center">
+                            <Button Command="{x:Static materialDesing:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Foreground="#d32f2f" Margin="4" VerticalAlignment="Center">
                                 Cancelar
                             </Button>
                         </StackPanel>

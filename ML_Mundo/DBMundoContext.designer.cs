@@ -169,6 +169,76 @@ namespace ML_Mundo
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<FronterasTodosPaisesResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminarPais")]
+		public int EliminarPais([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminarContinente")]
+		public int EliminarContinente([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminarIdioma")]
+		public int EliminarIdioma([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminarGobierno")]
+		public int EliminarGobierno([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.CargarPaisesIdiomas")]
+		public ISingleResult<CargarPaisesIdiomasResult> CargarPaisesIdiomas()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<CargarPaisesIdiomasResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.CargarPaisesVecinos")]
+		public ISingleResult<CargarPaisesVecinosResult> CargarPaisesVecinos()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<CargarPaisesVecinosResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminarPaisesIdiomas")]
+		public int EliminarPaisesIdiomas([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> idPais, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> idIdioma)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idPais, idIdioma);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminarPaisesVecinos")]
+		public int EliminarPaisesVecinos([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> idPais, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> idVecino)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idPais, idVecino);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ObtenerIdIdioma")]
+		public ISingleResult<ObtenerIdIdiomaResult> ObtenerIdIdioma([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Idioma", DbType="VarChar(100)")] string idioma)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idioma);
+			return ((ISingleResult<ObtenerIdIdiomaResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ObtenerIdPais")]
+		public ISingleResult<ObtenerIdPaisResult> ObtenerIdPais([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Pais", DbType="VarChar(100)")] string pais)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pais);
+			return ((ISingleResult<ObtenerIdPaisResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Continentes")]
@@ -1115,6 +1185,8 @@ namespace ML_Mundo
 		
 		private System.Nullable<decimal> _porcentaje;
 		
+		private bool _existe;
+		
 		private EntityRef<Idiomas> _Idiomas;
 		
 		private EntityRef<Paises> _Paises;
@@ -1131,6 +1203,8 @@ namespace ML_Mundo
     partial void OnhablantesChanged();
     partial void OnporcentajeChanging(System.Nullable<decimal> value);
     partial void OnporcentajeChanged();
+    partial void OnexisteChanging(bool value);
+    partial void OnexisteChanged();
     #endregion
 		
 		public Paises_Idiomas()
@@ -1224,6 +1298,26 @@ namespace ML_Mundo
 					this._porcentaje = value;
 					this.SendPropertyChanged("porcentaje");
 					this.OnporcentajeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_existe", DbType="Bit NOT NULL")]
+		public bool existe
+		{
+			get
+			{
+				return this._existe;
+			}
+			set
+			{
+				if ((this._existe != value))
+				{
+					this.OnexisteChanging(value);
+					this.SendPropertyChanging();
+					this._existe = value;
+					this.SendPropertyChanged("existe");
+					this.OnexisteChanged();
 				}
 			}
 		}
@@ -1329,6 +1423,8 @@ namespace ML_Mundo
 		
 		private System.Nullable<int> _kms_frontera;
 		
+		private bool _existe;
+		
 		private EntityRef<Paises> _Paises;
 		
 		private EntityRef<Paises> _Paises1;
@@ -1343,6 +1439,8 @@ namespace ML_Mundo
     partial void Onvecino_idChanged();
     partial void Onkms_fronteraChanging(System.Nullable<int> value);
     partial void Onkms_fronteraChanged();
+    partial void OnexisteChanging(bool value);
+    partial void OnexisteChanged();
     #endregion
 		
 		public Paises_Vecinos()
@@ -1416,6 +1514,26 @@ namespace ML_Mundo
 					this._kms_frontera = value;
 					this.SendPropertyChanged("kms_frontera");
 					this.Onkms_fronteraChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_existe", DbType="Bit NOT NULL")]
+		public bool existe
+		{
+			get
+			{
+				return this._existe;
+			}
+			set
+			{
+				if ((this._existe != value))
+				{
+					this.OnexisteChanging(value);
+					this.SendPropertyChanging();
+					this._existe = value;
+					this.SendPropertyChanged("existe");
+					this.OnexisteChanged();
 				}
 			}
 		}
@@ -2038,6 +2156,200 @@ namespace ML_Mundo
 				if ((this._code != value))
 				{
 					this._code = value;
+				}
+			}
+		}
+	}
+	
+	public partial class CargarPaisesIdiomasResult
+	{
+		
+		private string _pais;
+		
+		private string _idioma;
+		
+		private System.Nullable<int> _hablantes;
+		
+		private System.Nullable<decimal> _porcentaje;
+		
+		public CargarPaisesIdiomasResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pais", DbType="VarChar(35) NOT NULL", CanBeNull=false)]
+		public string pais
+		{
+			get
+			{
+				return this._pais;
+			}
+			set
+			{
+				if ((this._pais != value))
+				{
+					this._pais = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idioma", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string idioma
+		{
+			get
+			{
+				return this._idioma;
+			}
+			set
+			{
+				if ((this._idioma != value))
+				{
+					this._idioma = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_hablantes", DbType="Int")]
+		public System.Nullable<int> hablantes
+		{
+			get
+			{
+				return this._hablantes;
+			}
+			set
+			{
+				if ((this._hablantes != value))
+				{
+					this._hablantes = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_porcentaje", DbType="Decimal(15,5)")]
+		public System.Nullable<decimal> porcentaje
+		{
+			get
+			{
+				return this._porcentaje;
+			}
+			set
+			{
+				if ((this._porcentaje != value))
+				{
+					this._porcentaje = value;
+				}
+			}
+		}
+	}
+	
+	public partial class CargarPaisesVecinosResult
+	{
+		
+		private string _pais;
+		
+		private string _vecino;
+		
+		private System.Nullable<int> _kms_frontera;
+		
+		public CargarPaisesVecinosResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pais", DbType="VarChar(35) NOT NULL", CanBeNull=false)]
+		public string pais
+		{
+			get
+			{
+				return this._pais;
+			}
+			set
+			{
+				if ((this._pais != value))
+				{
+					this._pais = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_vecino", DbType="VarChar(35) NOT NULL", CanBeNull=false)]
+		public string vecino
+		{
+			get
+			{
+				return this._vecino;
+			}
+			set
+			{
+				if ((this._vecino != value))
+				{
+					this._vecino = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_kms_frontera", DbType="Int")]
+		public System.Nullable<int> kms_frontera
+		{
+			get
+			{
+				return this._kms_frontera;
+			}
+			set
+			{
+				if ((this._kms_frontera != value))
+				{
+					this._kms_frontera = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ObtenerIdIdiomaResult
+	{
+		
+		private int _id;
+		
+		public ObtenerIdIdiomaResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ObtenerIdPaisResult
+	{
+		
+		private int _id;
+		
+		public ObtenerIdPaisResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
 				}
 			}
 		}

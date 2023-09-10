@@ -10,6 +10,7 @@ namespace DAL_Mundo
 {
     public class DAL_Gobierno
     {
+        DBMundoContextDataContext db = new DBMundoContextDataContext();
         public ObservableCollection<CargarGobiernosResult> CargarGobiernos()
         {
             var gobiernos = new ObservableCollection<CargarGobiernosResult>();
@@ -21,6 +22,12 @@ namespace DAL_Mundo
                 }
             }
             return gobiernos;
+        }
+
+        public void eliminarGobierno(int vId)
+        {
+            db.EliminarGobierno(vId);
+
         }
     }
 }

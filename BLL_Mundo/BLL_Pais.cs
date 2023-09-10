@@ -14,24 +14,39 @@ namespace BLL_Mundo
     {
         private DAL_Pais paisDatos = new DAL_Pais();
 
+        public List<ObtenerIdPaisResult> ObtenerIdPais(string vPais)
+        {
+            return paisDatos.ObtenerIdPais(vPais);
+        }
+
         public ObservableCollection<CargarPaisesResult> CargarPaises()
         {            
             return paisDatos.CargarPaises();
         }
 
-        public ObservableCollection<IdiomasPaisesResult> CargarIdiomasPais()
+        public ObservableCollection<CargarPaisesIdiomasResult> CargarIdiomasPais()
         {
             return paisDatos.CargarIdiomasPais();
         }
 
-        public ObservableCollection<FronterasTodosPaisesResult> CargarPaisesVecinos()
+        public ObservableCollection<CargarPaisesVecinosResult> CargarPaisesVecinos()
         {
             return paisDatos.CargarPaisesVecinos();
         }
 
-        public void eliminarPaises(Paises objPais)
+        public void eliminarPais(int vId)
         {
-            paisDatos.eliminarPais(objPais);
+            paisDatos.eliminarPais(vId);
+        }
+
+        public void eliminarPaisIdioma(int vIdPais,int vIdVecino)
+        {
+            paisDatos.eliminarPaisIdioma(vIdPais,vIdVecino);
+        }
+
+        public void eliminarPaisVecino(int vIdPais, int vIdVecino)
+        {
+            paisDatos.eliminarPaisVecino(vIdPais, vIdVecino);
         }
         public void editaPaises(Paises objPais) {
             paisDatos.modificarPais(objPais);
@@ -42,10 +57,7 @@ namespace BLL_Mundo
             paisDatos.creaPais(objPais);
         }
 
-        public void eliminarContinente(Continentes objcont)
-        {
-            paisDatos.eliminaContinente(objcont);
-        }
+      
 
         public void editaContinente(Continentes objcont)
         {
@@ -56,10 +68,7 @@ namespace BLL_Mundo
             paisDatos.creaContinente(objcont);
         }
 
-        public void eliminaGobiernos(Gobiernos objgob)
-        {
-            paisDatos.eliminaGobiernos(objgob);
-        }
+        
         public void modificaGobiernos(Gobiernos objGobiernos)
         {
             paisDatos.editaGobiernos(objGobiernos);
@@ -69,10 +78,7 @@ namespace BLL_Mundo
             paisDatos.creaGobiernos(objgob);
         }
 
-        public void eliminaIdiomas( Idiomas objdiomas )
-        {
-            paisDatos.eliminaIdioma(objdiomas);
-        }
+       
         public void modificaIdiomas(Idiomas objdiomas)
         {
             paisDatos.editaIdioma(objdiomas);

@@ -17,5 +17,10 @@ namespace BLL_Mundo
         {
             return continenteDatos.CargarContinentes();
         }
+
+        public void eliminarContinente(int vId)
+        {
+            continenteDatos.eliminarPais(vId);
+        }
     }
 }

@@ -1,7 +1,16 @@
 C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\ML_Mundo\bin\Debug\ML_Mundo.dll.config
 C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\ML_Mundo\bin\Debug\ML_Mundo.dll
 C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\ML_Mundo\bin\Debug\ML_Mundo.pdb
+C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\ML_Mundo\bin\Debug\MaterialDesignColors.dll
+C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\ML_Mundo\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\ML_Mundo\bin\Debug\Microsoft.Xaml.Behaviors.dll
+C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\ML_Mundo\bin\Debug\MaterialDesignColors.pdb
+C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\ML_Mundo\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\ML_Mundo\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\ML_Mundo\bin\Debug\Microsoft.Xaml.Behaviors.pdb
+C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\ML_Mundo\bin\Debug\Microsoft.Xaml.Behaviors.xml
 C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\ML_Mundo\obj\Debug\ML_Mundo.csproj.AssemblyReference.cache
 C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\ML_Mundo\obj\Debug\ML_Mundo.csproj.CoreCompileInputs.cache
+C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\ML_Mundo\obj\Debug\ML_Mundo.csproj.CopyComplete
 C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\ML_Mundo\obj\Debug\ML_Mundo.dll
 C:\Users\Elsujeto\OneDrive - Escuela Politécnica Nacional\Escritorio\GUI_Mundo\ML_Mundo\obj\Debug\ML_Mundo.pdb

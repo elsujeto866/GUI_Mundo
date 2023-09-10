@@ -134,6 +134,13 @@ namespace ML_Mundo
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<CargarPaisesResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PaisesXContinente")]
+		public ISingleResult<PaisesXContinenteResult> PaisesXContinente()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<PaisesXContinenteResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Continentes")]
@@ -1549,6 +1556,68 @@ namespace ML_Mundo
 				if ((this._code != value))
 				{
 					this._code = value;
+				}
+			}
+		}
+	}
+	
+	public partial class PaisesXContinenteResult
+	{
+		
+		private int _id;
+		
+		private string _continente;
+		
+		private string _paises;
+		
+		public PaisesXContinenteResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_continente", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string continente
+		{
+			get
+			{
+				return this._continente;
+			}
+			set
+			{
+				if ((this._continente != value))
+				{
+					this._continente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_paises", DbType="VarChar(8000)")]
+		public string paises
+		{
+			get
+			{
+				return this._paises;
+			}
+			set
+			{
+				if ((this._paises != value))
+				{
+					this._paises = value;
 				}
 			}
 		}

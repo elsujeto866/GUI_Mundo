@@ -74,4 +74,11 @@
       <Column Name="code" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.PaisesXContinente" Method="PaisesXContinente">
+    <ElementType Name="PaisesXContinenteResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="continente" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="paises" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

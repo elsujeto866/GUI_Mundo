@@ -299,13 +299,15 @@ GO
 CREATE PROCEDURE PaisesXContinente
 AS
 Begin
-SELECT c.continente, STRING_AGG(p.pais ,', ') as paises
+SELECT c.id, c.continente, STRING_AGG(p.pais ,', ') as paises
 FROM continentes c 
   INNER JOIN paises p ON p.continente_id = c.id 
-GROUP BY c.continente
+GROUP BY c.id,c.continente
 ORDER BY 1;
 END 
 GO
+
+SELECT * FROM continentes 
 
 --aíses fronterizos a España
 

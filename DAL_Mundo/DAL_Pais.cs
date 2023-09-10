@@ -33,6 +33,33 @@ namespace DAL_Mundo
             return paises;
         }
 
+        public ObservableCollection<IdiomasPaisesResult> CargarIdiomasPais()
+        {
+            var idiomasPaises = new ObservableCollection<IdiomasPaisesResult>();
+            using (var dbMundo = new DBMundoContextDataContext())
+            {
+                foreach (IdiomasPaisesResult ip in dbMundo.IdiomasPaises())
+                {
+                    idiomasPaises.Add(ip);
+                }
+            }
+            return idiomasPaises;
+        }
+
+        public ObservableCollection<FronterasTodosPaisesResult> CargarPaisesVecinos()
+        {
+            var paisesVecinos = new ObservableCollection<FronterasTodosPaisesResult>();
+            using (var dbMundo = new DBMundoContextDataContext())
+            {
+                foreach (FronterasTodosPaisesResult pv in dbMundo.FronterasTodosPaises())
+                {
+                    paisesVecinos.Add(pv);
+                }
+            }
+            return paisesVecinos;
+        }
+
+
         public void eliminarPais(Paises paisObjeto)
         {
             Paises eliminaPais = db.Paises.Single(p => p.id == paisObjeto.id); //Se obtiene el ID del pais

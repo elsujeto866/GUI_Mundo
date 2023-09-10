@@ -24,6 +24,10 @@ namespace GUI_Mundo
     public partial class MainWindow : Window
     {
         BLL_Pais paisNegocio = new BLL_Pais();
+        BLL_Continente continenteNegocio = new BLL_Continente();
+        BLL_Idioma idiomaNegocio = new BLL_Idioma();
+        BLL_Gobierno gobiernoNegocio = new BLL_Gobierno();
+
 
         private Button[] botones;
         private int currentButtonIndex = 1;
@@ -34,7 +38,7 @@ namespace GUI_Mundo
         }
         private void FmrPrincipal_Loaded(object sender, RoutedEventArgs e)
         {
-            CargarDatos();
+            CargarDatos(1);
             botones = new Button[]
             {
                 btnPais,
@@ -46,13 +50,146 @@ namespace GUI_Mundo
             };
         }
 
-        private void CargarDatos()
+        private void CargarDatos(int vIndice)
         {
             dgPaises.Items.Clear();
-            foreach (var p in paisNegocio.CargarPaises())
+            
+            if(vIndice == 1)
             {
-                dgPaises.Items.Add(p);
+                
+                foreach (var p in paisNegocio.CargarPaises())
+                {
+                    dgPaises.Items.Add(p);
+                }
+                clmPrimera.Binding = new Binding("id");
+                clmSegunda.Visibility = Visibility.Visible;
+                clmTercera.Binding = new Binding("capital");
+                clmTercera.Width = DataGridLength.SizeToCells;
+                clmTercera.Visibility = Visibility.Visible;
+                clmTercera.Header = "Capital";
+                clmCuarta.Binding = new Binding("moneda");
+                clmCuarta.Width = DataGridLength.SizeToCells;
+                clmCuarta.Visibility = Visibility.Visible;
+                clmCuarta.Header = "Moneda";
+                clmQuinta.Binding = new Binding("continente");
+                clmQuinta.Width = DataGridLength.SizeToCells;
+                clmQuinta.Visibility = Visibility.Visible;
+                clmQuinta.Header = "Continente";
+                clmSexta.Binding = new Binding("gobierno");
+                clmSexta.Width = DataGridLength.SizeToCells;
+                clmSexta.Visibility = Visibility.Visible;
+                clmSexta.Header = "Gobierno";               
+                clmSeptima.Binding = new Binding("extension");
+                clmSeptima.Width = DataGridLength.SizeToCells;
+                clmSeptima.Visibility = Visibility.Visible;
+                clmSeptima.Header = "Extensión";
+                clmOctava.Binding = new Binding("poblacion");
+                clmOctava.Width = DataGridLength.SizeToCells;
+                clmOctava.Visibility = Visibility.Visible;
+                clmOctava.Header = "Población";
+                clmNovena.Binding = new Binding("posicion");
+                clmNovena.Width = DataGridLength.SizeToCells;
+                clmNovena.Visibility = Visibility.Visible;
+                clmNovena.Header = "Posicion";
+                
+
             }
+            else if(vIndice == 2)
+            {
+                foreach (var c in continenteNegocio.CargarContinentes())
+                {
+                    dgPaises.Items.Add(c);
+                }
+                clmPrimera.Binding = new Binding("id");
+                clmSegunda.Visibility = Visibility.Collapsed;
+                clmTercera.Binding = new Binding("continente");
+                clmTercera.Width = 100;
+                clmTercera.Header = "Continente";
+                clmCuarta.Visibility = Visibility.Collapsed;
+                clmQuinta.Visibility = Visibility.Collapsed;
+                clmSexta.Visibility = Visibility.Collapsed;
+                clmSeptima.Visibility = Visibility.Collapsed; 
+                clmOctava.Visibility = Visibility.Collapsed;
+                clmNovena.Visibility = Visibility.Collapsed;
+            }
+
+            else if (vIndice == 3)  
+            {
+                foreach (var i in idiomaNegocio.CargarIdiomas())
+                {
+                    dgPaises.Items.Add(i);
+                }
+                clmPrimera.Binding = new Binding("id");
+                clmSegunda.Visibility = Visibility.Collapsed;
+                clmTercera.Binding = new Binding("idioma");
+                clmTercera.Width = DataGridLength.SizeToCells;
+                clmTercera.Header = "Idioma";
+                clmCuarta.Visibility = Visibility.Collapsed;
+                clmQuinta.Visibility = Visibility.Collapsed;
+                clmSexta.Visibility = Visibility.Collapsed;
+                clmSeptima.Visibility = Visibility.Collapsed;
+                clmOctava.Visibility = Visibility.Collapsed;
+                clmNovena.Visibility = Visibility.Collapsed;
+            }
+
+            else if (vIndice == 4)
+            {
+                foreach (var i in gobiernoNegocio.CargarGobiernos())
+                {
+                    dgPaises.Items.Add(i);
+                }
+                clmPrimera.Binding = new Binding("id");
+                clmSegunda.Visibility = Visibility.Collapsed;
+                clmTercera.Binding = new Binding("gobierno");
+                clmTercera.Width = DataGridLength.SizeToCells;
+                clmTercera.Header = "Gobierno";
+                clmCuarta.Visibility = Visibility.Collapsed;
+                clmQuinta.Visibility = Visibility.Collapsed;
+                clmSexta.Visibility = Visibility.Collapsed;
+                clmSeptima.Visibility = Visibility.Collapsed;
+                clmOctava.Visibility = Visibility.Collapsed;
+                clmNovena.Visibility = Visibility.Collapsed;
+            }
+            else if (vIndice == 5)
+            {
+                foreach (var ip in paisNegocio.CargarIdiomasPais())
+                {
+                    dgPaises.Items.Add(ip);
+                }
+                clmPrimera.Binding = new Binding("id");
+                clmSegunda.Visibility = Visibility.Visible;
+                clmTercera.Binding = new Binding("idiomas");
+                clmTercera.Width = DataGridLength.SizeToCells;
+                clmTercera.Visibility = Visibility.Visible;
+                clmTercera.Header = "Idiomas";
+                clmCuarta.Visibility = Visibility.Collapsed;
+                clmQuinta.Visibility = Visibility.Collapsed;
+                clmSexta.Visibility = Visibility.Collapsed;
+                clmSeptima.Visibility = Visibility.Collapsed;
+                clmOctava.Visibility = Visibility.Collapsed;
+                clmNovena.Visibility = Visibility.Collapsed;
+            }
+
+            else if (vIndice == 6)
+            {
+                foreach (var pv in paisNegocio.CargarPaisesVecinos())
+                {
+                    dgPaises.Items.Add(pv);
+                }
+                clmPrimera.Binding = new Binding("id");
+                clmSegunda.Visibility = Visibility.Visible;
+                clmTercera.Binding = new Binding("Vecinos");
+                clmTercera.Width = DataGridLength.SizeToCells;
+                clmTercera.Visibility = Visibility.Visible;
+                clmTercera.Header = "Vecinos";
+                clmCuarta.Visibility = Visibility.Collapsed;
+                clmQuinta.Visibility = Visibility.Collapsed;
+                clmSexta.Visibility = Visibility.Collapsed;
+                clmSeptima.Visibility = Visibility.Collapsed;
+                clmOctava.Visibility = Visibility.Collapsed;
+                clmNovena.Visibility = Visibility.Collapsed;
+            }
+
         }
 
         #region Movimiento
@@ -90,13 +227,6 @@ namespace GUI_Mundo
         #region Botones Panel Izquierdo
         private void btnSalir_Click(object sender, RoutedEventArgs e)
         {
-            /*MessageBoxResult result = MessageBox.Show("Está seguro que desea salir", "SALIR",MessageBoxButton.YesNo);
-
-            if(result == MessageBoxResult.Yes)
-            {
-                Application.Current.Shutdown();
-            }*/
-
             dialogHostSalir.IsOpen = true;
         }
 
@@ -112,37 +242,42 @@ namespace GUI_Mundo
         private void btnPais_Click(object sender, RoutedEventArgs e)
         {           
             CambioVisualBotones(1);
+            CargarDatos(1);
         }
 
         private void btnContinente_Click(object sender, RoutedEventArgs e)
         {
             CambioVisualBotones(2);
-            
+            CargarDatos(2);
+
+
 
         }
 
         private void btnIdioma_Click(object sender, RoutedEventArgs e)
         {
             CambioVisualBotones(3);
-
+            CargarDatos(3);
         }
 
         private void btnGobierno_Click(object sender, RoutedEventArgs e)
         {
             CambioVisualBotones(4);
+            CargarDatos(4);
 
         }
 
         private void btnIdiomasPais_Click(object sender, RoutedEventArgs e)
         {
             CambioVisualBotones(5);
+            CargarDatos(5);
 
         }
 
         private void btnVecinosPais_Click(object sender, RoutedEventArgs e)
         {
             CambioVisualBotones(6);
-
+            CargarDatos(6);
         }
 
         private void CambioVisualBotones(int ide)
@@ -223,7 +358,13 @@ namespace GUI_Mundo
 
             }
         }
-
+        private void FmrPrincipal_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab)
+            {
+                e.Handled = true;
+            }
+        }
 
         #endregion
 
@@ -232,8 +373,6 @@ namespace GUI_Mundo
 
         }
 
-      
-
-       
+        
     }
 }

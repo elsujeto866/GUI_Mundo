@@ -13,7 +13,7 @@ namespace BLL_Mundo
     {
         private DAL_Continente continenteDatos = new DAL_Continente();
 
-        public ObservableCollection<PaisesXContinenteResult> CargarContinentes()
+        public ObservableCollection<CargarContinentesResult> CargarContinentes()
         {
             return continenteDatos.CargarContinentes();
         }

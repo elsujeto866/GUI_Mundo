@@ -19,20 +19,23 @@ GO
 
 CREATE TABLE Continentes (
   id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-  continente VARCHAR(20) NOT NULL
+  continente VARCHAR(20) NOT NULL,
+  existe bit NOT NULL DEFAULT 1
 ) ;
 GO
 --SELECT * FROM Continentes
 
 CREATE TABLE Gobiernos (
   id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-  gobierno VARCHAR(40) NOT NULL
+  gobierno VARCHAR(40) NOT NULL,
+  existe bit NOT NULL DEFAULT 1
 );
 GO
 
 CREATE TABLE Idiomas (
   id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
   idioma VARCHAR(20) NOT NULL,
+  existe bit NOT NULL DEFAULT 1
 );
 GO
 
@@ -68,7 +71,7 @@ CREATE TABLE Paises_Idiomas (
 ) ;
 GO
 --SELECT * FROM Paises
-SELECT * FROM Idiomas
+--SELECT * FROM Idiomas
 CREATE TABLE Paises_Vecinos (
   pais_id INT NOT NULL,
   vecino_id INT NOT NULL,
@@ -279,12 +282,46 @@ GO
 CREATE PROC CargarPaises
 AS
 BEGIN
-SELECT p.id, p.pais, p.capital, p.moneda, c.continente,g.gobierno,p.posicion,p.code
+SELECT p.id, p.pais, p.capital, p.moneda, c.continente,g.gobierno,p.extension,p.poblacion,p.posicion,p.code
 FROM Paises p 
   INNER JOIN Continentes c ON p.continente_id = c.id
   INNER JOIN Gobiernos g ON p.gobierno_id = g.id
+  WHERE p.existe = 1
 END
 GO
+
+--Cargar Continentes
+CREATE PROC CargarContinentes
+AS
+BEGIN
+SELECT *
+FROM Continentes c 
+WHERE c.existe = 1
+END
+GO
+
+--Cargar Idiomas
+CREATE PROC CargarIdiomas
+AS
+BEGIN
+SELECT *
+FROM Idiomas i 
+WHERE i.existe = 1
+END
+GO
+
+--Cargar Gobiernos
+CREATE PROC CargarGobiernos
+AS
+BEGIN
+SELECT *
+FROM Gobiernos g
+WHERE g.existe = 1
+END
+GO
+
+
+--SELECT * FROM Paises
 --Continente de cada país
 CREATE PROC PaisContinente
 AS
@@ -307,9 +344,9 @@ ORDER BY 1;
 END 
 GO
 
-SELECT * FROM continentes 
+--SELECT * FROM continentes 
 
---aíses fronterizos a España
+--Países fronterizos a España
 
 CREATE PROCEDURE FronterasXPais
 @nombrePais VARCHAR(35) -- Parámetro para el nombre del país
@@ -330,22 +367,22 @@ GO
 --Países fronterizos a cada país
 CREATE PROCEDURE FronterasTodosPaises
 AS
-SELECT p.Pais, STRING_AGG (v.pais  , ', ')  as Vecinos
+SELECT p.id, p.pais, STRING_AGG (v.pais  , ', ')  as Vecinos, p.code
 FROM paises p 
   INNER JOIN paises_vecinos pv ON p.id = pv.pais_id 
   INNER JOIN paises v ON pv.vecino_id = v.id
-GROUP BY p.pais
+GROUP BY p.id, p.pais, p.code
 ORDER BY 1;
 GO
 
 --Idiomas que se habla en cada país
 CREATE PROCEDURE IdiomasPaises
 AS
-SELECT p.Pais, STRING_AGG(i.idioma ,', ') as Idiomas
+SELECT p.id, p.pais, STRING_AGG(i.idioma ,', ') as idiomas, p.code 
 FROM paises p 
   INNER JOIN paises_idiomas pi ON p.id = pi.pais_id 
   INNER JOIN idiomas i ON pi.idioma_id = i.id
-GROUP BY p.Pais	
+GROUP BY p.id,p.Pais, p.code	
 ORDER BY 1;
 GO
 

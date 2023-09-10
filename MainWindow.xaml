@@ -8,7 +8,7 @@
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis"/>
     </Window.Resources>
-    <Border x:Name="FmrPrincipal" Background="#eff2f7" CornerRadius="30" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown" Loaded="FmrPrincipal_Loaded" PreviewKeyUp="FmrPrincipal_PreviewKeyUp">
+    <Border x:Name="FmrPrincipal" Background="#eff2f7" CornerRadius="30" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown" Loaded="FmrPrincipal_Loaded" PreviewKeyUp="FmrPrincipal_PreviewKeyUp" KeyDown="FmrPrincipal_KeyDown">
         <Grid>
             
         
@@ -163,7 +163,7 @@
                 <!--Textbox Filtrador-->
                 <Grid Width="200" HorizontalAlignment="Right" Grid.Row="4">
                     <TextBlock Margin="15 0" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
-                               Panel.ZIndex="1" Text="Buscar por países ..." 
+                               Panel.ZIndex="1" Text="Buscar por ..." 
                                Visibility="{Binding ElementName=txtFilter, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}"/>
                     <TextBox x:Name="txtFilter" Style="{StaticResource textboxFilter}"/>
 
@@ -179,25 +179,28 @@
                             </DataGridCheckBoxColumn.HeaderTemplate>
                         </DataGridCheckBoxColumn>
 
-                        <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding id}"/>
+                        <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" x:Name="clmPrimera" />
 
-                        <DataGridTemplateColumn Header="País" IsReadOnly="True" Width="auto" CanUserResize="False">
+                            <DataGridTemplateColumn Header="País" IsReadOnly="True" Width="auto" CanUserResize="False" x:Name="clmSegunda">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
                                         <Border Width="25" Height="25" CornerRadius="50" Margin="0 0 10 0" Background="#784ff2">
-                                            <TextBlock Text="{Binding code}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Margin="0 0 0 1"/>
+                                                <TextBlock Text="{Binding code}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Margin="0 0 0 1"/>
                                         </Border>
-                                        <TextBlock Text="{Binding pais}" VerticalAlignment="Center"/>
+                                            <TextBlock Text="{Binding pais}"  VerticalAlignment="Center"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
 
-                        <DataGridTextColumn Header="Capital" IsReadOnly="True"  Width="auto" CanUserResize="False" Binding="{Binding capital}"/>
-                        <DataGridTextColumn Header="Moneda" IsReadOnly="True"  Width="auto" CanUserResize="False" Binding="{Binding moneda}"/>
-                        <DataGridTextColumn Header="Continente" IsReadOnly="True"  Width="auto" CanUserResize="False" Binding="{Binding continente}"/>
-                        <DataGridTextColumn Header="Gobierno" IsReadOnly="True"  Width="auto" CanUserResize="False" Binding="{Binding gobierno}"/>
+                            <DataGridTextColumn Header="Capital" IsReadOnly="True"  Width="auto" CanUserResize="False" x:Name="clmTercera"/>
+                            <DataGridTextColumn Header="Moneda" IsReadOnly="True"  Width="auto" CanUserResize="False" x:Name="clmCuarta" />
+                            <DataGridTextColumn Header="Continente" IsReadOnly="True"  Width="auto" CanUserResize="False" x:Name="clmQuinta" />
+                            <DataGridTextColumn Header="Gobierno" IsReadOnly="True"  Width="auto" CanUserResize="False" x:Name="clmSexta"/>
+                            <DataGridTextColumn Header="Extensión" IsReadOnly="True"  Width="auto" CanUserResize="False" x:Name="clmSeptima" />
+                            <DataGridTextColumn Header="Población" IsReadOnly="True"  Width="auto" CanUserResize="False" x:Name="clmOctava" Binding="{Binding poblacion}"/>
+                            <DataGridTextColumn Header="Posición" IsReadOnly="True"  Width="auto" CanUserResize="False" x:Name="clmNovena" Binding="{Binding posicion}"/>
 
                         <DataGridTemplateColumn Header="Acción" IsReadOnly="True" CanUserResize="False" Width="auto">
                             <DataGridTemplateColumn.CellTemplate>
@@ -247,14 +250,14 @@
             </Grid>
             
         </Grid>
-        <!--Mensajes de Dialogo-->
+        <!--#region Mensajes de Dialogo-->
             <materialDesing:DialogHost x:Name="dialogHostSalir" BorderBrush="{DynamicResource MaterialDesignDivider}">
                 <materialDesing:DialogHost.DialogContent>
                     <Grid Width="300" Height="150" HorizontalAlignment="Center">
                         <StackPanel Orientation="Horizontal" Margin="15">
-                            <materialDesing:PackIcon Kind="Folder" Foreground="{StaticResource PrimaryHueMidBrush}" Width="50" Height="50"/>
+                            <materialDesing:PackIcon Kind="CloseOctagonOutline"  Foreground="{StaticResource PrimaryHueMidBrush}" Width="50" Height="50"/>
                             <TextBlock Foreground="Gray" Width="200" Margin="15 5" TextWrapping="Wrap">
-                                ¿Está seguro que desea salir?
+                                ¿Estás seguro que desea salir?
                             </TextBlock>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="15">
@@ -291,5 +294,7 @@
             </materialDesing:DialogHost>
         </Grid>
     </Border>
+    <!--#endregion-->
+    
     
 </Window>

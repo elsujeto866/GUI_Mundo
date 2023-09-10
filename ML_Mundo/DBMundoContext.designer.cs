@@ -135,11 +135,39 @@ namespace ML_Mundo
 			return ((ISingleResult<CargarPaisesResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PaisesXContinente")]
-		public ISingleResult<PaisesXContinenteResult> PaisesXContinente()
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.CargarIdiomas")]
+		public ISingleResult<CargarIdiomasResult> CargarIdiomas()
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<PaisesXContinenteResult>)(result.ReturnValue));
+			return ((ISingleResult<CargarIdiomasResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.CargarGobiernos")]
+		public ISingleResult<CargarGobiernosResult> CargarGobiernos()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<CargarGobiernosResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.CargarContinentes")]
+		public ISingleResult<CargarContinentesResult> CargarContinentes()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<CargarContinentesResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.IdiomasPaises")]
+		public ISingleResult<IdiomasPaisesResult> IdiomasPaises()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<IdiomasPaisesResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.FronterasTodosPaises")]
+		public ISingleResult<FronterasTodosPaisesResult> FronterasTodosPaises()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<FronterasTodosPaisesResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -153,6 +181,8 @@ namespace ML_Mundo
 		
 		private string _continente;
 		
+		private bool _existe;
+		
 		private EntitySet<Paises> _Paises;
 		
     #region Definiciones de métodos de extensibilidad
@@ -163,6 +193,8 @@ namespace ML_Mundo
     partial void OnidChanged();
     partial void OncontinenteChanging(string value);
     partial void OncontinenteChanged();
+    partial void OnexisteChanging(bool value);
+    partial void OnexisteChanged();
     #endregion
 		
 		public Continentes()
@@ -207,6 +239,26 @@ namespace ML_Mundo
 					this._continente = value;
 					this.SendPropertyChanged("continente");
 					this.OncontinenteChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_existe", DbType="Bit NOT NULL")]
+		public bool existe
+		{
+			get
+			{
+				return this._existe;
+			}
+			set
+			{
+				if ((this._existe != value))
+				{
+					this.OnexisteChanging(value);
+					this.SendPropertyChanging();
+					this._existe = value;
+					this.SendPropertyChanged("existe");
+					this.OnexisteChanged();
 				}
 			}
 		}
@@ -267,6 +319,8 @@ namespace ML_Mundo
 		
 		private string _gobierno;
 		
+		private bool _existe;
+		
 		private EntitySet<Paises> _Paises;
 		
     #region Definiciones de métodos de extensibilidad
@@ -277,6 +331,8 @@ namespace ML_Mundo
     partial void OnidChanged();
     partial void OngobiernoChanging(string value);
     partial void OngobiernoChanged();
+    partial void OnexisteChanging(bool value);
+    partial void OnexisteChanged();
     #endregion
 		
 		public Gobiernos()
@@ -321,6 +377,26 @@ namespace ML_Mundo
 					this._gobierno = value;
 					this.SendPropertyChanged("gobierno");
 					this.OngobiernoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_existe", DbType="Bit NOT NULL")]
+		public bool existe
+		{
+			get
+			{
+				return this._existe;
+			}
+			set
+			{
+				if ((this._existe != value))
+				{
+					this.OnexisteChanging(value);
+					this.SendPropertyChanging();
+					this._existe = value;
+					this.SendPropertyChanged("existe");
+					this.OnexisteChanged();
 				}
 			}
 		}
@@ -381,6 +457,8 @@ namespace ML_Mundo
 		
 		private string _idioma;
 		
+		private bool _existe;
+		
 		private EntitySet<Paises_Idiomas> _Paises_Idiomas;
 		
     #region Definiciones de métodos de extensibilidad
@@ -391,6 +469,8 @@ namespace ML_Mundo
     partial void OnidChanged();
     partial void OnidiomaChanging(string value);
     partial void OnidiomaChanged();
+    partial void OnexisteChanging(bool value);
+    partial void OnexisteChanged();
     #endregion
 		
 		public Idiomas()
@@ -435,6 +515,26 @@ namespace ML_Mundo
 					this._idioma = value;
 					this.SendPropertyChanged("idioma");
 					this.OnidiomaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_existe", DbType="Bit NOT NULL")]
+		public bool existe
+		{
+			get
+			{
+				return this._existe;
+			}
+			set
+			{
+				if ((this._existe != value))
+				{
+					this.OnexisteChanging(value);
+					this.SendPropertyChanging();
+					this._existe = value;
+					this.SendPropertyChanged("existe");
+					this.OnexisteChanged();
 				}
 			}
 		}
@@ -1424,6 +1524,10 @@ namespace ML_Mundo
 		
 		private string _gobierno;
 		
+		private System.Nullable<decimal> _extension;
+		
+		private System.Nullable<int> _poblacion;
+		
 		private string _posicion;
 		
 		private string _code;
@@ -1528,6 +1632,38 @@ namespace ML_Mundo
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_extension", DbType="Decimal(15,5)")]
+		public System.Nullable<decimal> extension
+		{
+			get
+			{
+				return this._extension;
+			}
+			set
+			{
+				if ((this._extension != value))
+				{
+					this._extension = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_poblacion", DbType="Int")]
+		public System.Nullable<int> poblacion
+		{
+			get
+			{
+				return this._poblacion;
+			}
+			set
+			{
+				if ((this._poblacion != value))
+				{
+					this._poblacion = value;
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_posicion", DbType="VarChar(50)")]
 		public string posicion
 		{
@@ -1561,16 +1697,140 @@ namespace ML_Mundo
 		}
 	}
 	
-	public partial class PaisesXContinenteResult
+	public partial class CargarIdiomasResult
+	{
+		
+		private int _id;
+		
+		private string _idioma;
+		
+		private bool _existe;
+		
+		public CargarIdiomasResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idioma", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string idioma
+		{
+			get
+			{
+				return this._idioma;
+			}
+			set
+			{
+				if ((this._idioma != value))
+				{
+					this._idioma = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_existe", DbType="Bit NOT NULL")]
+		public bool existe
+		{
+			get
+			{
+				return this._existe;
+			}
+			set
+			{
+				if ((this._existe != value))
+				{
+					this._existe = value;
+				}
+			}
+		}
+	}
+	
+	public partial class CargarGobiernosResult
+	{
+		
+		private int _id;
+		
+		private string _gobierno;
+		
+		private bool _existe;
+		
+		public CargarGobiernosResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gobierno", DbType="VarChar(40) NOT NULL", CanBeNull=false)]
+		public string gobierno
+		{
+			get
+			{
+				return this._gobierno;
+			}
+			set
+			{
+				if ((this._gobierno != value))
+				{
+					this._gobierno = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_existe", DbType="Bit NOT NULL")]
+		public bool existe
+		{
+			get
+			{
+				return this._existe;
+			}
+			set
+			{
+				if ((this._existe != value))
+				{
+					this._existe = value;
+				}
+			}
+		}
+	}
+	
+	public partial class CargarContinentesResult
 	{
 		
 		private int _id;
 		
 		private string _continente;
 		
-		private string _paises;
+		private bool _existe;
 		
-		public PaisesXContinenteResult()
+		public CargarContinentesResult()
 		{
 		}
 		
@@ -1606,18 +1866,178 @@ namespace ML_Mundo
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_paises", DbType="VarChar(8000)")]
-		public string paises
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_existe", DbType="Bit NOT NULL")]
+		public bool existe
 		{
 			get
 			{
-				return this._paises;
+				return this._existe;
 			}
 			set
 			{
-				if ((this._paises != value))
+				if ((this._existe != value))
 				{
-					this._paises = value;
+					this._existe = value;
+				}
+			}
+		}
+	}
+	
+	public partial class IdiomasPaisesResult
+	{
+		
+		private int _id;
+		
+		private string _pais;
+		
+		private string _idiomas;
+		
+		private string _code;
+		
+		public IdiomasPaisesResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pais", DbType="VarChar(35) NOT NULL", CanBeNull=false)]
+		public string pais
+		{
+			get
+			{
+				return this._pais;
+			}
+			set
+			{
+				if ((this._pais != value))
+				{
+					this._pais = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idiomas", DbType="VarChar(8000)")]
+		public string idiomas
+		{
+			get
+			{
+				return this._idiomas;
+			}
+			set
+			{
+				if ((this._idiomas != value))
+				{
+					this._idiomas = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_code", DbType="VarChar(2)")]
+		public string code
+		{
+			get
+			{
+				return this._code;
+			}
+			set
+			{
+				if ((this._code != value))
+				{
+					this._code = value;
+				}
+			}
+		}
+	}
+	
+	public partial class FronterasTodosPaisesResult
+	{
+		
+		private int _id;
+		
+		private string _pais;
+		
+		private string _Vecinos;
+		
+		private string _code;
+		
+		public FronterasTodosPaisesResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pais", DbType="VarChar(35) NOT NULL", CanBeNull=false)]
+		public string pais
+		{
+			get
+			{
+				return this._pais;
+			}
+			set
+			{
+				if ((this._pais != value))
+				{
+					this._pais = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Vecinos", DbType="VarChar(8000)")]
+		public string Vecinos
+		{
+			get
+			{
+				return this._Vecinos;
+			}
+			set
+			{
+				if ((this._Vecinos != value))
+				{
+					this._Vecinos = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_code", DbType="VarChar(2)")]
+		public string code
+		{
+			get
+			{
+				return this._code;
+			}
+			set
+			{
+				if ((this._code != value))
+				{
+					this._code = value;
 				}
 			}
 		}

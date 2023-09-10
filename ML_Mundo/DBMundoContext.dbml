@@ -4,6 +4,7 @@
     <Type Name="Continentes">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="continente" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="existe" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="Continentes_Paises" Member="Paises" ThisKey="id" OtherKey="continente_id" Type="Paises" />
     </Type>
   </Table>
@@ -11,6 +12,7 @@
     <Type Name="Gobiernos">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="gobierno" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="existe" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="Gobiernos_Paises" Member="Paises" ThisKey="id" OtherKey="gobierno_id" Type="Paises" />
     </Type>
   </Table>
@@ -18,6 +20,7 @@
     <Type Name="Idiomas">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="idioma" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="existe" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="Idiomas_Paises_Idiomas" Member="Paises_Idiomas" ThisKey="id" OtherKey="idioma_id" Type="Paises_Idiomas" />
     </Type>
   </Table>
@@ -70,15 +73,47 @@
       <Column Name="moneda" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
       <Column Name="continente" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
       <Column Name="gobierno" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="extension" Type="System.Decimal" DbType="Decimal(15,5)" CanBeNull="true" />
+      <Column Name="poblacion" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="posicion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="code" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.PaisesXContinente" Method="PaisesXContinente">
-    <ElementType Name="PaisesXContinenteResult">
+  <Function Name="dbo.CargarIdiomas" Method="CargarIdiomas">
+    <ElementType Name="CargarIdiomasResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idioma" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="existe" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.CargarGobiernos" Method="CargarGobiernos">
+    <ElementType Name="CargarGobiernosResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="gobierno" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="existe" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.CargarContinentes" Method="CargarContinentes">
+    <ElementType Name="CargarContinentesResult">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="continente" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
-      <Column Name="paises" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="existe" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.IdiomasPaises" Method="IdiomasPaises">
+    <ElementType Name="IdiomasPaisesResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="pais" Type="System.String" DbType="VarChar(35) NOT NULL" CanBeNull="false" />
+      <Column Name="idiomas" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="code" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.FronterasTodosPaises" Method="FronterasTodosPaises">
+    <ElementType Name="FronterasTodosPaisesResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="pais" Type="System.String" DbType="VarChar(35) NOT NULL" CanBeNull="false" />
+      <Column Name="Vecinos" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="code" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

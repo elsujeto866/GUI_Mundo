@@ -19,6 +19,16 @@ namespace BLL_Mundo
             return paisDatos.CargarPaises();
         }
 
+        public ObservableCollection<IdiomasPaisesResult> CargarIdiomasPais()
+        {
+            return paisDatos.CargarIdiomasPais();
+        }
+
+        public ObservableCollection<FronterasTodosPaisesResult> CargarPaisesVecinos()
+        {
+            return paisDatos.CargarPaisesVecinos();
+        }
+
         public void eliminarPaises(Paises objPais)
         {
             paisDatos.eliminarPais(objPais);

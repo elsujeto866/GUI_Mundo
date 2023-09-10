@@ -10,12 +10,12 @@ namespace DAL_Mundo
 {
     public class DAL_Continente
     {
-        public ObservableCollection<PaisesXContinenteResult> CargarContinentes()
+        public ObservableCollection<CargarContinentesResult> CargarContinentes()
         {    
-            var continentes = new ObservableCollection<PaisesXContinenteResult>();
+            var continentes = new ObservableCollection<CargarContinentesResult>();
             using (var dbMundo = new DBMundoContextDataContext())
             {
-                foreach (PaisesXContinenteResult p in dbMundo.PaisesXContinente())
+                foreach (CargarContinentesResult p in dbMundo.CargarContinentes())
                 { 
                     continentes.Add(p);
                 }

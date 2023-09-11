@@ -19,20 +19,23 @@ GO
 
 CREATE TABLE Continentes (
   id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-  continente VARCHAR(20) NOT NULL
+  continente VARCHAR(20) NOT NULL,
+  existe bit NOT NULL DEFAULT 1
 ) ;
 GO
 --SELECT * FROM Gobiernos
 
 CREATE TABLE Gobiernos (
   id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-  gobierno VARCHAR(40) NOT NULL
+  gobierno VARCHAR(40) NOT NULL,
+  existe bit NOT NULL DEFAULT 1
 );
 GO
 
 CREATE TABLE Idiomas (
   id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
   idioma VARCHAR(20) NOT NULL,
+  existe bit NOT NULL DEFAULT 1
 );
 GO
 
@@ -54,17 +57,14 @@ CREATE TABLE Paises (
   FOREIGN KEY (gobierno_id) REFERENCES Gobiernos(id)
 ) ;
 GO
-<<<<<<< Updated upstream
---SELECT * FROM Paises
-=======
-SELECT * FROM Idiomas
->>>>>>> Stashed changes
+
 
 CREATE TABLE Paises_Idiomas (
   pais_id INT NOT NULL,
   idioma_id INT NOT NULL,
   hablantes INT,
   porcentaje DECIMAL(15,5),
+  existe bit NOT NULL DEFAULT 1
   --
   PRIMARY KEY (pais_id, idioma_id),
   FOREIGN KEY (pais_id) REFERENCES Paises(id),
@@ -77,6 +77,7 @@ CREATE TABLE Paises_Vecinos (
   pais_id INT NOT NULL,
   vecino_id INT NOT NULL,
   kms_frontera INT DEFAULT 0,
+  existe bit NOT NULL DEFAULT 1
   --
   PRIMARY KEY (pais_id, vecino_id),
   FOREIGN KEY (pais_id) REFERENCES paises(id),
@@ -636,8 +637,6 @@ FROM Paises p
   INNER JOIN Gobiernos g ON p.gobierno_id = g.id
 END
 GO
-<<<<<<< Updated upstream
-=======
 
 CREATE PROC EliminarPais
 @id int
@@ -815,7 +814,6 @@ FROM Idiomas
 END
 GO
 
-SELECT * FROM Paises_Idiomas
 CREATE PROC ObtenerContinentes
 AS
 BEGIN
@@ -833,8 +831,6 @@ END
 GO
 
 
-SELECT * FROM Paises_Idiomas
->>>>>>> Stashed changes
 --Continente de cada país
 CREATE PROC PaisContinente
 AS
@@ -1468,7 +1464,7 @@ ORDER BY poblacion / poblacion_continente + extension / extension_continente
 */
 
 --PROCEDIMIENTOS ELIMINAR
-CREATE PROCEDURE eliminarPais
+CREATE PROCEDURE EliminaPais
     @id INT
 AS
 BEGIN
@@ -1486,7 +1482,9 @@ BEGIN
 END;
 GO
 
-CREATE PROCEDURE eliminarIdioma
+
+
+CREATE PROCEDURE eliminaIdioma
     @id INT
 AS
 BEGIN
@@ -1500,7 +1498,7 @@ BEGIN
 END;
 GO
 
-CREATE PROCEDURE eliminarContinente
+CREATE PROCEDURE eliminaContinente
     @continente_id INT
 AS
 BEGIN
@@ -1523,7 +1521,7 @@ BEGIN
 END;
 GO
 
-CREATE PROCEDURE eliminarGobierno
+CREATE PROCEDURE eliminaGobierno
     @gobierno_id INT
 AS
 BEGIN

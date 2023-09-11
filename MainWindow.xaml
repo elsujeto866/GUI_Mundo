@@ -82,7 +82,7 @@
                                     <TextBlock Text="Geografía paises"/>
                                 </StackPanel>
                             </Button>
-<<<<<<< Updated upstream
+
                                 <Button Style="{StaticResource menuButton}" 
                                     x:Name="btnIdiomas" Click="btnIdiomas_Click">
                                     <StackPanel Orientation="Horizontal" >
@@ -105,7 +105,8 @@
                                 </Button>
 
                             </StackPanel>
-=======
+
+                       <StackPanel>
                             <Button Style="{StaticResource menuButton}" Command="{x:Static materialDesing:DialogHost.OpenDialogCommand}">
                                 <StackPanel Orientation="Horizontal" >
                                     <Icon:PackIconMaterial Kind="HandCoinOutline" Style="{StaticResource menuButtonIcon}"/>
@@ -114,7 +115,7 @@
                             </Button>
                             
                         </StackPanel>
->>>>>>> Stashed changes
+
                         <Button Style="{StaticResource menuButton}"  VerticalAlignment="Bottom" DockPanel.Dock="Bottom"  Margin="15 0 15 20" x:Name="btnSalir" Click="btnSalir_Click">
                             <StackPanel Orientation="Horizontal" >
                                 <Icon:PackIconMaterial Kind="Logout" Style="{StaticResource menuButtonIcon}"/>

@@ -91,7 +91,8 @@ namespace DAL_Mundo
 
         public void crearPaisIdioma(Paises_Idiomas vPaisIdioma)
         {
-            db.Paises_Idiomas.InsertOnSubmit(vPaisIdioma);
+            db.spAgregarPaisIdioma(vPaisIdioma.pais_id, vPaisIdioma.idioma_id, vPaisIdioma.hablantes,
+                vPaisIdioma.porcentaje);
             db.SubmitChanges();
         }
 
@@ -180,6 +181,8 @@ namespace DAL_Mundo
             db.Gobiernos.InsertOnSubmit(gobiernonew);
             db.SubmitChanges();
         }
+
+        
 
     }
 }

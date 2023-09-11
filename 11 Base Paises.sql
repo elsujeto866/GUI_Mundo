@@ -71,8 +71,13 @@ CREATE TABLE Paises_Idiomas (
   FOREIGN KEY (idioma_id) REFERENCES Idiomas(id)
 ) ;
 GO
---SELECT * FROM Paises
+
+/*
+SELECT * FROM Paises
+SELECT * FROM Paises_Idiomas
 SELECT * FROM Idiomas
+*/
+
 CREATE TABLE Paises_Vecinos (
   pais_id INT NOT NULL,
   vecino_id INT NOT NULL,
@@ -721,6 +726,38 @@ INNER JOIN Idiomas i on pai.idioma_id = i.id
 WHERE pai.existe = 1
 END
 GO
+
+CREATE PROCEDURE spAgregarPaisIdioma
+    @pais_id INT,
+    @idioma_id INT,
+    @hablantes INT,
+    @porcentaje DECIMAL(15,5)
+AS
+BEGIN
+    -- Verificar si ya existe un registro con la misma clave primaria
+    IF NOT EXISTS (
+        SELECT 1
+        FROM Paises_Idiomas
+        WHERE pais_id = @pais_id AND idioma_id = @idioma_id
+    )
+    BEGIN
+        -- Insertar el nuevo registro
+        INSERT INTO Paises_Idiomas (pais_id, idioma_id, hablantes, porcentaje)
+        VALUES (@pais_id, @idioma_id, @hablantes, @porcentaje);
+    END
+    ELSE
+    BEGIN
+        -- El registro ya existe, puedes tomar acciones adicionales si es necesario
+        -- Por ejemplo, puedes actualizar los valores en lugar de insertar uno nuevo
+        -- o lanzar una excepción para indicar que el registro ya existe.
+        THROW 50000, 'El registro ya existe en la tabla Paises_Idiomas.', 1;
+    END
+END;
+GO
+
+
+
+
 --SELECT * FROM Paises_Idiomas
 CREATE PROC EliminarPaisesIdiomas
 @idPais int,

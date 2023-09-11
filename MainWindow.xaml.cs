@@ -710,6 +710,7 @@ namespace GUI_Mundo
                 paisIdiomaAux.porcentaje = Convert.ToDecimal(tbnxAgregarPorcentaje.Text);
                 paisIdiomaAux.existe = true;
 
+
                 paisNegocio.agregarPaisIdioma(paisIdiomaAux);
                 CargarDatos(5);
             }

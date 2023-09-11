@@ -281,6 +281,13 @@ namespace ML_Mundo
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<ObtenerIdiomasResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spAgregarPaisIdioma")]
+		public int spAgregarPaisIdioma([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> pais_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> idioma_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> hablantes, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Decimal(15,5)")] System.Nullable<decimal> porcentaje)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pais_id, idioma_id, hablantes, porcentaje);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Continentes")]

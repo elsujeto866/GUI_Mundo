@@ -739,6 +739,33 @@ namespace GUI_Mundo
             }
         }
 
+        private void btnEditar_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentButtonIndex == 1)
+            {
+                dialogHostAgregarPaises.IsOpen = true;
+            }
+            else if (currentButtonIndex == 2)
+            {
+                dialogHostAgregarContinente.IsOpen = true;
+            }
+            else if (currentButtonIndex == 3)
+            {
+                dialogHostAgregarIdioma.IsOpen = true;
+            }
+            else if (currentButtonIndex == 4)
+            {
+                dialogHostAgregarGobierno.IsOpen = true;
+            }
+            else if (currentButtonIndex == 5)
+            {
+                dialogHostAgregarPaisIdioma.IsOpen = true;
+            }
+            else if (currentButtonIndex == 6)
+            {
+                dialogHostAgregarPaisVecino.IsOpen = true;
+            }
+        }
         #endregion
 
 

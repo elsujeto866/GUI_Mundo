@@ -233,8 +233,8 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <Button Style="{StaticResource gridEditButton}">
-                                            <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
+                                            <Button Style="{StaticResource gridEditButton}" x:Name="btnEditar" Click="btnEditar_Click">
+                                            <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}" />
                                         </Button>
                                         <Button Style="{StaticResource gridRemoveButton}" Margin="5 0 0 0" x:Name="btnEliminar" Click="btnEliminar_Click">
                                             <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
@@ -394,7 +394,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="15">
                             <Button Command="{x:Static materialDesing:DialogHost.CloseDialogCommand}" x:Name="btnAgregarPais" Click="btnAgregarPais_Click" Style="{DynamicResource MaterialDesignFlatButton}"  Margin="4" VerticalAlignment="Center">
-                                Agregar
+                                Guardar
                             </Button>
                             <Button Command="{x:Static materialDesing:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Margin="4" VerticalAlignment="Center">
                                 Cancelar
@@ -461,7 +461,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="15">
                             <Button Command="{x:Static materialDesing:DialogHost.CloseDialogCommand}" x:Name="btnAgregarContinente" Click="btnAgregarContinente_Click" Style="{DynamicResource MaterialDesignFlatButton}"  Margin="4" VerticalAlignment="Center">
-                                Agregar
+                                Guardar
                             </Button>
                             <Button Command="{x:Static materialDesing:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Margin="4" VerticalAlignment="Center">
                                 Cancelar
@@ -528,7 +528,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="15">
                             <Button Command="{x:Static materialDesing:DialogHost.CloseDialogCommand}" x:Name="btnAgregarIdioma" Click="btnAgregarIdioma_Click" Style="{DynamicResource MaterialDesignFlatButton}"  Margin="4" VerticalAlignment="Center">
-                                Agregar
+                                Guardar
                             </Button>
                             <Button Command="{x:Static materialDesing:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Margin="4" VerticalAlignment="Center">
                                 Cancelar
@@ -595,7 +595,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="15">
                             <Button Command="{x:Static materialDesing:DialogHost.CloseDialogCommand}" x:Name="btnAgregarGobierno" Click="btnAgregarGobierno_Click" Style="{DynamicResource MaterialDesignFlatButton}"  Margin="4" VerticalAlignment="Center">
-                                Agregar
+                                Guardar
                             </Button>
                             <Button Command="{x:Static materialDesing:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Margin="4" VerticalAlignment="Center">
                                 Cancelar
@@ -669,7 +669,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="15">
                             <Button Command="{x:Static materialDesing:DialogHost.CloseDialogCommand}" x:Name="btnAgregarPaisIdioma" Click="btnAgregarPaisIdioma_Click" Style="{DynamicResource MaterialDesignFlatButton}"  Margin="4" VerticalAlignment="Center">
-                                Agregar
+                                Guardar
                             </Button>
                             <Button Command="{x:Static materialDesing:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Margin="4" VerticalAlignment="Center">
                                 Cancelar
@@ -741,7 +741,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="15">
                             <Button Command="{x:Static materialDesing:DialogHost.CloseDialogCommand}" x:Name="btnAgregarPaisVecino" Click="btnAgregarPaisVecino_Click" Style="{DynamicResource MaterialDesignFlatButton}"  Margin="4" VerticalAlignment="Center">
-                                Agregar
+                                Guardar
                             </Button>
                             <Button Command="{x:Static materialDesing:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Margin="4" VerticalAlignment="Center">
                                 Cancelar

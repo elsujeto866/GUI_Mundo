@@ -23,7 +23,7 @@ CREATE TABLE Continentes (
   existe bit NOT NULL DEFAULT 1
 ) ;
 GO
---SELECT * FROM Continentes
+--SELECT * FROM Gobiernos
 
 CREATE TABLE Gobiernos (
   id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,

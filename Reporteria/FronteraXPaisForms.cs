@@ -12,6 +12,7 @@ namespace GUI_Mundo.Reporteria
 {
     public partial class FronteraXPaisForms : Form
     {
+        //Por defecto mostrará el país de Ecuador en el reporte
         string paisamostrar = "Ecuador";
         public FronteraXPaisForms()
         {

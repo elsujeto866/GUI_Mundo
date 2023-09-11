@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ML_Mundo;
-
+using GUI_Mundo.Reporteria;
 
 namespace GUI_Mundo
 {
@@ -252,6 +252,43 @@ namespace GUI_Mundo
 
 
         #region Botones Panel Izquierdo
+
+        private void btnPaisesReport_Click(object sender, RoutedEventArgs e)
+        {
+            FormMostrarPaises report = new FormMostrarPaises();
+            report.ShowDialog();
+        }
+
+        private void btnPaisesenContinenteReport_Click(object sender, RoutedEventArgs e)
+        {
+            PaisesEnContinentesForms report = new PaisesEnContinentesForms();
+            report.ShowDialog();
+        }
+
+        private void btnGeografiaRep_Click(object sender, RoutedEventArgs e)
+        {
+            TipoPaisGeografiaForm report = new TipoPaisGeografiaForm();
+            report.ShowDialog();
+        }
+
+        private void btnIdiomas_Click(object sender, RoutedEventArgs e)
+        {
+            IdiomaPaisesForm report = new IdiomaPaisesForm();
+            report.ShowDialog();
+        }
+        private void btnCostFront_Click(object sender, RoutedEventArgs e)
+        {
+            ConstaYFronteraForm report = new ConstaYFronteraForm();
+            report.ShowDialog();
+        }
+
+        private void btnFronterasdePais_Click(object sender, RoutedEventArgs e)
+        {
+            FronteraXPaisForms report = new FronteraXPaisForms();
+            report.ShowDialog();
+        }
+        
+
         private void btnSalir_Click(object sender, RoutedEventArgs e)
         {
             dialogHostSalir.IsOpen = true;
@@ -261,6 +298,8 @@ namespace GUI_Mundo
         {
             Application.Current.Shutdown();
         }
+        
+
 
 
         #endregion

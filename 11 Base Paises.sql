@@ -10,7 +10,7 @@ BEGIN
   DROP DATABASE BD_Mundo;
 END
 GO
-
+	 
 CREATE DATABASE BD_Mundo;
 GO
 
@@ -57,7 +57,7 @@ CREATE TABLE Paises (
   FOREIGN KEY (gobierno_id) REFERENCES Gobiernos(id)
 ) ;
 GO
---SELECT * FROM Continentes
+--SELECT * FROM Paises
 
 CREATE TABLE Paises_Idiomas (
   pais_id INT NOT NULL,
@@ -469,9 +469,9 @@ BEGIN
 END;
 GO
 -- Prueba de FronterasPais
-EXEC FronterasXPais @nombrePais = 'Brasil'; -- Busco Alemania
+/*EXEC FronterasXPais @nombrePais = 'Brasil'; -- Busco Alemania
 GO
-
+*/
 
 --Países fronterizos a cada país
 CREATE PROCEDURE FronterasTodosPaises

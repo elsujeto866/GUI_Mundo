@@ -91,3 +91,11 @@ C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\obj\Debug\GUI_Mundo.csproj.CoreComp
 C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\obj\Debug\GUI_Mundo.csproj.CopyComplete
 C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\obj\Debug\GUI_Mundo.exe
 C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\obj\Debug\GUI_Mundo.pdb
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\obj\Debug\GUI_Mundo.Reporteria.FormMostrarPaises.resources
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\obj\Debug\GUI_Mundo.Reporteria.FronteraXPaisForms.resources
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\obj\Debug\GUI_Mundo.Reporteria.PaisContinenteForm.resources
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\obj\Debug\GUI_Mundo.Reporteria.PaisesEnContinentesForms.resources
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\obj\Debug\GUI_Mundo.Reporteria.ConstaYFronteraForm.resources
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\obj\Debug\GUI_Mundo.Reporteria.DensidadPaisesForm.resources
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\obj\Debug\GUI_Mundo.Reporteria.IdiomaPaisesForm.resources
+C:\Users\esdac\Desktop\Proyecto2Bi\GUI_Mundo\obj\Debug\GUI_Mundo.Reporteria.TipoPaisGeografiaForm.resources

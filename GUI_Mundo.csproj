@@ -140,6 +140,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Messaging" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -158,6 +160,102 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Reporteria\ConstaYFronteraForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reporteria\ConstaYFronteraForm.Designer.cs">
+      <DependentUpon>ConstaYFronteraForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reporteria\CostaYFronteraReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CostaYFronteraReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporteria\DensidadPaisesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reporteria\DensidadPaisesForm.Designer.cs">
+      <DependentUpon>DensidadPaisesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reporteria\DensidadPaisesReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DensidadPaisesReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporteria\FormMostrarPaises.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reporteria\FormMostrarPaises.Designer.cs">
+      <DependentUpon>FormMostrarPaises.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reporteria\FronterasXPaisReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FronterasXPaisReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporteria\FronteraXPaisForms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reporteria\FronteraXPaisForms.Designer.cs">
+      <DependentUpon>FronteraXPaisForms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reporteria\IdiomaPaisesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reporteria\IdiomaPaisesForm.Designer.cs">
+      <DependentUpon>IdiomaPaisesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reporteria\IdiomaPaisesReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IdiomaPaisesReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporteria\PaisContinenteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reporteria\PaisContinenteForm.Designer.cs">
+      <DependentUpon>PaisContinenteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reporteria\PaisContinenteReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PaisContinenteReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporteria\PaisesEnContinentesForms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reporteria\PaisesEnContinentesForms.Designer.cs">
+      <DependentUpon>PaisesEnContinentesForms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reporteria\PaisesEnContinentesReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PaisesEnContinentesReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporteria\ReporteMostrarPaises.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReporteMostrarPaises.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporteria\TipoPaisGeografiaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reporteria\TipoPaisGeografiaForm.Designer.cs">
+      <DependentUpon>TipoPaisGeografiaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reporteria\TipoPaisGeografiaReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TipoPaisGeografiaReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -188,6 +286,62 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporteria\ConstaYFronteraForm.resx">
+      <DependentUpon>ConstaYFronteraForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporteria\CostaYFronteraReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CostaYFronteraReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporteria\DensidadPaisesForm.resx">
+      <DependentUpon>DensidadPaisesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporteria\DensidadPaisesReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>DensidadPaisesReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporteria\FormMostrarPaises.resx">
+      <DependentUpon>FormMostrarPaises.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporteria\FronterasXPaisReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>FronterasXPaisReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporteria\FronteraXPaisForms.resx">
+      <DependentUpon>FronteraXPaisForms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporteria\IdiomaPaisesForm.resx">
+      <DependentUpon>IdiomaPaisesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporteria\IdiomaPaisesReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>IdiomaPaisesReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporteria\PaisContinenteForm.resx">
+      <DependentUpon>PaisContinenteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporteria\PaisContinenteReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PaisContinenteReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporteria\PaisesEnContinentesForms.resx">
+      <DependentUpon>PaisesEnContinentesForms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporteria\PaisesEnContinentesReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PaisesEnContinentesReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporteria\ReporteMostrarPaises.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReporteMostrarPaises.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporteria\TipoPaisGeografiaForm.resx">
+      <DependentUpon>TipoPaisGeografiaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporteria\TipoPaisGeografiaReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>TipoPaisGeografiaReport.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -221,6 +375,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Imagenes\poliMundo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets')" />

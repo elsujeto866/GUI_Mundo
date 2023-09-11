@@ -64,31 +64,46 @@
                                     <TextBlock Text="C.R.U.D."/>
                                 </StackPanel>
                             </Button>
-                            <Button Style="{StaticResource menuButton}">
+                                <Button x:Name="btnPaisesReport" Style="{StaticResource menuButton}" Click="btnPaisesReport_Click">
                                 <StackPanel Orientation="Horizontal" >
                                     <Icon:PackIconMaterial Kind="CalendarClock" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Países"/>
                                 </StackPanel>
                             </Button>
-                            <Button Style="{StaticResource menuButton}"  >
+                                <Button x:Name="btnPaisesenContinenteReport"  Style="{StaticResource menuButton}" Click="btnPaisesenContinenteReport_Click" >
                                 <StackPanel Orientation="Horizontal" >
                                     <Icon:PackIconMaterial Kind="AccountMultipleOutline" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Ciudades"/>
+                                    <TextBlock Text="Continentes"/>
                                 </StackPanel>
                             </Button>
-                            <Button Style="{StaticResource menuButton}">
+                                <Button Style="{StaticResource menuButton}" x:Name="btnGeografiaRep" Click="btnGeografiaRep_Click">
                                 <StackPanel Orientation="Horizontal" >
                                     <Icon:PackIconMaterial Kind="Grain" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Estadísticas"/>
+                                    <TextBlock Text="Geografía paises"/>
                                 </StackPanel>
                             </Button>
-                            <Button Style="{StaticResource menuButton}" Command="{x:Static materialDesing:DialogHost.OpenDialogCommand}">
-                                <StackPanel Orientation="Horizontal" >
-                                    <Icon:PackIconMaterial Kind="HandCoinOutline" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Moneda"/>
-                                </StackPanel>
-                            </Button>
-                        </StackPanel>
+                                <Button Style="{StaticResource menuButton}" 
+                                    x:Name="btnIdiomas" Click="btnIdiomas_Click">
+                                    <StackPanel Orientation="Horizontal" >
+                                        <Icon:PackIconMaterial Kind="HandCoinOutline" Style="{StaticResource menuButtonIcon}"/>
+                                        <TextBlock Text="Idiomas de países"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Style="{StaticResource menuButton}" x:Name="btnCostFront" Click="btnCostFront_Click">
+                                    <StackPanel Orientation="Horizontal" >
+                                        <Icon:PackIconMaterial Kind="Grain" Style="{StaticResource menuButtonIcon}"/>
+                                        <TextBlock Text="Costas y Fronteras"/>
+                                    </StackPanel>
+                                </Button>
+
+                                <Button Style="{StaticResource menuButton}" x:Name="btnFronterasdePais" Click="btnFronterasdePais_Click">
+                                    <StackPanel Orientation="Horizontal" >
+                                        <Icon:PackIconMaterial Kind="Grain" Style="{StaticResource menuButtonIcon}"/>
+                                        <TextBlock Text="Fronteras de país"/>
+                                    </StackPanel>
+                                </Button>
+
+                            </StackPanel>
                         <Button Style="{StaticResource menuButton}"  VerticalAlignment="Bottom" DockPanel.Dock="Bottom"  Margin="15 0 15 20" x:Name="btnSalir" Click="btnSalir_Click">
                             <StackPanel Orientation="Horizontal" >
                                 <Icon:PackIconMaterial Kind="Logout" Style="{StaticResource menuButtonIcon}"/>

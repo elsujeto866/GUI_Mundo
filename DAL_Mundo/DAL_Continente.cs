@@ -11,6 +11,14 @@ namespace DAL_Mundo
     public class DAL_Continente
     {
         DBMundoContextDataContext db = new DBMundoContextDataContext();
+        public List<ObtenerIdContinenteResult> ObtenerIdContinente(string vContinente)
+        {
+            return db.ObtenerIdContinente(vContinente).ToList();
+        }
+        public List<ObtenerContinentesResult> ObtenerContinentes()
+        {
+            return db.ObtenerContinentes().ToList();
+        }
         public ObservableCollection<CargarContinentesResult> CargarContinentes()
         {    
             var continentes = new ObservableCollection<CargarContinentesResult>();
@@ -24,10 +32,15 @@ namespace DAL_Mundo
             return continentes;
         }
 
-        public void eliminarPais(int vId)
+        public void eliminarContinente(int vId)
         {
-            db.EliminarContinente(vId); 
-            
+            db.EliminarContinente(vId);            
+        }
+
+        public void crearContinente(Continentes vContinente)
+        {
+            db.Continentes.InsertOnSubmit(vContinente);
+            db.SubmitChanges();
         }
     }
 }

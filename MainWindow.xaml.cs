@@ -48,15 +48,29 @@ namespace GUI_Mundo
                 btnIdiomasPais,
                 btnVecinosPais
             };
+            
         }
 
         private void CargarDatos(int vIndice)
         {
             dgPaises.Items.Clear();
+            txtAgregarContinente.Items.Clear();
+            txtAgregarGobierno.Items.Clear();
+            tbnxAgregarPais.Items.Clear();
+            tbnxAgregarIdioma.Items.Clear();
+            tAgregarPais.Items.Clear();
+            tAgregarVecino.Items.Clear();
             
             if(vIndice == 1)
             {
-                
+                foreach (ObtenerContinentesResult c in continenteNegocio.ObtenerContinentes())
+                {
+                    txtAgregarContinente.Items.Add(c.continente);
+                }
+                foreach (ObtenerGobiernosResult g in gobiernoNegocio.ObtenerGobiernos())
+                {
+                    txtAgregarGobierno.Items.Add(g.gobierno);
+                }
                 foreach (var p in paisNegocio.CargarPaises())
                 {
                     dgPaises.Items.Add(p);
@@ -164,6 +178,14 @@ namespace GUI_Mundo
             }
             else if (vIndice == 5)
             {
+                foreach (ObtenerPaisesResult p in paisNegocio.ObtenerPaises())
+                {
+                    tbnxAgregarPais.Items.Add(p.pais);
+                }
+                foreach (ObtenerIdiomasResult i in idiomaNegocio.ObtenerIdiomas())
+                {
+                    tbnxAgregarIdioma.Items.Add(i.idioma);
+                }
                 foreach (var ip in paisNegocio.CargarIdiomasPais())
                 {
                     dgPaises.Items.Add(ip);
@@ -193,6 +215,14 @@ namespace GUI_Mundo
 
             else if (vIndice == 6)
             {
+                foreach (ObtenerPaisesResult p in paisNegocio.ObtenerPaises())
+                {
+                    tAgregarPais.Items.Add(p.pais);
+                }
+                foreach (ObtenerPaisesResult p in paisNegocio.ObtenerPaises())
+                {
+                    tAgregarVecino.Items.Add(p.pais);
+                }
                 foreach (var pv in paisNegocio.CargarPaisesVecinos())
                 {
                     dgPaises.Items.Add(pv);
@@ -557,6 +587,155 @@ namespace GUI_Mundo
             }
 
 
+        }
+
+        private void btnAgregarDatos_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentButtonIndex == 1)
+            {
+                dialogHostAgregarPaises.IsOpen = true;
+            }else if (currentButtonIndex == 2)
+            {
+                dialogHostAgregarContinente.IsOpen = true;
+            }
+            else if (currentButtonIndex == 3)
+            {
+                dialogHostAgregarIdioma.IsOpen = true;
+            }
+            else if (currentButtonIndex == 4)
+            {
+                dialogHostAgregarGobierno.IsOpen = true;
+            }
+            else if (currentButtonIndex == 5)
+            {
+               dialogHostAgregarPaisIdioma.IsOpen = true;
+            }
+            else if (currentButtonIndex == 6)
+            {
+                dialogHostAgregarPaisVecino.IsOpen = true;
+            }
+        }
+
+        private void btnAgregarPais_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Paises paisAux = new Paises();
+                paisAux.pais = txtAgregarPais.Text;
+                paisAux.code = txtAgregarCode.Text;
+                paisAux.capital = txtAgregarCapital.Text;
+                paisAux.moneda = txtAgregarMoneda.Text;
+                int idContinente = continenteNegocio.ObtenerIdContinente(txtAgregarContinente.Text).FirstOrDefault().id;
+                paisAux.continente_id = idContinente;
+                paisAux.gobierno_id = gobiernoNegocio.ObtenerIdGobierno(txtAgregarGobierno.Text).FirstOrDefault().id;
+                paisAux.poblacion = Convert.ToInt32(txtAgregarPoblacion.Text);
+                paisAux.extension = Convert.ToDecimal(txtAgregarExtensión.Text);
+                paisAux.posicion = txtAgregarPosicion.Text;
+                paisAux.costa = 1;
+                paisAux.existe = true;
+                paisAux.country = "";
+
+                paisNegocio.agregarPais(paisAux);
+
+                CargarDatos(1);
+            }
+            catch (Exception ex)
+            {
+                dialogHostError.IsOpen = true;
+            }
+
+        }
+
+        private void btnAgregarContinente_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Continentes continenteAux = new Continentes();
+                continenteAux.continente = tbxAgregarContinente.Text;
+                continenteAux.existe = true;
+
+                continenteNegocio.agregarContinente(continenteAux);
+
+                CargarDatos(2);
+            }
+            catch (Exception ex)
+            {
+                dialogHostError.IsOpen = true;
+            }
+        }
+
+        private void btnAgregarIdioma_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Idiomas idiomaAux = new Idiomas();
+                idiomaAux.idioma = tbAgregarIdioma.Text;
+                idiomaAux.existe = true;
+
+                idiomaNegocio.agregarIdioma(idiomaAux);
+
+                CargarDatos(3);
+            }
+            catch (Exception ex)
+            {
+                dialogHostError.IsOpen = true;
+            }
+        }
+
+        private void btnAgregarGobierno_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Gobiernos gobiernoAux = new Gobiernos();
+                gobiernoAux.gobierno = bAgregarGobierno.Text;
+                gobiernoAux.existe = true;
+
+                gobiernoNegocio.agregarGobierno(gobiernoAux);
+                CargarDatos(4);
+            }
+            catch (Exception ex)
+            {
+                dialogHostError.IsOpen = true;
+            }
+        }
+
+        private void btnAgregarPaisIdioma_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Paises_Idiomas paisIdiomaAux = new Paises_Idiomas();
+                paisIdiomaAux.pais_id = paisNegocio.ObtenerIdPais(tbnxAgregarPais.Text).FirstOrDefault().id;
+                paisIdiomaAux.idioma_id = idiomaNegocio.ObtenerIdIdioma(tbnxAgregarIdioma.Text).FirstOrDefault().id;
+                paisIdiomaAux.hablantes = Convert.ToInt32(tbnxAgregarHablantes.Text);
+                paisIdiomaAux.porcentaje = Convert.ToDecimal(tbnxAgregarPorcentaje.Text);
+                paisIdiomaAux.existe = true;
+
+                paisNegocio.agregarPaisIdioma(paisIdiomaAux);
+                CargarDatos(5);
+            }
+            catch (Exception ex)
+            {
+                dialogHostError.IsOpen = true;
+            }
+        }
+
+        private void btnAgregarPaisVecino_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Paises_Vecinos paisVecinoAux = new Paises_Vecinos();
+                paisVecinoAux.pais_id = paisNegocio.ObtenerIdPais(tAgregarPais.Text).FirstOrDefault().id;
+                paisVecinoAux.vecino_id = paisNegocio.ObtenerIdPais(tAgregarVecino.Text).FirstOrDefault().id;
+                paisVecinoAux.kms_frontera = Convert.ToInt32(tAgregarFrontera.Text);
+                paisVecinoAux.existe = true;
+
+                paisNegocio.agregarPaisVecino(paisVecinoAux);
+                CargarDatos(6);
+            }
+            catch (Exception ex)
+            {
+                dialogHostError.IsOpen = true;
+            }
         }
 
         #endregion

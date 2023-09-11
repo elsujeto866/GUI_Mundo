@@ -11,6 +11,16 @@ namespace DAL_Mundo
     public class DAL_Gobierno
     {
         DBMundoContextDataContext db = new DBMundoContextDataContext();
+
+        public List<ObtenerIdGobiernoResult> ObtenerIdGobierno(string vGobierno)
+        {
+            return db.ObtenerIdGobierno(vGobierno).ToList();
+        }
+
+        public List<ObtenerGobiernosResult> ObtenerGobiernos()
+        {
+            return db.ObtenerGobiernos().ToList();
+        }
         public ObservableCollection<CargarGobiernosResult> CargarGobiernos()
         {
             var gobiernos = new ObservableCollection<CargarGobiernosResult>();
@@ -29,5 +39,13 @@ namespace DAL_Mundo
             db.EliminarGobierno(vId);
 
         }
+
+        public void crearGobierno(Gobiernos vGobierno)
+        {
+            db.Gobiernos.InsertOnSubmit(vGobierno);
+            db.SubmitChanges();
+
+        }
+
     }
 }

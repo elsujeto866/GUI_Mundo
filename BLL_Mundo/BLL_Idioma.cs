@@ -13,9 +13,14 @@ namespace BLL_Mundo
     {
         private DAL_Idioma idiomaDatos = new DAL_Idioma();
 
-        public List<ObtenerIdIdiomaResult> ObtenerIdIdioma(string vPais)
+        public List<ObtenerIdIdiomaResult> ObtenerIdIdioma(string vIdioma)
         {
-            return idiomaDatos.ObtenerIdIdioma(vPais);
+            return idiomaDatos.ObtenerIdIdioma(vIdioma);
+        }
+
+        public List<ObtenerIdiomasResult> ObtenerIdiomas()
+        {
+            return idiomaDatos.ObtenerIdiomas();
         }
 
         public ObservableCollection<CargarIdiomasResult> CargarIdiomas()
@@ -26,6 +31,11 @@ namespace BLL_Mundo
         public void eliminarIdioma(int vId)
         {
             idiomaDatos.eliminarIdioma(vId);
+        }
+
+        public void agregarIdioma(Idiomas vIdioma)
+        {
+            idiomaDatos.crearIdioma(vIdioma);
         }
     }
 }

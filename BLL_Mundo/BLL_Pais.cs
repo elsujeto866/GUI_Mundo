@@ -18,6 +18,10 @@ namespace BLL_Mundo
         {
             return paisDatos.ObtenerIdPais(vPais);
         }
+        public List<ObtenerPaisesResult> ObtenerPaises()
+        {
+            return paisDatos.ObtenerPaises();
+        }
 
         public ObservableCollection<CargarPaisesResult> CargarPaises()
         {            
@@ -39,23 +43,33 @@ namespace BLL_Mundo
             paisDatos.eliminarPais(vId);
         }
 
+        public void agregarPais(Paises objPais)
+        {
+            paisDatos.crearPais(objPais);
+        }
+
         public void eliminarPaisIdioma(int vIdPais,int vIdVecino)
         {
             paisDatos.eliminarPaisIdioma(vIdPais,vIdVecino);
+        }
+        public void agregarPaisIdioma(Paises_Idiomas vPaisIdioma)
+        {
+            paisDatos.crearPaisIdioma(vPaisIdioma);
         }
 
         public void eliminarPaisVecino(int vIdPais, int vIdVecino)
         {
             paisDatos.eliminarPaisVecino(vIdPais, vIdVecino);
         }
+        public void agregarPaisVecino(Paises_Vecinos vPaisVecino)
+        {
+            paisDatos.crearPaisVecino(vPaisVecino);
+        }
         public void editaPaises(Paises objPais) {
             paisDatos.modificarPais(objPais);
         }
 
-        public void agregaPais(Paises objPais)
-        {
-            paisDatos.creaPais(objPais);
-        }
+       
 
       
 

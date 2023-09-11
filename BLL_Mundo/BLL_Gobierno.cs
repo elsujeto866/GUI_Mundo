@@ -13,6 +13,16 @@ namespace BLL_Mundo
     {
         private DAL_Gobierno gobiernoDatos = new DAL_Gobierno();
 
+        public List<ObtenerIdGobiernoResult> ObtenerIdGobierno(string vGobierno)
+        {
+            return gobiernoDatos.ObtenerIdGobierno(vGobierno);
+        }
+
+        public List<ObtenerGobiernosResult> ObtenerGobiernos()
+        {
+            return gobiernoDatos.ObtenerGobiernos();
+        }
+
         public ObservableCollection<CargarGobiernosResult> CargarGobiernos()
         {
             return gobiernoDatos.CargarGobiernos();
@@ -21,6 +31,11 @@ namespace BLL_Mundo
         public void eliminarGobierno(int vId)
         {
             gobiernoDatos.eliminarGobierno(vId);
+        }
+
+        public void agregarGobierno(Gobiernos vGobierno)
+        {
+            gobiernoDatos.crearGobierno(vGobierno);
         }
     }
 }

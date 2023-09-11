@@ -171,4 +171,36 @@
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
+  <Function Name="dbo.ObtenerIdContinente" Method="ObtenerIdContinente">
+    <Parameter Name="Continente" Parameter="continente" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="ObtenerIdContinenteResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ObtenerIdGobierno" Method="ObtenerIdGobierno">
+    <Parameter Name="Gobierno" Parameter="gobierno" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="ObtenerIdGobiernoResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ObtenerContinentes" Method="ObtenerContinentes">
+    <ElementType Name="ObtenerContinentesResult">
+      <Column Name="continente" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ObtenerGobiernos" Method="ObtenerGobiernos">
+    <ElementType Name="ObtenerGobiernosResult">
+      <Column Name="gobierno" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ObtenerPaises" Method="ObtenerPaises">
+    <ElementType Name="ObtenerPaisesResult">
+      <Column Name="pais" Type="System.String" DbType="VarChar(35) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ObtenerIdiomas" Method="ObtenerIdiomas">
+    <ElementType Name="ObtenerIdiomasResult">
+      <Column Name="idioma" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>

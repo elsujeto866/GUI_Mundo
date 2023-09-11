@@ -17,6 +17,10 @@ namespace DAL_Mundo
             return db.ObtenerIdIdioma(vIdioma).ToList();
         }
 
+        public List<ObtenerIdiomasResult> ObtenerIdiomas()
+        {
+            return db.ObtenerIdiomas().ToList();
+        }
         public ObservableCollection<CargarIdiomasResult> CargarIdiomas()
         {
             var idiomas = new ObservableCollection<CargarIdiomasResult>();
@@ -33,6 +37,13 @@ namespace DAL_Mundo
         public void eliminarIdioma(int vId)
         {
             db.EliminarIdioma(vId);
+
+        }
+
+        public void crearIdioma(Idiomas vIdioma)
+        {
+            db.Idiomas.InsertOnSubmit(vIdioma);
+            db.SubmitChanges();
 
         }
     }

@@ -82,6 +82,7 @@
                                     <TextBlock Text="Geografía paises"/>
                                 </StackPanel>
                             </Button>
+<<<<<<< Updated upstream
                                 <Button Style="{StaticResource menuButton}" 
                                     x:Name="btnIdiomas" Click="btnIdiomas_Click">
                                     <StackPanel Orientation="Horizontal" >
@@ -104,6 +105,16 @@
                                 </Button>
 
                             </StackPanel>
+=======
+                            <Button Style="{StaticResource menuButton}" Command="{x:Static materialDesing:DialogHost.OpenDialogCommand}">
+                                <StackPanel Orientation="Horizontal" >
+                                    <Icon:PackIconMaterial Kind="HandCoinOutline" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Moneda"/>
+                                </StackPanel>
+                            </Button>
+                            
+                        </StackPanel>
+>>>>>>> Stashed changes
                         <Button Style="{StaticResource menuButton}"  VerticalAlignment="Bottom" DockPanel.Dock="Bottom"  Margin="15 0 15 20" x:Name="btnSalir" Click="btnSalir_Click">
                             <StackPanel Orientation="Horizontal" >
                                 <Icon:PackIconMaterial Kind="Logout" Style="{StaticResource menuButtonIcon}"/>
@@ -149,7 +160,7 @@
                            HorizontalAlignment="Left" Foreground="#121418"/>
 
                 <!--Boton Agregar-->
-                <Button Style="{StaticResource addButton}">
+                <Button Style="{StaticResource addButton}" x:Name="btnAgregarDatos" Click="btnAgregarDatos_Click">
                     <StackPanel Orientation="Horizontal">
                         <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
                         <TextBlock Text="Agregar Nuevo"/>
@@ -303,6 +314,457 @@
                             <Button Command="{x:Static materialDesing:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Foreground="#d32f2f" Margin="4" VerticalAlignment="Center">
                                 Cancelar
                             </Button>
+                        </StackPanel>
+                    </Grid>
+                </materialDesing:DialogHost.DialogContent>
+            </materialDesing:DialogHost>
+
+            <materialDesing:DialogHost x:Name="dialogHostAgregarPaises" BorderBrush="{DynamicResource MaterialDesignDivider}">
+                <materialDesing:DialogHost.DialogContent>
+                    <Grid Width="700" Height="500" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Margin="15">
+                            <materialDesing:PackIcon Kind="AddBold" Foreground="{StaticResource PrimaryHueMidBrush}" Width="50" Height="50"/>
+                            <TextBlock Foreground="Gray" Width="500" Margin="15 5" TextWrapping="Wrap" FontSize="20">
+                                Ingrese los Datos del País:
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <!-- Primera Columna -->
+                            <Grid Margin="50 0 0 0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Labels -->
+                                <Label Content="País:" Grid.Row="2" Width="Auto" FontSize="16" FontWeight="DemiBold"/>
+                                <Label Content="Capital:" Grid.Row="3" Width="Auto" FontSize="16" FontWeight="DemiBold"/>
+                                <Label Content="Moneda:" Grid.Row="4" Width="Auto" FontSize="16" FontWeight="DemiBold"/>
+                                <Label Content="Continente:" Grid.Row="5" Width="Auto" FontSize="16" FontWeight="DemiBold"/>
+
+                                <!-- TextBoxes -->
+                                <TextBox Grid.Column="1" Grid.Row="2" Width="200" FontSize="16"  x:Name="txtAgregarPais"/>
+                                <TextBox Grid.Column="1" Grid.Row="3" Width="200" FontSize="16" x:Name="txtAgregarCapital"/>
+                                <TextBox Grid.Column="1" Grid.Row="4" Width="200" FontSize="16" x:Name="txtAgregarMoneda"/>
+                                <ComboBox Grid.Column="1" Grid.Row="5" Width="200" FontSize="16" x:Name="txtAgregarContinente"/>
+                            </Grid>
+
+                            <!-- Segunda Columna -->
+                            <Grid Margin="20,0,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Labels -->
+                                <Label Content="Gobierno:" Grid.Row="2" Width="Auto" HorizontalAlignment="Right" FontSize="16" FontWeight="DemiBold"/>
+                                <Label Content="Extensión:" Grid.Row="3" Width="Auto" HorizontalAlignment="Right" FontSize="16" FontWeight="DemiBold"/>
+                                <Label Content="Población:" Grid.Row="4" Width="Auto" HorizontalAlignment="Right" FontSize="16" FontWeight="DemiBold"/>
+                                <Label Content="Posición:" Grid.Row="5"  Width="Auto" HorizontalAlignment="Right" FontSize="16" FontWeight="DemiBold"/>
+                                <Label Content="Code:" Grid.Row="6"  Width="Auto" HorizontalAlignment="Right" FontSize="16" FontWeight="DemiBold"/>
+
+                                <!-- TextBoxes -->
+                                <ComboBox Grid.Column="1" Grid.Row="2" Width="200" HorizontalAlignment="Right" FontSize="16" x:Name="txtAgregarGobierno"/>
+                                <TextBox Grid.Column="1" Grid.Row="3" Width="200" HorizontalAlignment="Right" FontSize="16" x:Name="txtAgregarExtensión"/>
+                                <TextBox Grid.Column="1" Grid.Row="4" Width="200" HorizontalAlignment="Right" FontSize="16" x:Name="txtAgregarPoblacion"/>
+                                <TextBox Grid.Column="1" Grid.Row="5" Width="200" HorizontalAlignment="Right" FontSize="16" x:Name="txtAgregarPosicion"/>
+                                <TextBox Grid.Column="1" Grid.Row="6" Width="200" HorizontalAlignment="Right" FontSize="16" x:Name="txtAgregarCode"/>
+                            </Grid>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="15">
+                            <Button Command="{x:Static materialDesing:DialogHost.CloseDialogCommand}" x:Name="btnAgregarPais" Click="btnAgregarPais_Click" Style="{DynamicResource MaterialDesignFlatButton}"  Margin="4" VerticalAlignment="Center">
+                                Agregar
+                            </Button>
+                            <Button Command="{x:Static materialDesing:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Margin="4" VerticalAlignment="Center">
+                                Cancelar
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </materialDesing:DialogHost.DialogContent>
+            </materialDesing:DialogHost>
+            <materialDesing:DialogHost x:Name="dialogHostAgregarContinente" BorderBrush="{DynamicResource MaterialDesignDivider}">
+                <materialDesing:DialogHost.DialogContent>
+                    <Grid Width="700" Height="500" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Margin="15">
+                            <materialDesing:PackIcon Kind="AddBold" Foreground="{StaticResource PrimaryHueMidBrush}" Width="50" Height="50"/>
+                            <TextBlock Foreground="Gray" Width="500" Margin="15 5" TextWrapping="Wrap" FontSize="20">
+                                Ingrese los Datos del Continente:
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <!-- Primera Columna -->
+                            <Grid Margin="50 0 0 0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Labels -->
+                                <Label Content="Continente:" Grid.Row="4" Width="Auto" FontSize="16" FontWeight="DemiBold"/>
+
+                                <!-- TextBoxes -->
+                                <TextBox Grid.Column="1" Grid.Row="4" Width="200" FontSize="16" x:Name="tbxAgregarContinente"/>
+                            </Grid>
+
+                            <!-- Segunda Columna -->
+                            <Grid Margin="20,0,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Labels -->
+
+                                <!-- TextBoxes -->
+                            </Grid>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="15">
+                            <Button Command="{x:Static materialDesing:DialogHost.CloseDialogCommand}" x:Name="btnAgregarContinente" Click="btnAgregarContinente_Click" Style="{DynamicResource MaterialDesignFlatButton}"  Margin="4" VerticalAlignment="Center">
+                                Agregar
+                            </Button>
+                            <Button Command="{x:Static materialDesing:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Margin="4" VerticalAlignment="Center">
+                                Cancelar
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </materialDesing:DialogHost.DialogContent>
+            </materialDesing:DialogHost>
+            <materialDesing:DialogHost x:Name="dialogHostAgregarIdioma" BorderBrush="{DynamicResource MaterialDesignDivider}">
+                <materialDesing:DialogHost.DialogContent>
+                    <Grid Width="700" Height="500" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Margin="15">
+                            <materialDesing:PackIcon Kind="AddBold" Foreground="{StaticResource PrimaryHueMidBrush}" Width="50" Height="50"/>
+                            <TextBlock Foreground="Gray" Width="500" Margin="15 5" TextWrapping="Wrap" FontSize="20">
+                                Ingrese los Datos del Idioma:
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <!-- Primera Columna -->
+                            <Grid Margin="50 0 0 0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Labels -->
+                                <Label Content="Idioma:" Grid.Row="4" Width="Auto" FontSize="16" FontWeight="DemiBold"/>
+
+                                <!-- TextBoxes -->
+                                <TextBox Grid.Column="1" Grid.Row="4" Width="200" FontSize="16" x:Name="tbAgregarIdioma"/>
+                            </Grid>
+
+                            <!-- Segunda Columna -->
+                            <Grid Margin="20,0,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Labels -->
+
+                                <!-- TextBoxes -->
+                            </Grid>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="15">
+                            <Button Command="{x:Static materialDesing:DialogHost.CloseDialogCommand}" x:Name="btnAgregarIdioma" Click="btnAgregarIdioma_Click" Style="{DynamicResource MaterialDesignFlatButton}"  Margin="4" VerticalAlignment="Center">
+                                Agregar
+                            </Button>
+                            <Button Command="{x:Static materialDesing:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Margin="4" VerticalAlignment="Center">
+                                Cancelar
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </materialDesing:DialogHost.DialogContent>
+            </materialDesing:DialogHost>
+            <materialDesing:DialogHost x:Name="dialogHostAgregarGobierno" BorderBrush="{DynamicResource MaterialDesignDivider}">
+                <materialDesing:DialogHost.DialogContent>
+                    <Grid Width="700" Height="500" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Margin="15">
+                            <materialDesing:PackIcon Kind="AddBold" Foreground="{StaticResource PrimaryHueMidBrush}" Width="50" Height="50"/>
+                            <TextBlock Foreground="Gray" Width="500" Margin="15 5" TextWrapping="Wrap" FontSize="20">
+                                Ingrese los Datos del Gobierno:
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <!-- Primera Columna -->
+                            <Grid Margin="50 0 0 0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Labels -->
+                                <Label Content="Gobierno:" Grid.Row="4" Width="Auto" FontSize="16" FontWeight="DemiBold"/>
+
+                                <!-- TextBoxes -->
+                                <TextBox Grid.Column="1" Grid.Row="4" Width="200" FontSize="16" x:Name="bAgregarGobierno"/>
+                            </Grid>
+
+                            <!-- Segunda Columna -->
+                            <Grid Margin="20,0,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Labels -->
+
+                                <!-- TextBoxes -->
+                            </Grid>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="15">
+                            <Button Command="{x:Static materialDesing:DialogHost.CloseDialogCommand}" x:Name="btnAgregarGobierno" Click="btnAgregarGobierno_Click" Style="{DynamicResource MaterialDesignFlatButton}"  Margin="4" VerticalAlignment="Center">
+                                Agregar
+                            </Button>
+                            <Button Command="{x:Static materialDesing:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Margin="4" VerticalAlignment="Center">
+                                Cancelar
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </materialDesing:DialogHost.DialogContent>
+            </materialDesing:DialogHost>
+            <materialDesing:DialogHost x:Name="dialogHostAgregarPaisIdioma" BorderBrush="{DynamicResource MaterialDesignDivider}">
+                <materialDesing:DialogHost.DialogContent>
+                    <Grid Width="700" Height="500" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Margin="15">
+                            <materialDesing:PackIcon Kind="AddBold" Foreground="{StaticResource PrimaryHueMidBrush}" Width="50" Height="50"/>
+                            <TextBlock Foreground="Gray" Width="500" Margin="15 5" TextWrapping="Wrap" FontSize="20">
+                                Ingrese los Datos del los Idiomas del País:
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <!-- Primera Columna -->
+                            <Grid Margin="50 0 0 0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Labels -->
+                                <Label Content="País:" Grid.Row="3" Width="Auto" FontSize="16" FontWeight="DemiBold"/>
+                                <Label Content="Idioma:" Grid.Row="4" Width="Auto" FontSize="16" FontWeight="DemiBold"/>
+
+                                <!-- TextBoxes -->
+                                <ComboBox Grid.Column="1" Grid.Row="3" Width="200" FontSize="16" x:Name="tbnxAgregarPais"/>
+                                <ComboBox Grid.Column="1" Grid.Row="4" Width="200" FontSize="16" x:Name="tbnxAgregarIdioma"/>
+                            </Grid>
+
+                            <!-- Segunda Columna -->
+                            <Grid Margin="20,0,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Labels -->
+                                <Label Content="Hablantes:" Grid.Row="3" Width="Auto" HorizontalAlignment="Right" FontSize="16" FontWeight="DemiBold"/>
+                                <Label Content="Porcentaje:" Grid.Row="4" Width="Auto" HorizontalAlignment="Right" FontSize="16" FontWeight="DemiBold"/>
+
+                                <!-- TextBoxes -->
+                                <TextBox Grid.Column="1" Grid.Row="3" Width="200" HorizontalAlignment="Right" FontSize="16" x:Name="tbnxAgregarHablantes"/>
+                                <TextBox Grid.Column="1" Grid.Row="4" Width="200" HorizontalAlignment="Right" FontSize="16" x:Name="tbnxAgregarPorcentaje"/>
+
+                            </Grid>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="15">
+                            <Button Command="{x:Static materialDesing:DialogHost.CloseDialogCommand}" x:Name="btnAgregarPaisIdioma" Click="btnAgregarPaisIdioma_Click" Style="{DynamicResource MaterialDesignFlatButton}"  Margin="4" VerticalAlignment="Center">
+                                Agregar
+                            </Button>
+                            <Button Command="{x:Static materialDesing:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Margin="4" VerticalAlignment="Center">
+                                Cancelar
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </materialDesing:DialogHost.DialogContent>
+            </materialDesing:DialogHost>
+            <materialDesing:DialogHost x:Name="dialogHostAgregarPaisVecino" BorderBrush="{DynamicResource MaterialDesignDivider}">
+                <materialDesing:DialogHost.DialogContent>
+                    <Grid Width="700" Height="500" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Margin="15">
+                            <materialDesing:PackIcon Kind="AddBold" Foreground="{StaticResource PrimaryHueMidBrush}" Width="50" Height="50"/>
+                            <TextBlock Foreground="Gray" Width="500" Margin="15 5" TextWrapping="Wrap" FontSize="20">
+                                Ingrese los Datos del los Idiomas del País:
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <!-- Primera Columna -->
+                            <Grid Margin="50 0 0 0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Labels -->
+                                <Label Content="País:" Grid.Row="3" Width="Auto" FontSize="16" FontWeight="DemiBold"/>
+                                <Label Content="Vecino:" Grid.Row="4" Width="Auto" FontSize="16" FontWeight="DemiBold"/>
+                                <Label Content="Distancia de Frontera:" Grid.Row="5" Width="Auto" FontSize="16" FontWeight="DemiBold"/>
+
+                                <!-- TextBoxes -->
+                                <ComboBox Grid.Column="1" Grid.Row="3" Width="200" FontSize="16" x:Name="tAgregarPais"/>
+                                <ComboBox Grid.Column="1" Grid.Row="4" Width="200" FontSize="16" x:Name="tAgregarVecino"/>
+                                <TextBox Grid.Column="1" Grid.Row="5" Width="200" FontSize="16" x:Name="tAgregarFrontera"/>
+                            </Grid>
+
+                            <!-- Segunda Columna -->
+                            <Grid Margin="20,0,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Labels -->
+
+                                <!-- TextBoxes -->
+
+                            </Grid>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="15">
+                            <Button Command="{x:Static materialDesing:DialogHost.CloseDialogCommand}" x:Name="btnAgregarPaisVecino" Click="btnAgregarPaisVecino_Click" Style="{DynamicResource MaterialDesignFlatButton}"  Margin="4" VerticalAlignment="Center">
+                                Agregar
+                            </Button>
+                            <Button Command="{x:Static materialDesing:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Margin="4" VerticalAlignment="Center">
+                                Cancelar
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </materialDesing:DialogHost.DialogContent>
+            </materialDesing:DialogHost>
+
+
+            <materialDesing:DialogHost x:Name="dialogHostError" BorderBrush="{DynamicResource MaterialDesignDivider}">
+                <materialDesing:DialogHost.DialogContent>
+                    <Grid Width="300" Height="150" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Margin="15">
+                            <materialDesing:PackIcon Kind="ErrorOutline" Foreground="#d32f2f" Width="50" Height="50"/>
+                            <TextBlock Foreground="Gray" Width="200" Margin="15 5" TextWrapping="Wrap">
+                                Error al ingresar los datos. Llene bien todos los campos por favor !!
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="15">
+                            <Button Command="{x:Static materialDesing:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Foreground="#d32f2f"  Margin="4" VerticalAlignment="Center">
+                                Aceptar
+                            </Button>
+                            
                         </StackPanel>
                     </Grid>
                 </materialDesing:DialogHost.DialogContent>

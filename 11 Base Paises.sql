@@ -54,7 +54,11 @@ CREATE TABLE Paises (
   FOREIGN KEY (gobierno_id) REFERENCES Gobiernos(id)
 ) ;
 GO
+<<<<<<< Updated upstream
 --SELECT * FROM Paises
+=======
+SELECT * FROM Idiomas
+>>>>>>> Stashed changes
 
 CREATE TABLE Paises_Idiomas (
   pais_id INT NOT NULL,
@@ -632,6 +636,205 @@ FROM Paises p
   INNER JOIN Gobiernos g ON p.gobierno_id = g.id
 END
 GO
+<<<<<<< Updated upstream
+=======
+
+CREATE PROC EliminarPais
+@id int
+AS
+BEGIN
+	UPDATE Paises
+	SET existe = 0
+  WHERE id = @id
+END
+GO
+
+--Cargar Continentes
+CREATE PROC CargarContinentes
+AS
+BEGIN
+SELECT *
+FROM Continentes c 
+WHERE c.existe = 1
+END
+GO
+--SELECT * FROM Continentes
+CREATE PROC EliminarContinente
+@id int
+AS
+BEGIN
+	UPDATE Continentes
+	SET existe = 0
+  WHERE id = @id
+END
+GO
+--Cargar Idiomas
+CREATE PROC CargarIdiomas
+AS
+BEGIN
+SELECT *
+FROM Idiomas i 
+WHERE i.existe = 1
+END
+GO
+
+--SELECT * FROM Idiomas
+
+CREATE PROC EliminarIdioma
+@id int
+AS
+BEGIN
+	UPDATE Idiomas
+	SET existe = 0
+  WHERE id = @id
+END
+GO
+
+--SELECT * FROM AuditoriaTablas
+--Cargar Gobiernos
+CREATE PROC CargarGobiernos
+AS
+BEGIN
+SELECT *
+FROM Gobiernos g
+WHERE g.existe = 1
+END
+GO
+--SELECT * FROM Gobiernos
+CREATE PROC EliminarGobierno
+@id int
+AS
+BEGIN
+	UPDATE Gobiernos
+	SET existe = 0
+  WHERE id = @id
+END
+GO
+
+--Cargar Paises Idiomas
+CREATE PROC CargarPaisesIdiomas
+AS
+BEGIN
+SELECT p.pais, i.idioma, pai.hablantes, pai.porcentaje
+FROM Paises_Idiomas pai
+INNER JOIN Paises p on pai.pais_id = p.id
+INNER JOIN Idiomas i on pai.idioma_id = i.id
+WHERE pai.existe = 1
+END
+GO
+--SELECT * FROM Paises_Idiomas
+CREATE PROC EliminarPaisesIdiomas
+@idPais int,
+@idIdioma int
+AS
+BEGIN
+	UPDATE Paises_Idiomas
+	SET existe = 0
+  WHERE pais_id = @idPais AND idioma_id =  @idIdioma
+END
+GO
+
+CREATE PROC ObtenerIdPais
+@Pais varchar(100)
+AS
+BEGIN
+	SELECT id
+	FROM Paises
+  WHERE pais = @Pais
+END
+GO
+
+CREATE PROC ObtenerIdIdioma
+@Idioma varchar(100)
+AS
+BEGIN
+	SELECT id
+	FROM Idiomas
+  WHERE idioma = @Idioma
+END
+GO
+--exec ObtenerIdIdioma 'Noruego'
+--select * from Paises_Vecinos
+CREATE PROC ObtenerIdContinente
+@Continente varchar(100)
+AS
+BEGIN
+	SELECT id
+	FROM Continentes
+  WHERE continente = @Continente
+END
+GO
+
+CREATE PROC ObtenerIdGobierno
+@Gobierno varchar(100)
+AS
+BEGIN
+	SELECT id
+	FROM Gobiernos
+  WHERE gobierno = @Gobierno
+END
+GO
+--exec ObtenerIdContinente 'Asia'
+--SELECT * FROM Paises
+
+--Cargar Paises Vecinos
+CREATE PROC CargarPaisesVecinos
+AS
+BEGIN
+SELECT p1.pais,p2.pais as vecino,pv.kms_frontera
+FROM Paises_Vecinos pv
+INNER JOIN Paises p1 on pv.pais_id = p1.id
+INNER JOIN Paises p2 on pv.vecino_id = p2.id
+WHERE pv.existe = 1
+END
+GO
+--SELECT * FROM Paises_Vecinos
+CREATE PROC EliminarPaisesVecinos
+@idPais int,
+@idVecino int
+AS
+BEGIN
+	UPDATE Paises_Vecinos
+	SET existe = 0
+  WHERE pais_id = @idPais AND vecino_id = @idVecino
+END
+GO
+CREATE PROC ObtenerPaises
+AS
+BEGIN
+SELECT pais
+FROM Paises
+END
+GO
+
+CREATE PROC ObtenerIdiomas
+AS
+BEGIN
+SELECT idioma
+FROM Idiomas
+END
+GO
+
+SELECT * FROM Paises_Idiomas
+CREATE PROC ObtenerContinentes
+AS
+BEGIN
+SELECT continente
+FROM Continentes
+END
+GO
+
+CREATE PROC ObtenerGobiernos
+AS
+BEGIN
+SELECT gobierno
+FROM Gobiernos
+END
+GO
+
+
+SELECT * FROM Paises_Idiomas
+>>>>>>> Stashed changes
 --Continente de cada país
 CREATE PROC PaisContinente
 AS

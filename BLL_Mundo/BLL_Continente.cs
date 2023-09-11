@@ -13,6 +13,16 @@ namespace BLL_Mundo
     {
         private DAL_Continente continenteDatos = new DAL_Continente();
 
+        public List<ObtenerIdContinenteResult> ObtenerIdContinente(string vContinente)
+        {
+            return continenteDatos.ObtenerIdContinente(vContinente);
+        }
+        
+
+        public List<ObtenerContinentesResult> ObtenerContinentes()
+        {
+            return continenteDatos.ObtenerContinentes();
+        }
         public ObservableCollection<CargarContinentesResult> CargarContinentes()
         {
             return continenteDatos.CargarContinentes();
@@ -20,7 +30,12 @@ namespace BLL_Mundo
 
         public void eliminarContinente(int vId)
         {
-            continenteDatos.eliminarPais(vId);
+            continenteDatos.eliminarContinente(vId);
+        }
+
+        public void agregarContinente(Continentes vContinente)
+        {
+            continenteDatos.crearContinente(vContinente);
         }
     }
 }

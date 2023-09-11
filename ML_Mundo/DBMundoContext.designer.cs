@@ -239,6 +239,48 @@ namespace ML_Mundo
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pais);
 			return ((ISingleResult<ObtenerIdPaisResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ObtenerIdContinente")]
+		public ISingleResult<ObtenerIdContinenteResult> ObtenerIdContinente([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Continente", DbType="VarChar(100)")] string continente)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), continente);
+			return ((ISingleResult<ObtenerIdContinenteResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ObtenerIdGobierno")]
+		public ISingleResult<ObtenerIdGobiernoResult> ObtenerIdGobierno([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Gobierno", DbType="VarChar(100)")] string gobierno)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), gobierno);
+			return ((ISingleResult<ObtenerIdGobiernoResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ObtenerContinentes")]
+		public ISingleResult<ObtenerContinentesResult> ObtenerContinentes()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<ObtenerContinentesResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ObtenerGobiernos")]
+		public ISingleResult<ObtenerGobiernosResult> ObtenerGobiernos()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<ObtenerGobiernosResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ObtenerPaises")]
+		public ISingleResult<ObtenerPaisesResult> ObtenerPaises()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<ObtenerPaisesResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ObtenerIdiomas")]
+		public ISingleResult<ObtenerIdiomasResult> ObtenerIdiomas()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<ObtenerIdiomasResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Continentes")]
@@ -2350,6 +2392,162 @@ namespace ML_Mundo
 				if ((this._id != value))
 				{
 					this._id = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ObtenerIdContinenteResult
+	{
+		
+		private int _id;
+		
+		public ObtenerIdContinenteResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ObtenerIdGobiernoResult
+	{
+		
+		private int _id;
+		
+		public ObtenerIdGobiernoResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ObtenerContinentesResult
+	{
+		
+		private string _continente;
+		
+		public ObtenerContinentesResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_continente", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string continente
+		{
+			get
+			{
+				return this._continente;
+			}
+			set
+			{
+				if ((this._continente != value))
+				{
+					this._continente = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ObtenerGobiernosResult
+	{
+		
+		private string _gobierno;
+		
+		public ObtenerGobiernosResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gobierno", DbType="VarChar(40) NOT NULL", CanBeNull=false)]
+		public string gobierno
+		{
+			get
+			{
+				return this._gobierno;
+			}
+			set
+			{
+				if ((this._gobierno != value))
+				{
+					this._gobierno = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ObtenerPaisesResult
+	{
+		
+		private string _pais;
+		
+		public ObtenerPaisesResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pais", DbType="VarChar(35) NOT NULL", CanBeNull=false)]
+		public string pais
+		{
+			get
+			{
+				return this._pais;
+			}
+			set
+			{
+				if ((this._pais != value))
+				{
+					this._pais = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ObtenerIdiomasResult
+	{
+		
+		private string _idioma;
+		
+		public ObtenerIdiomasResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idioma", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string idioma
+		{
+			get
+			{
+				return this._idioma;
+			}
+			set
+			{
+				if ((this._idioma != value))
+				{
+					this._idioma = value;
 				}
 			}
 		}

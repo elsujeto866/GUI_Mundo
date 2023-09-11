@@ -19,6 +19,11 @@ namespace DAL_Mundo
         {
             return db.ObtenerIdPais(vPais).ToList(); 
         }
+
+        public List<ObtenerPaisesResult> ObtenerPaises()
+        {
+            return db.ObtenerPaises().ToList();
+        }
         // Metodo para agregar los paises al datagrid view
         public ObservableCollection<CargarPaisesResult> CargarPaises()
         {
@@ -72,16 +77,34 @@ namespace DAL_Mundo
             //db.SubmitChanges(); //Se guarda las modificaciones
         }
 
+        public void crearPais(Paises paisnew)
+        {          
+            db.Paises.InsertOnSubmit(paisnew);
+            db.SubmitChanges();
+        }
+
         public void eliminarPaisIdioma(int vIdPais, int vIdVecino)
         {
             db.EliminarPaisesIdiomas(vIdPais,vIdVecino); 
             
         }
 
+        public void crearPaisIdioma(Paises_Idiomas vPaisIdioma)
+        {
+            db.Paises_Idiomas.InsertOnSubmit(vPaisIdioma);
+            db.SubmitChanges();
+        }
+
         public void eliminarPaisVecino(int vIdPais, int vIdVecino)
         {
             db.EliminarPaisesVecinos(vIdPais, vIdVecino);
 
+        }
+
+        public void crearPaisVecino(Paises_Vecinos vPaisVecino)
+        {
+            db.Paises_Vecinos.InsertOnSubmit(vPaisVecino);
+            db.SubmitChanges();
         }
 
         public void modificarPais(Paises paisObjeto)
